@@ -11,7 +11,7 @@ import com.oracle.staffmanagement.domain.Employee;
 
 @ManagedBean(name="allEmployeesPageBean")
 public class AllEmployeesPageBean {
-	
+	int test;
 	@EJB
 	private EmployeeManagementServiceLocal employeeService;
 	private Employee selectedEmployee;

@@ -18,6 +18,7 @@ import com.oracle.staffmanagement.domain.Employee;
 @Stateless
 public class EmployeeResource {
 	
+	
 	@EJB
 	private EmployeeManagementServiceLocal employeeManagement;
 	
