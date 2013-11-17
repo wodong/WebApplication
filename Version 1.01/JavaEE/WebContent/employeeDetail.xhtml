@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+<h:head>
+
+<title>Title</title>
+<link rel="stylesheet" type="text/css" href="${request.contextPath}/css/style.css"/>
+
+</h:head>
+
+<h:body>
+    
+    <!-- Start Main Container -->
+	<div id="container">
+		
+		<!-- Start Header Container  -->
+		<div id="header">
+			
+		</div>
+		
+		<!-- Start Content Container -->
+		<div id="content">
+		
+			<h1>Employee details for #{allEmployeesPageBean.selectedEmployee.firstName}</h1>
+			<p>Name: #{allEmployeesPageBean.selectedEmployee.firstName} #{allEmployeesPageBean.selectedEmployee.surname}</p>
+			<p>Job Role: #{allEmployeesPageBean.selectedEmployee.jobRole}</p>
+			<p>Salary: Eur #{allEmployeesPageBean.selectedEmployee.salary}</p>
+		
+		
+		
+
+		</div>
+		
+		<!-- Start footer Container -->
+		<div id="footer">
+		
+		</div>
+
+
+	</div>
+</h:body>
+
+</html>
+
+
+

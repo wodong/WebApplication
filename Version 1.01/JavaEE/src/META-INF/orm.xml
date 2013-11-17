@@ -1,0 +1,19 @@
+<entity-mappings
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.1">
+	
+
+	<entity class="com.virtualpairprogrammers.staffmanagement.domain.Employee">
+	
+		<named-query name="searchByFirstName">
+		
+			<query>
+				SELECT employee FROM Employee employee WHERE employee.firstName = :name
+			</query>
+		
+		</named-query>
+	
+	</entity>
+	
+</entity-mappings>
