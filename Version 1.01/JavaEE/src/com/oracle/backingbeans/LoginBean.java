@@ -24,6 +24,10 @@ public class LoginBean{
 	//provisional implementation 
 	public String jumpTo() {
 		
+		// Call the new EJB for Employee to validate the credentials (username, password)
+		
+		// 
+				
 		return "allEmployees";
 	}
 	
