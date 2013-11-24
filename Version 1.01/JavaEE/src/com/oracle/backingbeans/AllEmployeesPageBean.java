@@ -33,7 +33,6 @@ public class AllEmployeesPageBean {
 	}
 	
 	
-
 	public Employee getSelectedEmployee() {
 		return selectedEmployee;
 	}

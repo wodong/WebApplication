@@ -31,7 +31,7 @@ public class EnterEmployeePageBackingBean {
 	    try 
 	    {
 			employeeService.registerEmployee(newEmployee);
-		    return "all-employees";
+		    return "allEmployees";
 	    } catch (SystemUnavailableException e) 		    
 		    {
 			return "systemDown";
