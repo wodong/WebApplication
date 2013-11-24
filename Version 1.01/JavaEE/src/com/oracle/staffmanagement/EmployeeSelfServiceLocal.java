@@ -9,7 +9,5 @@ import com.oracle.staffmanagement.domain.Employee;
 @Local
 public interface EmployeeSelfServiceLocal 
 {
-	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException ;
-	public List<Employee> getAllEmployees();
-	public List<Employee> searchBySurname(String surname);
+	public boolean authenticate(String userName, String password);
 }

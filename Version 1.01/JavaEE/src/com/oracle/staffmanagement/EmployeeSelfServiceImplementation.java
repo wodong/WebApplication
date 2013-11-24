@@ -61,6 +61,14 @@ public class EmployeeSelfServiceImplementation
 
 	public List<Employee> searchBySurname(String surname) {
 		return dao.findBySurname(surname);
-	}	
+	}
+
+	@Override
+	public boolean authenticate(String userName, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 
 }
