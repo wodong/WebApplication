@@ -17,9 +17,24 @@
 				binding="#{allEmployeesPageBean.dataTable}">
 
 				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Employee ID" />
+					</f:facet>
+					<f:facet name="footer">Employee ID</f:facet>
+					<h:outputText value="" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Employee No" />
+					</f:facet>
+					<f:facet name="footer">Employee No</f:facet>
+					<h:outputText value="" />
+				</p:column>
+					
+				<p:column>
 					<f:facet name="header">First Name</f:facet>
 					<f:facet name="footer">First Name</f:facet>
-
 					<h:commandLink action="#{allEmployeesPageBean.showEmployee}">
 						<h:outputText value="#{employee.firstName}" />
 					</h:commandLink>
@@ -31,15 +46,30 @@
 					</f:facet>
 					<f:facet name="footer">Surname</f:facet>
 					<h:outputText value="#{employee.surname}" />
-
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Job Role" />
+						<h:outputText value="Application Date" />
 					</f:facet>
-					<f:facet name="footer">Job Role</f:facet>
-					<h:outputText value="#{employee.jobRole}" />
+					<f:facet name="footer">Application Date</f:facet>
+					<h:outputText value="" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Employment Status" />
+					</f:facet>
+					<f:facet name="footer">Employment Status</f:facet>
+					<h:outputText value="" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Allocation Ex Date" />
+					</f:facet>
+					<f:facet name="footer">Allocation Ex Date</f:facet>
+					<h:outputText value="" />
 				</p:column>
 
 				<p:column>
@@ -48,6 +78,14 @@
 					</f:facet>
 					<f:facet name="footer">Salary</f:facet>
 					<h:outputText value="#{employee.salary}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Job Role" />
+					</f:facet>
+					<f:facet name="footer">Job Role</f:facet>
+					<h:outputText value="#{employee.jobRole}" />
 				</p:column>
 
 			</p:dataTable>

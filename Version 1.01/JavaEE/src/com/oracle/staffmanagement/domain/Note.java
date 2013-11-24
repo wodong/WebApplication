@@ -15,7 +15,7 @@ public class Note
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String text;
+	private String txt_note;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
@@ -28,11 +28,11 @@ public class Note
 	public Note(String text)
 	{
 		this.date = new java.util.Date();
-		this.text = text;
+		this.txt_note = text;
 	}
 
 	public String toString()
 	{
-		return "Note raised at " + this.date + " with contents " + this.text;
+		return "Note raised at " + this.date + " with contents " + this.txt_note;
 	}
 }
