@@ -9,5 +9,5 @@ import com.oracle.staffmanagement.domain.Employee;
 @Remote
 public interface EmployeeSelfServiceRemote 
 {
-	public boolean authenticate(String userName, String password);
+	public String findPassword(String employee_no);
 }

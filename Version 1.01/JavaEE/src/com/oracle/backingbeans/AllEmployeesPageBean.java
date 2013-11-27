@@ -16,22 +16,22 @@ public class AllEmployeesPageBean {
 	private Employee selectedEmployee;
 	private UIData dataTable;
 	
-	
+	//get all employees
 	public List<Employee> getAllEmployees()
 	{
 		
 	 return employeeService.getAllEmployees();
 	}
 	
+	//display individual employee details
 	public String showEmployee(){
 		
 		this.selectedEmployee  = (Employee)dataTable.getRowData();
 		
-		return "employeeDetail";
-		
+		return "employeeDetail";		
 	}
 	
-	
+
 	public Employee getSelectedEmployee() {
 		return selectedEmployee;
 	}

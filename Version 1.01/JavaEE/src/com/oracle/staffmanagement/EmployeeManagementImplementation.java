@@ -20,39 +20,14 @@ public class EmployeeManagementImplementation
 	@EJB
 	private ExternalPayrollSystem payrollSystem;
 
-	/* The following is only needed if you are manually calling setRollbackOnly().
-	 * 
-	 * I've left it here for use the manual approach as on the video tutorial.
-	@Resource
-	private SessionContext glassfish;  // this object is often called ctx
-	*/
+	
 
 	public List<Employee> getAllEmployees() 
 	{
 		return dao.findAll();
 	}
 
-	/*
-	 * This is the first approach to rolling back when a checked exception occurs. 
-	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException 
-	{
-		dao.insert(newEmployee);
-		try
-		{
-		   payrollSystem.enrollEmployee(newEmployee);
-		}
-		catch (SystemUnavailableException e)
-		{
-			glassfish.setRollbackOnly();
-			throw e;
-		}
-	}
-	 */
 
-	/*
-	 * This version of register employee relies on the "SystemUnavailableExcpetion" being
-	 * annotated with @ApplicationException(rollback=true)
-	 */
 	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException 
 	{
 		dao.insert(newEmployee);

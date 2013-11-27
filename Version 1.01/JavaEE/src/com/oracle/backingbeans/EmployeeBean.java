@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name="user")
-public class UserBean 
+public class EmployeeBean 
 {
 	private String name;
 	private Date currentDateAndTime;
