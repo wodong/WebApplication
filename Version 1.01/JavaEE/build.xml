@@ -1,7 +1,7 @@
 <project name="JavaEE Build" default="BuildAll">
     			
 	<!-- This needs to be changed before you build your code -->
-	<property name="glassfish_libs" value="C:\glassfishv3\glassfish\modules"/>
+	<property name="glassfish_libs" value="C:\Program Files\glassfish-3\glassfish\modules"/>
 	
     <property name="bin" value="./bin"/>
     <property name="lib" value="./lib"/>

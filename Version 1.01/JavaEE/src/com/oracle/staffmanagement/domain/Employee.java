@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee implements java.io.Serializable
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int employee_id;
 	
 	private String employee_no;
@@ -37,8 +37,8 @@ public class Employee implements java.io.Serializable
 	@Temporal(TemporalType.DATE)
 	private Date allocation_exp_date;
 	
-	
 	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id")
 	private Set<Note> notes;
 	
 	public Employee() 

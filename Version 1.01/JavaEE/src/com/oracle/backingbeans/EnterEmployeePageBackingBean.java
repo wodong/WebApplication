@@ -46,7 +46,12 @@ public class EnterEmployeePageBackingBean {
 	private EmployeeManagementServiceLocal employeeService;
 	
 	//Create Employee object
-	public String createEmployee(){	
+	public String createEmployee() {	
+		
+		String message = "Hello Dude\n=================================";
+		
+		System.out.println(message);
+		
 	    Employee newEmployee = new Employee(employee_no, firstname, lastname, password, 
 				application_date, employment_status, allocation_exp_date);
 	    newEmployee.addNote(notes);
@@ -55,12 +60,13 @@ public class EnterEmployeePageBackingBean {
 	    {
 			employeeService.registerEmployee(newEmployee);
 		    return "thankyou";
-	    } catch (SystemUnavailableException e) 		    
-		    {
+	    } catch (Throwable e) {	
+	    
+	    	e.printStackTrace();
+	    	System.out.println(message);
 			return "systemDown";
-		    }	    
 		}
-	
+	}
 	
 	//Generate password
 	private static final Random RANDOM = new SecureRandom();

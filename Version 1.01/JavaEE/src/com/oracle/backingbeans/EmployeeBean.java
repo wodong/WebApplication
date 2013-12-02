@@ -11,6 +11,10 @@ public class EmployeeBean
 	private Date currentDateAndTime;
 
 	public String getName() {
+		
+		String pass;
+		pass = name.hashCode() + "";
+		
 		return name;
 	}
 
