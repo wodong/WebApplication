@@ -91,57 +91,11 @@ body
         text-shadow: 1px 1px 1px #333333;
 }
 
-.ui-dialog-titlebar {
-        background-color: #ea5e0d !important;
-        color: white !important;
-        font-size: 12px !important;
-        text-shadow:1px 1px 1px #333333 !important;
-}
-
-.ui-widget-overlay {
-        background: none !important;
-}
-
-#sidebar {
-	float: left;
-	width: 180px;
-	background-color: #EADCAE;
-	padding-bottom: 10px;
-}
 
 
-/* ~~ This grouped selector gives the lists in the .content area space ~~ */
-.content ul, .content ol { 
-	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
-}
 
-/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
-ul.nav {
-	list-style: none; /* this removes the list marker */
-	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
-	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
-}
-ul.nav li {
-	border-bottom: 1px solid #666; /* this creates the button separation */
-}
-ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
-	padding: 5px 5px 5px 15px;
-	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
-	width: 160px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
-	text-decoration: none;
-	background-color: #C6D580;
-}
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
-	background-color: #ADB96E;
-	color: #FFF;
-}
 
-/* ~~ The footer ~~ */
-.footer {
-	padding: 10px 0;
-	background-color: #CCC49F;
-	position: relative;/* this gives IE6 hasLayout to properly clear */
-	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
-}
+
+
 
 

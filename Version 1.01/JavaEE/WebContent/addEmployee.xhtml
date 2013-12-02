@@ -12,47 +12,71 @@
       <ui:define name="header"> <h:outputText value="New Employee Details" /> </ui:define>
       
         <ui:define name="content">
-				<h:form id="loginForm">
+				<h:form id="loginForm"> 
                         <p:fieldset styleClass="fieldset" legend="New Employee Details">
                                 <p:focus />
                                 <p:messages id="messages" globalOnly="true" />
                         
                                  <h:panelGrid id="logPanelGrid" style="margin-top: 25px; text-align: right" cellspacing="8" columns="3">
+                                        
+                                        <h:panelGroup>
+                                                <h:outputText value="Employee Number:" />
+                                                <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup>
+                                        <p:inputText id="employee_no" value="#{enterEmployee.employee_no}" required="true" label="Employee No" title="Please enter the First Name!" />
+                                        <p:tooltip for="employee_no" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
+                                        
                                         <h:panelGroup>
                                                 <h:outputText value="First Name:" />
                                                 <h:outputText style="color:red" value="*  " />
                                         </h:panelGroup>
-                                        <p:inputText id="FirstName" value="#{enterEmployee.firstName}" required="true" label="First Name" title="Please enter the First Name!" />
+                                        <p:inputText id="FirstName" value="#{enterEmployee.firstname}" required="true" label="First Name" title="Please enter the First Name!" />
                                         <p:tooltip for="FirstName" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
                                         
                                         <h:panelGroup>
                                                 <h:outputText value="Surname:" />
                                                 <h:outputText style="color:red" value="*  " />
                                         </h:panelGroup>
-                                        <p:inputText id="surname" value="#{enterEmployee.surname}" required="true" label="Surname" title="Please enter the Surname!" />
+                                        <p:inputText id="surname" value="#{enterEmployee.lastname}" required="true" label="Surname" title="Please enter the Surname!" />
                                         <p:tooltip for="surname" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
                                         
                                         <h:panelGroup>
-                                                <h:outputText value="Job Role:" />
+                                         	    <h:outputText value="Application Date:" />
+                                                <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup> 
+                                            <p:calendar value="#{enterEmployee.application_date}" id="popupAppDate" showOn="button" />
+            								<h:outputText value="#{enterEmployee.application_date}" id="popupBtnAppDate">  
+                							<f:convertDateTime pattern="yyyy/M/d"/>  
+            								</h:outputText>
+            								
+            							<h:panelGroup>
+                                         	    <h:outputText value="Allocation Expiration Date:" />
+                                                <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup> 
+                                            <p:calendar value="#{enterEmployee.allocation_exp_date}" id="popupAllDate" showOn="button" />
+            								<h:outputText value="#{enterEmployee.allocation_exp_date}" id="popupBtnAllDate">  
+                							<f:convertDateTime pattern="yyyy/M/d"/>  
+            								</h:outputText>
+            							                                     	 
+                                     	<h:panelGroup>
+                                         	 <h:outputText value="Employment Status:" />
+                                             <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup> 
+            								<h:selectOneMenu id="status" value="#{enterEmployee.employeeStatus}" required="true">  
+                								<f:selectItem itemLabel="Select One" itemValue="" />  
+                								<f:selectItems value="#{enterEmployee.status}" />  
+            								</h:selectOneMenu>
+            								<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
+            								
+            						    <h:panelGroup>
+                                         	    <h:outputText value="Employee Note:" />
                                                 <h:outputText style="color:red" value="*  " />
                                         </h:panelGroup>
-                                        <p:inputText id="jobRole" value="#{enterEmployee.jobRole}" required="true" label="Job Role" title="Please enter the Job Role!" />
-                                        <p:tooltip for="jobRole" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-                                        
-                                        <h:panelGroup>
-                                                <h:outputText value="Salary:" />
-                                                <h:outputText style="color:red" value="*  " />
-                                        </h:panelGroup>
-                                        <p:inputText id="salary" value="#{enterEmployee.salary}" required="true" label="Salary" title="Please enter the salary!" />
-                                        <p:tooltip for="salary" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-                                        
-                                        <h:panelGroup>
-                                                <h:outputText value="Employee Note:" />
-                                                <h:outputText style="color:red" value="*  " />
-                                        </h:panelGroup>
-                                        <p:inputTextarea rows="6" cols="33" id="notes" value="#{enterEmployee.notes}" required="true" label="Employee Note" title="Please enter a note!" />
-                                        <p:tooltip for="notes" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-                                        
+                                        	<p:inputTextarea rows="4" cols="33" id="notes" value="#{enterEmployee.notes}" required="false" label="Employee Note" title="Please enter a note!" />
+                                        	<p:tooltip for="notes" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
+            								
+            		  
+  
                                         <p:commandButton id="newUserButton" action="#{enterEmployee.createEmployee}" update="logPanelGrid,messages" icon="ui-icon-check" value="Submit" />    
                                 </h:panelGrid>
                         </p:fieldset>

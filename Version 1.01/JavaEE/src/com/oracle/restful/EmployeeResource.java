@@ -29,12 +29,13 @@ public class EmployeeResource {
 		return employeeManagement.getAllEmployees();
 	}
 	
+	/*
 	@GET
 	@Produces("application/json")
 	@Path("{id}") //matches the URL of   /employees/{id}
 	public Employee findEmployeeById(@PathParam("id") String id){
 		
 		return new Employee("Keith", "Brown", "Official", 27000);
-	}
+	}*/
 
 }

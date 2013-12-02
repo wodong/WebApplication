@@ -15,9 +15,10 @@
    
    -->
    
-      <persistence-unit name="employeeDb" transaction-type="JTA">
+      <persistence-unit name="commuterdba" transaction-type="JTA">
    
-   	  <jta-data-source>jdbc/OracleEmployee</jta-data-source>
+   		<!--  <jta-data-source>jdbc/OracleEmployee</jta-data-source>-->
+  		<jta-data-source>jdbc/OracleParking</jta-data-source> 
    
       <properties>		      	                 
             <property name="eclipselink.logging.level" value="FINE" /> 

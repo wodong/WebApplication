@@ -14,7 +14,7 @@ public class Note
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int note_id;
 	private String txt_note;
 
 	@Temporal(TemporalType.TIMESTAMP)
