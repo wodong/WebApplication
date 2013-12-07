@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIData;
 
+import org.primefaces.event.RowEditEvent;
+
 import com.oracle.staffmanagement.EmployeeManagementServiceLocal;
 import com.oracle.staffmanagement.domain.Employee;
 
@@ -48,4 +50,13 @@ public class AllEmployeesPageBean {
 		this.dataTable = dataTable;
 	}
 
+	
+	//row editing
+	public void onEdit(RowEditEvent event) {  
+        
+    }  
+      
+    public void onCancel(RowEditEvent event) {  
+        
+    }  
 }

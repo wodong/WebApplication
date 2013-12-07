@@ -29,14 +29,14 @@
 						<h:outputText value="Employee No" />
 					</f:facet>
 					<f:facet name="footer">Employee No</f:facet>
-					<h:outputText value="" />
+					<h:outputText value="#{employee.employee_no}" />
 				</p:column>
 					
 				<p:column>
 					<f:facet name="header">First Name</f:facet>
 					<f:facet name="footer">First Name</f:facet>
 					<h:commandLink action="#{allEmployeesPageBean.showEmployee}">
-						<h:outputText value="#{employee.firstName}" />
+						<h:outputText value="#{employee.firstname}" />
 					</h:commandLink>
 				</p:column>
 
@@ -45,7 +45,7 @@
 						<h:outputText value="Surname" />
 					</f:facet>
 					<f:facet name="footer">Surname</f:facet>
-					<h:outputText value="#{employee.surname}" />
+					<h:outputText value="#{employee.lastname}" />
 				</p:column>
 
 				<p:column>
@@ -53,7 +53,15 @@
 						<h:outputText value="Application Date" />
 					</f:facet>
 					<f:facet name="footer">Application Date</f:facet>
-					<h:outputText value="" />
+					<h:outputText value="#{employee.application_date}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Allocation Exp Date" />
+					</f:facet>
+					<f:facet name="footer">Allocation Exp Date</f:facet>
+					<h:outputText value="#{employee.allocation_exp_date}" />
 				</p:column>
 				
 				<p:column>
@@ -61,7 +69,7 @@
 						<h:outputText value="Employment Status" />
 					</f:facet>
 					<f:facet name="footer">Employment Status</f:facet>
-					<h:outputText value="" />
+					<h:outputText value="#{employee.employment_status}" />
 				</p:column>
 				
 				<p:column>
@@ -74,18 +82,10 @@
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Salary" />
+						<h:outputText value="Password" />
 					</f:facet>
-					<f:facet name="footer">Salary</f:facet>
-					<h:outputText value="#{employee.salary}" />
-				</p:column>
-				
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Job Role" />
-					</f:facet>
-					<f:facet name="footer">Job Role</f:facet>
-					<h:outputText value="#{employee.jobRole}" />
+					<f:facet name="footer">Password</f:facet>
+					<h:outputText value="#{employee.password}" />
 				</p:column>
 
 			</p:dataTable>
