@@ -20,14 +20,10 @@ public class Note
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int note_id;
-	
-	//@Column(name="note")
 	private String txt_note;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
-
-	
 
 	
 	public Note()

@@ -1,7 +1,6 @@
 package com.oracle.staffmanagement.domain;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee implements java.io.Serializable
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int employee_id;
 	
 	private String employee_no;
@@ -41,10 +40,13 @@ public class Employee implements java.io.Serializable
 	@JoinColumn(name="employee_employee_id")
 	private Set<Note> notes;
 	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id")
+	private Set<OutOfOffice> outOffice;
+	
 	public Employee() 
 	{
-		// required by JPA, but not used by us.
-		  
+		// required by JPA, but not used by us.		  
 	}
 		
 	public Employee(String employee_no, String firstname, String lastname, String password, 
@@ -52,6 +54,7 @@ public class Employee implements java.io.Serializable
 	{
 		super();
 		this.notes = new HashSet<Note>();
+		this.outOffice = new HashSet<OutOfOffice>();
 		this.employee_no = employee_no;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -67,12 +70,27 @@ public class Employee implements java.io.Serializable
 	}
 	
 	
+	//Add OutOfOffice
+	public void addOutOfOffice(Date out, Date in)
+	{
+		OutOfOffice newOutOfOffice = new OutOfOffice(out, in);
+		this.outOffice.add(newOutOfOffice);	
+	}
+	
+	public Set<OutOfOffice> getOutOffice() {
+		return outOffice;
+	}
+
+	public void setOutOffice(Set<OutOfOffice> outOffice) {
+		this.outOffice = outOffice;
+	}
+
+	//Add Note
 	public void addNote(String newNoteText)
 	{
 		Note newNote = new Note(newNoteText);
 		this.notes.add(newNote);
 	}
-
 
 	public Set<Note> getNotes() {
 		return notes;

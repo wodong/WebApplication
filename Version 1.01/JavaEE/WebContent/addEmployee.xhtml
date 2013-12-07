@@ -57,7 +57,7 @@
             								<h:outputText value="#{enterEmployee.allocation_exp_date}" id="popupBtnAllDate">  
                 							<f:convertDateTime pattern="yyyy/M/d"/>  
             								</h:outputText>
-            							                                     	 
+            								           							                                     	 
                                      	<h:panelGroup>
                                          	 <h:outputText value="Employment Status:" />
                                              <h:outputText style="color:red" value="*  " />
@@ -66,7 +66,7 @@
                 								<f:selectItem itemLabel="Select One" itemValue="" />  
                 								<f:selectItems value="#{enterEmployee.status}" />  
             								</h:selectOneMenu>
-            								<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
+            								<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" title="Please select employemnt status!"/>
             								
             						    <h:panelGroup>
                                          	    <h:outputText value="Employee Note:" />
@@ -74,12 +74,47 @@
                                         </h:panelGroup>
                                         	<p:inputTextarea rows="4" cols="33" id="notes" value="#{enterEmployee.notes}" required="false" label="Employee Note" title="Please enter a note!" />
                                         	<p:tooltip for="notes" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-            								
-            		  
-  
-                                        <p:commandButton id="newUserButton" action="#{enterEmployee.createEmployee}" update="logPanelGrid,messages" icon="ui-icon-check" value="Submit" />    
+                                        	
+                                        	<p:commandButton id="newUserButton" action="#{enterEmployee.createEmployee}" update="logPanelGrid,messages" icon="ui-icon-check" value="Submit" />     
+      
+                                </h:panelGrid>
+                        </p:fieldset>
+                </h:form>
+     
+                
+                
+                <h:form id="outOfOffice"> 
+                        <p:fieldset styleClass="fieldset" legend="Out of Office">
+                                <p:focus />
+                                <p:messages id="messages" globalOnly="true" />
+                        
+                                 <h:panelGrid id="logPanelGrid" style="margin-top: 25px; text-align: right" cellspacing="8" columns="3">
+                                       	
+            						    <h:panelGroup>
+                                         	    <h:outputText value="Leave on:" />
+                                                <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup> 
+                                            <p:calendar value="#{enterEmployee.office_dateout}" id="popupDateOut" showOn="button" />
+            								<h:outputText value="#{enterEmployee.office_dateout}" id="popupBtnDateOut">  
+                							<f:convertDateTime pattern="yyyy/M/d"/>  
+            								</h:outputText>
+            							
+            							<h:panelGroup>
+                                         	    <h:outputText value="Return on:" />
+                                                <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup> 
+                                            <p:calendar value="#{enterEmployee.office_datein}" id="popupDateIn" showOn="button" />
+            								<h:outputText value="#{enterEmployee.office_datein}" id="popupBtnDateIn">  
+                							<f:convertDateTime pattern="yyyy/M/d"/>  
+            								</h:outputText>
                                 </h:panelGrid>
                         </p:fieldset>
                 </h:form>  
+
+                <h:form id="submitbtn"> 
+                 <p:separator />
+                 <p:commandButton value="Submit" actionListener="#{enterEmployee.createEmployee}" icon="ui-icon-check" ajax="false"/>  
+                </h:form> 
+                
         </ui:define>   
 </ui:composition>

@@ -26,13 +26,14 @@ public class EnterEmployeePageBackingBean {
 	private String lastname;
 	private String password = passwordGenerator();
 	private Date application_date ;
-	private String employment_status;
 	private Date allocation_exp_date;
 	private String notes;
-	private String employeeStatus; 
-
+	private String employeeStatus;
+	private Date office_dateout ;
+	private Date office_datein;
+	
 	//Handle Employment status selector
-    private Map<String,String> status = new HashMap<String, String>(); 
+    private Map<String, String> status = new HashMap<String, String>(); 
 	
 	//Constructor
 	public EnterEmployeePageBackingBean() {
@@ -53,8 +54,9 @@ public class EnterEmployeePageBackingBean {
 		System.out.println(message);
 		
 	    Employee newEmployee = new Employee(employee_no, firstname, lastname, password, 
-				application_date, employment_status, allocation_exp_date);
+				application_date, employeeStatus, allocation_exp_date);
 	    newEmployee.addNote(notes);
+	    newEmployee.addOutOfOffice(office_dateout, office_datein);
 	    
 	    try 
 	    {
@@ -147,17 +149,6 @@ public class EnterEmployeePageBackingBean {
 		this.application_date = application_date;
 	}
 
-
-	public String getEmployment_status() {
-		return employment_status;
-	}
-
-
-	public void setEmployment_status(String employment_status) {
-		this.employment_status = employment_status;
-	}
-
-
 	public Date getAllocation_exp_date() {
 		return allocation_exp_date;
 	}
@@ -185,5 +176,23 @@ public class EnterEmployeePageBackingBean {
 	        this.status = status;  
 	} 
 	
+	public Date getOffice_dateout() {
+		return office_dateout;
+	}
+
+
+	public void setOffice_dateout(Date office_dateout) {
+		this.office_dateout = office_dateout;
+	}
+
+
+	public Date getOffice_datein() {
+		return office_datein;
+	}
+
+
+	public void setOffice_datein(Date office_datein) {
+		this.office_datein = office_datein;
+	}
 
 }
