@@ -20,17 +20,26 @@ import com.oracle.staffmanagement.domain.Employee;
 
 @ManagedBean(name="enterEmployee")
 public class EnterEmployeePageBackingBean {
-
+    //Employee variables 
 	private String employee_no;
 	private String firstname;
 	private String lastname;
 	private String password = passwordGenerator();
 	private Date application_date ;
 	private Date allocation_exp_date;
-	private String notes;
 	private String employeeStatus;
+	//Note variables
+	private String notes;
+	//Out of Office variables
 	private Date office_dateout ;
 	private Date office_datein;
+	//Contact variables
+	private String company;
+	private String email;
+	private int phonenumber;
+	private String linemanager;
+	private int postcode;
+	private String lineofbusiness;
 	
 	//Handle Employment status selector
     private Map<String, String> status = new HashMap<String, String>(); 
@@ -57,6 +66,7 @@ public class EnterEmployeePageBackingBean {
 				application_date, employeeStatus, allocation_exp_date);
 	    newEmployee.addNote(notes);
 	    newEmployee.addOutOfOffice(office_dateout, office_datein);
+	    newEmployee.addContact(company, email, phonenumber, linemanager, postcode, lineofbusiness);
 	    
 	    try 
 	    {
@@ -193,6 +203,67 @@ public class EnterEmployeePageBackingBean {
 
 	public void setOffice_datein(Date office_datein) {
 		this.office_datein = office_datein;
+	}
+	
+	
+	//Getter and setters CONTACT
+	public String getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public int getPhonenumber() {
+		return phonenumber;
+	}
+
+
+	public void setPhonenumber(int phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+
+	public String getLinemanager() {
+		return linemanager;
+	}
+
+
+	public void setLinemanager(String linemanager) {
+		this.linemanager = linemanager;
+	}
+
+
+	public int getPostcode() {
+		return postcode;
+	}
+
+
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
+	}
+
+
+	public String getLineofbusiness() {
+		return lineofbusiness;
+	}
+
+
+	public void setLineofbusiness(String lineofbusiness) {
+		this.lineofbusiness = lineofbusiness;
 	}
 
 }

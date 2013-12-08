@@ -10,9 +10,10 @@
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces - ShowCase</title>
+                <title><ui:insert name="title"/></title>
             </f:facet>
             <link type="text/css" rel="stylesheet" href="${request.contextPath}/css/layout.css" />
+            <link rel="shortcut icon" href="${request.contextPath}/images/favicon.jpg" />
 
         </h:head>
 
@@ -20,9 +21,7 @@
         <h:body>
 
             <p:layout fullPage="true" >
-
                 <p:layoutUnit id="top" position="north" size="50">
-
                     <p:menubar>
                         <p:submenu label="File" icon="ui-icon-document">
                             <p:submenu label="New" icon="ui-icon-contact">
@@ -49,13 +48,14 @@
                         </p:submenu>
                     </p:menubar>
                 </p:layoutUnit>
-
+		
                 <p:layoutUnit id="bottom" position="south" size="60">
                     <h:outputLink value="http://www.oracle.com/ie/index.html">
                                 Copyright © 2008 Commuter Manager Oracle Ltd. All rights reserved
                     </h:outputLink>
                 </p:layoutUnit>
 
+                
                 <p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="200">
                     <p:accordionPanel>
                         <p:tab title="Menu 1">
@@ -73,7 +73,9 @@
                         </p:tab>
                     </p:accordionPanel>
                 </p:layoutUnit>
+             
 
+    
                 <p:layoutUnit id="right" position="east" size="250" header="Gallery" resizable="true" closable="true" collapsible="true"
                               style="text-align:center">
 
@@ -88,8 +90,6 @@
 
                     </p:lightBox>
 
-				
-
 					<p:growl id="growl" showDetail="true" />
 
 					<p:gmap center="53.3575168, 6.2250436" zoom="13" type="HYBRID"
@@ -97,12 +97,10 @@
 						<p:ajax event="overlaySelect" listener="#{mapBean.onMarkerSelect}"
 							update="growl" />
 					</p:gmap>
-
-			
-
-
 			</p:layoutUnit>
-
+			
+                
+                <!-- Start Content Container -->
                 <p:layoutUnit id="center" position="center">
 
 				<h:form>
@@ -151,7 +149,9 @@
 								<h:outputText value="Application Date" />
 							</f:facet>
 							<f:facet name="footer">Application Date</f:facet>
-							<h:outputText value="#{employee.application_date}" />
+							<h:outputText value="#{employee.application_date}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
 						</p:column>
 
 						<p:column>
@@ -159,7 +159,9 @@
 								<h:outputText value="Allocation Exp Date" />
 							</f:facet>
 							<f:facet name="footer">Allocation Exp Date</f:facet>
-							<h:outputText value="#{employee.allocation_exp_date}" />
+							<h:outputText value="#{employee.allocation_exp_date}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
 						</p:column>
 
 						<p:column>
@@ -242,13 +244,7 @@
 					</h:panelGrid>
 				</h:form>
 			</p:layoutUnit>
-
             </p:layout>
-
-            <p:dialog header="Basic Dialog" widgetVar="dlg" modal="true">
-                <h:outputText value="Resistance to PrimeFaces is futile!" />
-            </p:dialog>
-
         </h:body>
 
     </f:view>

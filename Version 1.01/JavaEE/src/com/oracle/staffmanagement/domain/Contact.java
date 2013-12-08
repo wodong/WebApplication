@@ -32,15 +32,15 @@ public class Contact
 	}
  
 	
-	public Contact(String comp, String contactEmail, int phoneNo, String lineManager, 
-			int postCode, String lineOfBusiness)
+	public Contact(String conCompany, String conEmail, int conPhoneNumber, 
+			String conLineManager, int conPostCode, String conLineOfBusiness)
 	{
-		this.company = comp;
-		this.email  = contactEmail;
-	    this.phonenumber = phoneNo; 
-	    this.linemanager = lineManager;
-		this.postcode = postCode;
-		this.lineofbusiness = lineOfBusiness;
+		this.company = conCompany;
+		this.email  = conEmail;
+	    this.phonenumber = conPhoneNumber; 
+	    this.linemanager = conLineManager;
+		this.postcode = conPostCode;
+		this.lineofbusiness = conLineOfBusiness;
 	}
 
     // Getters and setters

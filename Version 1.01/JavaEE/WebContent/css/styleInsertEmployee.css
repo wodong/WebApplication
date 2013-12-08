@@ -1,0 +1,105 @@
+#content {
+	
+	height: 550px;
+	
+}
+
+/* position Login form AddEmployee page */
+#loginForm{
+
+/*position:relative;*/
+/*left:-350px;*/	
+top:-105px ;
+ 
+}
+
+#outOfOffice{
+
+position:relative;
+/*left:-355px;	*/
+top:-150px ;
+  
+}
+
+#submitbtn{
+
+position:relative;	
+top:-200px ;
+  
+}
+
+
+    
+    
+#line {
+        width: 100%;
+        height: 10px;
+        background: #ea5e0d;    
+}
+
+.fieldset {
+        margin: 0 auto;
+        width: 50%;
+        margin-top: 110px;
+        margin-bottom: 60px;
+        color: #5D5D5D;
+        background: url(images/gray_texture1.jpg);
+        border: 1px solid #A8A8A8;
+        box-shadow: 2px 2px 10px #888;
+        text-align: right;
+}
+
+.fieldsetOutOffice {
+        margin: 0 auto;
+        width: 50%;
+        margin-top: 110px;
+        margin-bottom: 60px;
+        color: #5D5D5D;
+        background: url(images/gray_texture1.jpg);
+        border: 1px solid #A8A8A8;
+        box-shadow: 2px 2px 10px #888;
+        text-align: right;
+}
+
+.fieldsetOutOffice legend {
+	border: 1px solid #e0e0e0 !important;
+    background: #ea5e0d !important;
+	
+}
+
+.fieldset legend {
+        border: 1px solid #e0e0e0 !important;
+        background: #ea5e0d !important;
+        margin-top: -25px;
+        margin-bottom: -21px;
+        color: white !important;
+        box-shadow: 1px 1px 2px #000000;
+        text-shadow: 1px 1px 1px #333333 !important;
+        font-weight: normal !important; 
+        font-style : normal !important;
+}
+
+.tooltip {
+        font-size: 11px;
+        font-weight: normal; 
+        font-style : normal;
+        color: black;
+        background:     -moz-linear-gradient(center top , rgba(0, 0, 0, 0.25), transparent) repeat scroll 0% 0% rgb(170, 170, 170);
+        border: 1px solid gray;
+        padding: 6px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+        text-shadow: 1px 1px 1px #333333;
+}
+
+
+.ui-dialog-titlebar {
+        background-color: #ea5e0d !important;
+        color: white !important;
+        font-size: 12px !important;
+        text-shadow:1px 1px 1px #333333 !important;
+}
+
+.ui-widget-overlay {
+        background: none !important;
+}
+

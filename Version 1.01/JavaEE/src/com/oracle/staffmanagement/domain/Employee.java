@@ -36,6 +36,7 @@ public class Employee implements java.io.Serializable
 	@Temporal(TemporalType.DATE)
 	private Date allocation_exp_date;
 	
+	// Relationships tables 
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="employee_employee_id")
 	private Set<Note> notes;
@@ -43,6 +44,10 @@ public class Employee implements java.io.Serializable
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="employee_employee_id")
 	private Set<OutOfOffice> outOffice;
+	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id")
+	private Set<Contact> contactDetails;
 	
 	public Employee() 
 	{
@@ -55,6 +60,7 @@ public class Employee implements java.io.Serializable
 		super();
 		this.notes = new HashSet<Note>();
 		this.outOffice = new HashSet<OutOfOffice>();
+		this.contactDetails = new HashSet<Contact>();
 		this.employee_no = employee_no;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -69,7 +75,25 @@ public class Employee implements java.io.Serializable
 		return "Employee " + this.employee_no + " " + this.firstname;
 	}
 	
+
+	//Add Contact details
+	public void addContact(String conCompany, String conEmail, int conPhoneNumber, 
+			String conLineManager, int conPostCode, String conLineOfBusiness){
+		Contact newContact = new Contact(conCompany, conEmail, conPhoneNumber, 
+				conLineManager, conPostCode, conLineOfBusiness);
+		this.contactDetails.add(newContact);
+		
+	}
 	
+	public Set<Contact> getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(Set<Contact> contactDetails) {
+		this.contactDetails = contactDetails;
+	}
+
+
 	//Add OutOfOffice
 	public void addOutOfOffice(Date out, Date in)
 	{
