@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title><ui:insert name="title" /></title>
+		</f:facet>
+		<link type="text/css" rel="stylesheet" href="${request.contextPath}/css/layout.css" />
+		<link rel="shortcut icon" href="${request.contextPath}/images/favicon.ico" />
+
+	</h:head>
+
+
+	<h:body>
+		<!-- Start Main Container -->
+
+		<p:layout fullPage="true">
+
+			<!-- Start Header Container  -->
+			<div id="header">
+				<ui:insert name="header" />
+				<p:layoutUnit id="top" position="north" size="50">
+					<p:menubar>
+							<p:submenu label="Manage Employees" icon="ui-icon-contact">
+							    <p:menuitem value="New Employee" url="/addEmployee.jsf" />
+								<p:menuitem value="Work for Today" url="#" />
+								<p:menuitem value="Employees" url="/allEmployee.jsf" />
+							</p:submenu>
+							<p:submenu label="Reports" icon="ui-icon-contact">
+								<p:menuitem value="Export Data" url="#" />
+								<p:menuitem value="Data Analisys" url="#" />
+								<p:menuitem value="Account Settings" url="#" />
+							</p:submenu>
+							
+							<p:submenu label="Account Settings" icon="ui-icon-contact">
+								<p:menuitem value="Change Password" url="#" />
+							</p:submenu>
+
+							<p:submenu label="Help" icon="ui-icon-help">
+								<p:menuitem value="User Manual" url="#" />
+							</p:submenu>
+					</p:menubar>
+				</p:layoutUnit>
+			</div>
+			<!-- Start footer Footer -->
+			<div id="footer">
+				<ui:insert name="footer" />
+
+				<p:layoutUnit id="bottom" position="south" size="60">
+					<h:outputLink value="http://www.oracle.com/ie/index.html">
+                                Copyright © 2008 Commuter Manager Oracle Ltd. All rights reserved
+                    </h:outputLink>
+				</p:layoutUnit>
+			</div>
+
+			<!-- Start Menu Left -->
+
+			<ui:insert name="menuLeft">
+				<p:layoutUnit id="left" position="west" size="300" resizable="true"
+					closable="true" collapsible="true" header="Options" minSize="200">
+					<p:accordionPanel>
+						<p:tab title="Menu 1">
+							<br />
+							<p:calendar mode="inline" navigator="none" />
+							<br />
+						</p:tab>
+
+						<p:tab title="Menu 2">
+							<h:outputText value="Menu 2 Content" />
+						</p:tab>
+
+						<p:tab title="Menu 3">
+							<h:outputText value="Menu 3 Content" />
+						</p:tab>
+					</p:accordionPanel>
+				</p:layoutUnit>
+			</ui:insert>
+
+			<!-- Start Menu Right -->
+			<ui:insert name="menuRight">
+				<p:layoutUnit id="right" position="east" size="250" header="Gallery"
+					resizable="true" closable="true" collapsible="true"
+					style="text-align:center">
+
+					<p:lightBox style="text-align:center;margin-top:20px;">
+						<h:outputLink
+							value="${request.contextPath}/css/images/eastpoint1.jpg"
+							title="East Point 1" style="margin-bottom:5px;">
+							<h:graphicImage value="/css/images/small_eastpoint1.jpg" />
+						</h:outputLink>
+
+						<h:outputLink
+							value="${request.contextPath}/css/images/eastpoint2.jpg"
+							title="East Point 2" style="margin-bottom:2px;">
+							<h:graphicImage value="/css/images/small_eastpoint2.jpg" />
+						</h:outputLink>
+
+					</p:lightBox>
+
+					<p:growl id="growl" showDetail="true" />
+
+					<p:gmap center="53.3575168, 6.2250436" zoom="13" type="HYBRID"
+						model="#{mapBean.simpleModel}" style="width:200px;height:150px">
+						<p:ajax event="overlaySelect" listener="#{mapBean.onMarkerSelect}"
+							update="growl" />
+					</p:gmap>
+				</p:layoutUnit>
+			</ui:insert>
+
+			<!-- Start Content Container -->
+			<div id="content">
+				<ui:insert name="content" />
+
+			</div>
+
+		</p:layout>
+
+	</h:body>
+
+</f:view>
+</html>

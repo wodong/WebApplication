@@ -13,6 +13,8 @@
 			<title><ui:insert name="title" /></title>
 		</f:facet>
 		<link type="text/css" rel="stylesheet" href="${request.contextPath}/css/layout.css" />
+		<link type="text/css" rel="stylesheet" href="${request.contextPath}/css/styleInsertEmployee.css" />
+		
 		<link rel="shortcut icon" href="${request.contextPath}/images/favicon.ico" />
 
 	</h:head>
@@ -24,9 +26,9 @@
          <!-- Start Content HEADER -->
 			<p:layoutUnit id="top" position="north" size="50">
 				<p:menubar>
-					<p:submenu label="File" icon="ui-icon-document">
+					<p:submenu label="Select" icon="ui-icon-document">
 						<p:submenu label="New" icon="ui-icon-contact">
-							<p:menuitem value="Project" url="#" />
+							<p:menuitem value="Manage Employees" url="/listAllEmployee.jsf" />
 							<p:menuitem value="Other" url="#" />
 						</p:submenu>
 						<p:menuitem value="Open" url="#" />
@@ -144,18 +146,8 @@
 								<f:convertDateTime pattern="yyyy/M/d" />
 							</h:outputText>
 
-							<h:panelGroup>
-								<h:outputText value="Employment Status:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<h:selectOneMenu id="status"
-								value="#{enterEmployee.employeeStatus}" required="true">
-								<f:selectItem itemLabel="Select One" itemValue="" />
-								<f:selectItems value="#{enterEmployee.status}" />
-							</h:selectOneMenu>
-							<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" title="Please select employemnt status!" />
-								  
-						    <!-- Start CONTACT -->
+							
+					
 						    
 						    <h:panelGroup>
 								<h:outputText value="Company:" />
@@ -165,17 +157,7 @@
 							title="Please enter the Company name!" />
 							<p:tooltip for="CompanyName" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
 							
-							
 							<h:panelGroup>
-								<h:outputText value="First Name:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="FirstName" value="#{enterEmployee.firstname}" required="true" label="First Name"
-								title="Please enter the First Name!" />
-							<p:tooltip for="FirstName" styleClass="tooltip" showEvent="focus"
-								hideEvent="blur" />
-							
-					<!--		<h:panelGroup>
 								<h:outputText value="Email:" />
 								<h:outputText style="color:red" value="*  " />
 							</h:panelGroup>
@@ -218,9 +200,21 @@
 							<p:inputText id="lineofbusiness" value="#{enterEmployee.lineofbusiness}"
 								required="true" label="Line of Business"
 								title="Please enter the Phone number!" />
-							<p:tooltip for="lineofbusiness" styleClass="tooltip" showEvent="focus" hideEvent="blur" /> -->
+							<p:tooltip for="lineofbusiness" styleClass="tooltip" showEvent="focus" hideEvent="blur" /> 
 							
-							  <!-- Start NOTE -->
+							
+							 <h:panelGroup>
+								<h:outputText value="Employment Status:" />
+								<h:outputText style="color:red" value="*  " />
+							</h:panelGroup>
+							<h:selectOneMenu id="status"
+								value="#{enterEmployee.employeeStatus}" required="true">
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItems value="#{enterEmployee.status}" />
+							</h:selectOneMenu>
+							<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" title="Please select employemnt status!" />
+							
+							
 							<h:panelGroup>
 								<h:outputText value="Employee Note:" />
 								<h:outputText style="color:red" value="*  " />

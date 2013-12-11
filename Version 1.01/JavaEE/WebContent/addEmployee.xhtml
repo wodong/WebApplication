@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      template="/templates/main.xhtml">
+      template="/templates/generalTest.xhtml">
       
       <ui:define name="title"> <h:outputText value="New Employee" /> </ui:define>
       <ui:define name="header"> <h:outputText value="New Employee Details" /> </ui:define>
       
+     
         <ui:define name="content">
+         <p:layoutUnit id="center" position="center">
 				<h:form id="loginForm"> 
                         <p:fieldset styleClass="fieldset" legend="New Employee Details">
                                 <p:focus />
@@ -68,169 +69,21 @@
             								</h:selectOneMenu>
             								<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" title="Please select employemnt status!"/>
             								
-            						    <!-- Start CONTACT -->
-						    
-						    <h:panelGroup>
-								<h:outputText value="Company:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="CompanyName" value="#{enterEmployee.company}"
-								required="true" label="Company"
-								title="Please enter the Company name!" />
-							<p:tooltip for="CompanyName" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Email:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="email" value="#{enterEmployee.email}"
-								required="true" label="Email"
-								title="Please enter the Email address!" />
-							<p:tooltip for="email" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Phone Number:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="phonenumber" value="#{enterEmployee.phonenumber}"
-								required="true" label="Phone Number"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="phonenumber" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Line Manager:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="linemanager" value="#{enterEmployee.linemanager}"
-								required="true" label="Line Manager"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="linemanager" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Post Code:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="postcode" value="#{enterEmployee.postcode}"
-								required="true" label="Post Code"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="postcode" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Line of Business:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="lineofbusiness" value="#{enterEmployee.lineofbusiness}"
-								required="true" label="Line of Business"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="lineofbusiness" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							  <!-- Start NOTE -->
-							<h:panelGroup>
-								<h:outputText value="Employee Note:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputTextarea rows="4" cols="33" id="notes"
-								value="#{enterEmployee.notes}" required="false"
-								label="Employee Note" title="Please enter a note!" />
-							<p:tooltip for="notes" styleClass="tooltip" showEvent="focus"
-								hideEvent="blur" />
-	 
-                                        	
-                                        	  <!-- Start CONTACT -->
-						    <h:panelGroup>
-								<h:outputText value="Company:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="company" value="#{enterEmployee.company}"
-								required="true" label="Company"
-								title="Please enter the Company name!" />
-							<p:tooltip for="company" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Email:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="email" value="#{enterEmployee.email}"
-								required="true" label="Email"
-								title="Please enter the Email address!" />
-							<p:tooltip for="email" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Phone Number:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="phonenumber" value="#{enterEmployee.phonenumber}"
-								required="true" label="Phone Number"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="phonenumber" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Line Manager:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="linemanager" value="#{enterEmployee.linemanager}"
-								required="true" label="Line Manager"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="linemanager" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Post Code:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="postcode" value="#{enterEmployee.postcode}"
-								required="true" label="Post Code"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="postcode" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
-							
-							<h:panelGroup>
-								<h:outputText value="Line of Business:" />
-								<h:outputText style="color:red" value="*  " />
-							</h:panelGroup>
-							<p:inputText id="lineofbusiness" value="#{enterEmployee.lineofbusiness}"
-								required="true" label="Line of Business"
-								title="Please enter the Phone number!" />
-							<p:tooltip for="lineofbusiness" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
+            						    <h:panelGroup>
+                                         	    <h:outputText value="Employee Note:" />
+                                                <h:outputText style="color:red" value="*  " />
+                                        </h:panelGroup>
+                                        	<p:inputTextarea rows="4" cols="33" id="notes" value="#{enterEmployee.notes}" required="false" label="Employee Note" title="Please enter a note!" />
+                                        	<p:tooltip for="notes" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
                                         	
                                         	<p:commandButton id="newUserButton" action="#{enterEmployee.createEmployee}" update="logPanelGrid,messages" icon="ui-icon-check" value="Submit" />     
       
                                 </h:panelGrid>
                         </p:fieldset>
                 </h:form>
-     
-                
-                
-                <h:form id="outOfOffice"> 
-                        <p:fieldset styleClass="fieldset" legend="Out of Office">
-                                <p:focus />
-                                <p:messages id="messages" globalOnly="true" />
-                        
-                                 <h:panelGrid id="logPanelGrid" style="margin-top: 25px; text-align: right" cellspacing="8" columns="3">
-                                       	
-            						    <h:panelGroup>
-                                         	    <h:outputText value="Leave on:" />
-                                                <h:outputText style="color:red" value="*  " />
-                                        </h:panelGroup> 
-                                            <p:calendar value="#{enterEmployee.office_dateout}" id="popupDateOut" showOn="button" />
-            								<h:outputText value="#{enterEmployee.office_dateout}" id="popupBtnDateOut">  
-                							<f:convertDateTime pattern="yyyy/M/d"/>  
-            								</h:outputText>
-            							
-            							<h:panelGroup>
-                                         	    <h:outputText value="Return on:" />
-                                                <h:outputText style="color:red" value="*  " />
-                                        </h:panelGroup> 
-                                            <p:calendar value="#{enterEmployee.office_datein}" id="popupDateIn" showOn="button" />
-            								<h:outputText value="#{enterEmployee.office_datein}" id="popupBtnDateIn">  
-                							<f:convertDateTime pattern="yyyy/M/d"/>  
-            								</h:outputText>
-                                </h:panelGrid>
-                        </p:fieldset>
-                </h:form>  
+                </p:layoutUnit>  
 
-                <h:form id="submitbtn"> 
-                 <p:separator />
-                 <p:commandButton value="Submit" actionListener="#{enterEmployee.createEmployee}" icon="ui-icon-check" ajax="false"/>  
-                </h:form> 
-                
-        </ui:define>   
+        </ui:define> 
+          
+
 </ui:composition>
