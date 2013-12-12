@@ -12,148 +12,120 @@
       
            <ui:define name="content">
            <p:layoutUnit id="center" position="center">
-			<h:form>
-				<p:dataTable id="tbl" value="#{allEmployeesPageBean.allEmployees}"
-					var="employee" paginator="true" rows="10"
-					binding="#{allEmployeesPageBean.dataTable}">
+           <h:form>
+					<p:dataTable id="tbl" value="#{allEmployeesPageBean.allEmployees}"
+						var="employee" paginator="true" rows="10"
+						binding="#{allEmployeesPageBean.dataTable}">
+						
+					<p:ajax event="rowEdit" listener="#{allEmployeesPageBean.onEdit}" update=":form:messages" />  
+        			<p:ajax event="rowEditCancel" listener="#{allEmployeesPageBean.onCancel}" update=":form:messages" />  
+  
 
-					<p:ajax event="rowEdit" listener="#{allEmployeesPageBean.onEdit}"
-						update=":form:messages" />
-					<p:ajax event="rowEditCancel"
-						listener="#{allEmployeesPageBean.onCancel}"
-						update=":form:messages" />
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Employee ID" />
+							</f:facet>
+							<f:facet name="footer">Employee ID</f:facet>
+							<h:outputText value="" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Employee ID" />
-						</f:facet>
-						<f:facet name="footer">Employee ID</f:facet>
-						<h:outputText value="" />
-					</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Employee No" />
+							</f:facet>
+							<f:facet name="footer">Employee No</f:facet>
+							<h:outputText value="#{employee.employee_no}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Employee No" />
-						</f:facet>
-						<f:facet name="footer">Employee No</f:facet>
-						<h:outputText value="#{employee.employee_no}" />
-					</p:column>
+						<p:column>
+							<f:facet name="header">First Name</f:facet>
+							<f:facet name="footer">First Name</f:facet>
+							<h:commandLink action="#{allEmployeesPageBean.showEmployee}">
+								<h:outputText value="#{employee.firstname}" />
+							</h:commandLink>
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">First Name</f:facet>
-						<f:facet name="footer">First Name</f:facet>
-						<h:commandLink action="#{allEmployeesPageBean.showEmployee}">
-							<h:outputText value="#{employee.firstname}" />
-						</h:commandLink>
-					</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Surname" />
+							</f:facet>
+							<f:facet name="footer">Surname</f:facet>
+							<h:outputText value="#{employee.lastname}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Surname" />
-						</f:facet>
-						<f:facet name="footer">Surname</f:facet>
-						<h:outputText value="#{employee.lastname}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Application Date" />
-						</f:facet>
-						<f:facet name="footer">Application Date</f:facet>
-						<h:outputText value="#{employee.application_date}">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Application Date" />
+							</f:facet>
+							<f:facet name="footer">Application Date</f:facet>
+							<h:outputText value="#{employee.application_date}">
 							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-						</h:outputText>
-					</p:column>
+							</h:outputText>
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Allocation Exp Date" />
-						</f:facet>
-						<f:facet name="footer">Allocation Exp Date</f:facet>
-						<h:outputText value="#{employee.allocation_exp_date}">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Allocation Exp Date" />
+							</f:facet>
+							<f:facet name="footer">Allocation Exp Date</f:facet>
+							<h:outputText value="#{employee.allocation_exp_date}">
 							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-						</h:outputText>
-					</p:column>
+							</h:outputText>
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Employment Status" />
-						</f:facet>
-						<f:facet name="footer">Employment Status</f:facet>
-						<h:outputText value="#{employee.employment_status}" />
-					</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Employment Status" />
+							</f:facet>
+							<f:facet name="footer">Employment Status</f:facet>
+							<h:outputText value="#{employee.employment_status}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Allocation Ex Date" />
-						</f:facet>
-						<f:facet name="footer">Allocation Ex Date</f:facet>
-						<h:outputText value="" />
-					</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Allocation Ex Date" />
+							</f:facet>
+							<f:facet name="footer">Allocation Ex Date</f:facet>
+							<h:outputText value="" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Password" />
-						</f:facet>
-						<f:facet name="footer">Password</f:facet>
-						<h:outputText value="#{employee.password}" />
-					</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Password" />
+							</f:facet>
+							<f:facet name="footer">Password</f:facet>
+							<h:outputText value="#{employee.password}" />
+						</p:column>
 
-					<p:column style="width:6%">
-						<p:rowEditor />
-					</p:column>
+						<p:column style="width:6%">
+							<p:rowEditor />
+						</p:column>
+					</p:dataTable>
+					
+						<p:panel header="Export All Data">
+							<h:commandLink>
+								<p:graphicImage value="css/images/excel.png" />
+								<p:dataExporter type="xls" target="tbl" fileName="employees" />
+							</h:commandLink>
 
-				</p:dataTable>
-				<h:panelGrid columns="2">
-					<p:panel header="Export All Data">
-						<h:commandLink>
-							<p:graphicImage value="css/images/excel.png" />
-							<p:dataExporter type="xls" target="tbl" fileName="employees" />
-						</h:commandLink>
+							<h:commandLink>
+								<p:graphicImage value="css/images/pdf.png" />
+								<p:dataExporter type="pdf" target="tbl" fileName="employees" />
+							</h:commandLink>
 
-						<h:commandLink>
-							<p:graphicImage value="css/images/pdf.png" />
-							<p:dataExporter type="pdf" target="tbl" fileName="employees" />
-						</h:commandLink>
+							<h:commandLink>
+								<p:graphicImage value="css/images/csv.png" />
+								<p:dataExporter type="csv" target="tbl" fileName="employees" />
+							</h:commandLink>
 
-						<h:commandLink>
-							<p:graphicImage value="css/images/csv.png" />
-							<p:dataExporter type="csv" target="tbl" fileName="employees" />
-						</h:commandLink>
-
-						<h:commandLink>
-							<p:graphicImage value="css/images/xml.png" />
-							<p:dataExporter type="xml" target="tbl" fileName="employees" />
-						</h:commandLink>
-					</p:panel>
-
-					<p:panel header="Export Page Data">
-						<h:commandLink>
-							<p:graphicImage value="css/images/excel.png" />
-							<p:dataExporter type="xls" target="tbl" fileName="employees"
-								pageOnly="true" />
-						</h:commandLink>
-
-						<h:commandLink>
-							<p:graphicImage value="css/images/pdf.png" />
-							<p:dataExporter type="pdf" target="tbl" fileName="employees"
-								pageOnly="true" />
-						</h:commandLink>
-
-						<h:commandLink>
-							<p:graphicImage value="css/images/csv.png" />
-							<p:dataExporter type="csv" target="tbl" fileName="employees"
-								pageOnly="true" />
-						</h:commandLink>
-
-						<h:commandLink>
-							<p:graphicImage value="css/images/xml.png" />
-							<p:dataExporter type="xml" target="tbl" fileName="employees"
-								pageOnly="true" />
-						</h:commandLink>
-					</p:panel>
-				</h:panelGrid>
-			</h:form>
-		</p:layoutUnit>          
+							<h:commandLink>
+								<p:graphicImage value="css/images/xml.png" />
+								<p:dataExporter type="xml" target="tbl" fileName="employees" />
+							</h:commandLink>
+						</p:panel>
+						
+				
+				</h:form>
+             </p:layoutUnit>          
            </ui:define> 
 </ui:composition>
