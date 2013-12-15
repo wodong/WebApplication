@@ -37,6 +37,10 @@ public class AllEmployeesPageBean {
 	//filtering
 	private List<Employee> filteredEmployee;
 	
+	public void setFilteredEmployee(List<Employee> filteredEmployee) {
+		this.filteredEmployee = filteredEmployee;
+	}
+
 	public List<Employee> getFilteredEmployee() {  
         return filteredEmployee;  
     } 

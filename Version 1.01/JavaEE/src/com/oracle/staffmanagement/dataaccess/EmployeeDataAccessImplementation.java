@@ -22,11 +22,12 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 		return results;
 	}
 	
+	
 	public List<ParkingSpace> findAllSpaces() {		
-		//Query q = em.createQuery("SELECT parking_space, block FROM ParkingSpace parking_space, Block block WHERE parking_space.block_block_id = block.block_id");		
-		Query q = em.createQuery("select parking_space from ParkingSpace parking_space");
-		List<ParkingSpace> spaces = q.getResultList();
-		return spaces;
+		Query q = em.createQuery("SELECT parking_space FROM ParkingSpace parking_space, Block block WHERE parking_space.block_block_id = block.block_id");	
+		//Query q = em.createQuery("select parking_space from ParkingSpace parking_space");
+		List<ParkingSpace> spaces = q.getResultList();	
+		return spaces;	
 	}
 
 	public List<Employee> findBySurname(String surname) {

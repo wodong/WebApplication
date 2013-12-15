@@ -1,22 +1,15 @@
 package com.oracle.staffmanagement.domain;
 
-import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
-public class Block
+@XmlRootElement
+public class Block implements java.io.Serializable
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -25,9 +18,9 @@ public class Block
 	private String block_code;
 	private String block_description;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+/*	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="block_block_id")
-	private Set<ParkingSpace> pspaces;
+	private Set<ParkingSpace> pspaces;*/
 	
 	
 	public Block()

@@ -25,9 +25,12 @@ public class ParkingSpacesResource {
 	
 	@GET
 	@Produces("application/json")
+	
 	public List<ParkingSpace> getAllFreeSpaces(){
 		
 		return employeeManagement.getAllFreeSpaces();
+		
+		
 	}
 	
 	
