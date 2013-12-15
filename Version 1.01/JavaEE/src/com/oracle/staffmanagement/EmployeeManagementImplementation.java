@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import com.oracle.staffmanagement.dataaccess.EmployeeDataAccess;
 import com.oracle.staffmanagement.domain.Employee;
+import com.oracle.staffmanagement.domain.ParkingSpace;
 
 @Stateless
 @WebService(name="employeeManagementService")
@@ -25,6 +26,11 @@ public class EmployeeManagementImplementation
 	public List<Employee> getAllEmployees() 
 	{
 		return dao.findAll();
+	}
+	
+	public List<ParkingSpace> getAllFreeSpaces() {
+		
+		return dao.findAllSpaces();
 	}
 
 

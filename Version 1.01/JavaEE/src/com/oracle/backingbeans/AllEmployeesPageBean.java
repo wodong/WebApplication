@@ -1,6 +1,7 @@
 package com.oracle.backingbeans;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -33,7 +34,17 @@ public class AllEmployeesPageBean {
 		return "employeeDetail";		
 	}
 	
+	//filtering
+	private List<Employee> filteredEmployee;
+	
+	public List<Employee> getFilteredEmployee() {  
+        return filteredEmployee;  
+    } 
+	
 
+	
+	
+	//Getters and Setters
 	public Employee getSelectedEmployee() {
 		return selectedEmployee;
 	}
