@@ -71,7 +71,7 @@ public class EnterEmployeePageBackingBean {
 	    try 
 	    {
 			employeeService.registerEmployee(newEmployee);
-		    return "thankyou";
+		    return "allEmployee";
 	    } catch (Throwable e) {	
 	    
 	    	e.printStackTrace();

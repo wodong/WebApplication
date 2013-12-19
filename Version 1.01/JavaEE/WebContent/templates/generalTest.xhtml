@@ -14,6 +14,9 @@
 		</f:facet>
 		<link type="text/css" rel="stylesheet" href="${request.contextPath}/css/layout.css" />
 		<link rel="shortcut icon" href="${request.contextPath}/images/favicon.ico" />
+		<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+		
+		
 
 	</h:head>
 
@@ -63,46 +66,28 @@
 			<!-- Start Menu Left -->
 
 			<ui:insert name="menuLeft">
-				<p:layoutUnit id="left" position="west" size="200" resizable="true"
+				<p:layoutUnit id="left" position="west" size="225" resizable="true"
 					closable="true" collapsible="true" header="Options" minSize="200">
 					<p:accordionPanel>
-						<p:tab title="Menu 1">
+						<p:tab title="Calendar">
 							<br />
 							<p:calendar mode="inline" navigator="none" />
 							<br />
 						</p:tab>
 
-						<p:tab title="Menu 2">
-							<h:outputText value="Menu 2 Content" />
+						<p:tab title="Google Map">
+							<h:form>
+								<p:growl id="growl" showDetail="true" />
+								<p:gmap center="53.3575168, -6.2250436" zoom="13" type="HYBRID"
+									model="#{mapBean.simpleModel}" style="width:200px;height:150px">
+									<p:ajax event="overlaySelect"
+										listener="#{mapBean.onMarkerSelect}" update="growl" />
+								</p:gmap>
+							</h:form>
 						</p:tab>
 
 						<p:tab title="Menu 3">
 							<h:outputText value="Menu 3 Content" />
-							
-							<p:panel header="Export All Data">
-							<h:commandLink>
-								<p:graphicImage value="css/images/excel.png" />
-								<p:dataExporter type="xls" target="tbl" fileName="employees" />
-							</h:commandLink>
-
-							<h:commandLink>
-								<p:graphicImage value="css/images/pdf.png" />
-								<p:dataExporter type="pdf" target="tbl" fileName="employees" />
-							</h:commandLink>
-
-							<h:commandLink>
-								<p:graphicImage value="css/images/csv.png" />
-								<p:dataExporter type="csv" target="tbl" fileName="employees" />
-							</h:commandLink>
-
-							<h:commandLink>
-								<p:graphicImage value="css/images/xml.png" />
-								<p:dataExporter type="xml" target="tbl" fileName="employees" />
-							</h:commandLink>
-						</p:panel>
-							
-							
-							
 							
 						</p:tab>
 					</p:accordionPanel>
@@ -111,7 +96,7 @@
 
 			<!-- Start Menu Right -->
 			<ui:insert name="menuRight">
-				<p:layoutUnit id="right" position="east" size="250" header="Gallery"
+				<p:layoutUnit id="right" position="east" size="200" header="Gallery"
 					resizable="true" closable="true" collapsible="true"
 					style="text-align:center">
 
@@ -129,14 +114,8 @@
 						</h:outputLink>
 
 					</p:lightBox>
-
-					<p:growl id="growl" showDetail="true" />
-
-					<p:gmap center="53.3575168, 6.2250436" zoom="13" type="HYBRID"
-						model="#{mapBean.simpleModel}" style="width:200px;height:150px">
-						<p:ajax event="overlaySelect" listener="#{mapBean.onMarkerSelect}"
-							update="growl" />
-					</p:gmap>
+					 
+					
 				</p:layoutUnit>
 			</ui:insert>
 

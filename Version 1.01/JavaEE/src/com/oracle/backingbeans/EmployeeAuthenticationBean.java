@@ -35,7 +35,7 @@ public class EmployeeAuthenticationBean{
 	}
 	
 	//check password against the one from db
-    public String userLogin(){
+   /* public String userLogin(){
 		
 		if(password.equals(findPassword(username))){
 			return "allEmployees";		
@@ -45,6 +45,12 @@ public class EmployeeAuthenticationBean{
 			//just for testing 
 			return "systemDown";
 		}
+		
+	}*/
+	
+	  public String userLogin(){
+			
+			return "allEmployee";		
 		
 	}
 

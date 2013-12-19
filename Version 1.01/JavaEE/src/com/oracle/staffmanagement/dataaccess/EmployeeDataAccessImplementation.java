@@ -24,8 +24,8 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 	
 	
 	public List<ParkingSpace> findAllSpaces() {		
-		Query q = em.createQuery("SELECT parking_space FROM ParkingSpace parking_space, Block block WHERE parking_space.block_block_id = block.block_id");	
-		//Query q = em.createQuery("select parking_space from ParkingSpace parking_space");
+		//Query q = em.createQuery("SELECT parking_space FROM ParkingSpace parking_space, Block block WHERE parking_space.block_block_id = block.block_id");	
+		Query q = em.createQuery("select parking_space from ParkingSpace parking_space");
 		List<ParkingSpace> spaces = q.getResultList();	
 		return spaces;	
 	}

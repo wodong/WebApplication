@@ -26,6 +26,8 @@ public class ParkingSpace implements java.io.Serializable
 	@JoinColumn(name="block_block_id")
 	private Block block;
 	
+	//
+	
 	
 	public ParkingSpace()
 	{
