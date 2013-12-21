@@ -42,6 +42,7 @@
                             filterMatchMode="First Name"> 
                             <h:commandLink action="#{allEmployeesPageBean.showEmployee}">
 								<h:outputText value="#{employee.firstname}" />
+								<f:param id="paramEmployeeId" value="#{employee.employee_id}"></f:param>
 							</h:commandLink>							
 						</p:column>
 						

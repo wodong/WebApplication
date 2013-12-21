@@ -12,6 +12,7 @@ public interface EmployeeManagementServiceRemote
 {
 	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException ;
 	public List<Employee> getAllEmployees();
-	public List<ParkingSpace> getAllFreeSpaces();
+	public Employee getEmployeeDetails(int employeeId);
 	public List<Employee> searchBySurname(String surname);
+	public List<ParkingSpace> getAllFreeSpaces();
 }

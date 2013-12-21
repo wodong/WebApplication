@@ -22,18 +22,25 @@ public class EmployeeManagementImplementation
 	private ExternalPayrollSystem payrollSystem;
 
 	
-
+    // Get All employee DAO
 	public List<Employee> getAllEmployees() 
 	{
 		return dao.findAll();
 	}
 	
+	//Get employeeDetails DAO
+	public Employee getEmployeeDetails(int employeeId)
+	{
+		return dao.findEmployeeDetails(employeeId);
+	}
+	
+	//Get All Parking Spaces Webservice DAO
 	public List<ParkingSpace> getAllFreeSpaces() {
 		
 		return dao.findAllSpaces();
 	}
 
-
+    // Insert new Employee into Database DAO
 	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException 
 	{
 		dao.insert(newEmployee);

@@ -12,27 +12,20 @@
       
            <ui:define name="content">
            <p:layoutUnit id="center" position="center">
-           <h:form>
-					<p:dataTable id="tbl" value="#{allEmployeesPageBean.allEmployees}" rowKey="" var="employee" paginator="true" rows="10"
-						>
-						
-					<p:ajax event="rowEdit" listener="#{allEmployeesPageBean.onEdit}"  />  
-        			<p:ajax event="rowEditCancel" listener="#{allEmployeesPageBean.onCancel}" />  
-        			
-        					<p:column>
-							<f:facet name="header">
-								<h:outputText value="Line Manager" />
-							</f:facet>
-							<f:facet name="footer">Line Manager</f:facet>
-							<h:outputText value="#{allEmployeesPageBean.selectedEmployee.linemanager}" />
-						</p:column>
-  
-						<p:column style="width:6%">
-							<p:rowEditor />
-						</p:column>
-					</p:dataTable>			
-				</h:form>
-             </p:layoutUnit>          
+
+				
+			<h1>Employee details for #{allEmployeesPageBean.selectedEmployee.firstname}</h1>
+			<p>Name: #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}</p>
+			<p>Surname: #{allEmployeesPageBean.selectedEmployee.lastname}</p>
+		
+			
+			
+	        <p>Surname: #{allEmployeesPageBean.selectedEmployee.notes}</p>
+			
+
+
+
+		</p:layoutUnit>          
            </ui:define> 
 </ui:composition>
 

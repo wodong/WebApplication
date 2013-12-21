@@ -141,6 +141,14 @@ public class Employee implements java.io.Serializable
 		this.employee_no = employee_no;
 	}
 
+	public int getEmployee_id() {
+		return employee_id;
+	}
+
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
+	}
+
 	public String getFirstname() {
 		return firstname;
 	}

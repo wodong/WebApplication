@@ -12,6 +12,7 @@ public interface EmployeeManagementServiceLocal
 {
 	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException ;
 	public List<Employee> getAllEmployees();
+	public Employee getEmployeeDetails(int employeId);
 	public List<ParkingSpace> getAllFreeSpaces();
 	public List<Employee> searchBySurname(String surname);
 	

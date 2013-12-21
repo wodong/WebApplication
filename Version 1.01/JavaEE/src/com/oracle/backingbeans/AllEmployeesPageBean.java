@@ -1,11 +1,12 @@
 package com.oracle.backingbeans;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIData;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -26,13 +27,42 @@ public class AllEmployeesPageBean {
 	 return employeeService.getAllEmployees();
 	}
 	
+	
+	//get Employee Details
+		public Employee getEmployeeDetails(int employeeId)
+		{
+			
+		 return employeeService.getEmployeeDetails(employeeId);
+		}
+	
 	//display individual employee details
+		
 	public String showEmployee(){
+			this.selectedEmployee  = (Employee)dataTable.getRowData();
+			System.out.println("#####42####"+ this.selectedEmployee.getEmployee_id()+"#########");//
+			Employee employee = getEmployeeDetails(this.selectedEmployee.getEmployee_id());
+			selectedEmployee = employee;
+			System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
+			return "employeeDetail"; 
+		}	
+	
+	/*public String showEmployee(){
 		
 		this.selectedEmployee  = (Employee)dataTable.getRowData();
-		
+		System.out.println("#####42####"+ this.selectedEmployee.getEmployee_id()+"#########");//
+		Map<String,String> params = 
+			    FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+			  String employeeIdStr = params.get("paramEmployeeId");
+			  System.out.println("#####46####"+ employeeIdStr + "#########");//
+			  int employeeIdInt = Integer.parseInt(employeeIdStr);
+		Employee employee = getEmployeeDetails(employeeIdInt);
+		selectedEmployee = employee;
+		System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
 		return "employeeDetail";		
-	}
+	}*/
+	
+
+	
 	
 	//filtering
 	private List<Employee> filteredEmployee;
