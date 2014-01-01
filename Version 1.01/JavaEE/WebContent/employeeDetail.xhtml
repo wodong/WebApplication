@@ -17,14 +17,34 @@
 			<h1>Employee details for #{allEmployeesPageBean.selectedEmployee.firstname}</h1>
 			<p>Name: #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}</p>
 			<p>Surname: #{allEmployeesPageBean.selectedEmployee.lastname}</p>
-		
-			
-			
-	        <p>Surname: #{allEmployeesPageBean.selectedEmployee.notes}</p>
+	        <p>Total Notes : #{allEmployeesPageBean.selectedEmployee.notes.size()}</p>
 			
 
-
-
+			    <h:form>  
+			        <p:dataTable var="note" value="#{allEmployeesPageBean.selectedEmployee.notes}"> 
+			        <f:facet name="header">  
+            					<p:outputPanel>  
+                					<h:outputText value="Internal Notes" />  	  
+            					</p:outputPanel>  
+        					</f:facet>
+			         
+			            <p:column headerText="Id">  
+			                <h:outputText value="#{note.note_id}" />  
+			            </p:column>  
+			            			      
+			            <p:column headerText="Text">  
+			                <h:outputText value="#{note.txt_note}" />  
+			            </p:column>  
+			            
+			            <p:column headerText="Date"> 							
+							<h:outputText value="#{note.date}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p:column>
+			      
+			        </p:dataTable>  
+			    </h:form>
+			    		
 		</p:layoutUnit>          
            </ui:define> 
 </ui:composition>

@@ -22,7 +22,7 @@ public class Note
 	private int note_id;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="employee_employee_id")
+	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
 	private Employee employee;
 	public Employee getEmployee() {
 		return employee;

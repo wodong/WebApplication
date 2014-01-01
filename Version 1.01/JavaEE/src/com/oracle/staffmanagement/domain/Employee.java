@@ -1,11 +1,14 @@
 package com.oracle.staffmanagement.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,9 +40,9 @@ public class Employee implements java.io.Serializable
 	private Date allocation_exp_date;
 	
 	// Relationships tables 
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
-	private Set<Note> notes;
+	private List<Note> notes;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="employee_employee_id")
@@ -58,7 +61,7 @@ public class Employee implements java.io.Serializable
 			Date application_date, String employment_status, Date allocation_exp_date) 
 	{
 		super();
-		this.notes = new HashSet<Note>();
+		this.notes = new ArrayList<Note>();
 		this.outOffice = new HashSet<OutOfOffice>();
 		this.contactDetails = new HashSet<Contact>();
 		this.employee_no = employee_no;
@@ -116,15 +119,15 @@ public class Employee implements java.io.Serializable
 		this.notes.add(newNote);
 	}
 
-	public Set<Note> getNotes() {
+	public List<Note> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(Set<Note> notes) {
+	public void setNotes(List<Note> notes) {
 		this.notes = notes;
 	}
 
-	public Set<Note> getAllNotes() 
+	public List<Note> getAllNotes() 
 	{
 		return this.notes;
 	}
