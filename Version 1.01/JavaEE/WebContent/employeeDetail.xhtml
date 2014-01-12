@@ -13,8 +13,10 @@
            <ui:define name="content">
            <p:layoutUnit id="center" position="center">
 
-				
-			<h1>Employee details for #{allEmployeesPageBean.selectedEmployee.firstname}</h1>
+		    <h1 class="title ui-widget-header ui-corner-all">Employee details for #{allEmployeesPageBean.selectedEmployee.firstname}</h1>
+			 <h:outputText value="Name: " />  
+                <h:outputText id="employeeName" value=" #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}" style="font-weight: bold"/>  
+			
 			<p>Name: #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}</p>
 			<p>Surname: #{allEmployeesPageBean.selectedEmployee.lastname}</p>
 	        <p>Total Notes : #{allEmployeesPageBean.selectedEmployee.notes.size()}</p>
@@ -32,7 +34,7 @@
 			                <h:outputText value="#{note.note_id}" />  
 			            </p:column>  
 			            			      
-			            <p:column headerText="Text">  
+			            <p:column headerText="Note">  
 			                <h:outputText value="#{note.txt_note}" />  
 			            </p:column>  
 			            
@@ -41,6 +43,82 @@
 							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 							</h:outputText>
 						</p:column>
+			      
+			        </p:dataTable>  
+			    </h:form>
+			      
+				<p:separator id="customSeparator" style="width:80%;height:5px" />   
+			    
+			    <h:form>  
+			        <p:dataTable var="contact" value="#{allEmployeesPageBean.selectedEmployee.contactDetails}"> 
+			        <f:facet name="header">  
+            					<p:outputPanel>  
+                					<h:outputText value="Contact Details" />  	  
+            					</p:outputPanel>  
+        					</f:facet>
+			         
+			            <p:column headerText="Company">  
+			                <h:outputText value="#{contact.company}" />  
+			            </p:column>  
+			            			      
+			            <p:column headerText="Phone Number">  
+			                <h:outputText value="#{contact.phonenumber}" />  
+			            </p:column>  
+			            
+			            <p:column headerText="Line Manager"> 							
+							<h:outputText value="#{contact.linemanager}"/>
+						</p:column>
+						
+						<p:column headerText="Department"> 							
+							<h:outputText value="#{contact.lineofbusiness}"/>
+						</p:column>
+						
+						<p:column headerText="Post Code"> 							
+							<h:outputText value="#{contact.postcode}"/>
+						</p:column>
+			      
+			        </p:dataTable>  
+			    </h:form>
+			    
+			    <h:form>  
+			        <p:dataTable var="car" value="#{allEmployeesPageBean.selectedEmployee.employeeCar}"> 
+			        <f:facet name="header">  
+            					<p:outputPanel>  
+                					<h:outputText value="Contact Details" />  	  
+            					</p:outputPanel>  
+        					</f:facet>
+			         
+			            <p:column headerText="Vehicle Reg">  
+			                <h:outputText value="#{car.vehicle_regno}" />  
+			            </p:column>  
+			            			      
+			            <p:column headerText="Vehicle Make">  
+			                <h:outputText value="#{car.make}" />  
+			            </p:column>  
+			            
+			            <p:column headerText="Vehicle Model"> 							
+							<h:outputText value="#{car.model}"/>
+						</p:column>
+						
+						<p:column headerText="Vehicle Colour"> 							
+							<h:outputText value="#{car.date_vehicle_added}"/>
+						</p:column>
+						
+						<p:column headerText="Sticker No"> 							
+							<h:outputText value="#{car.stickernumber}"/>
+						</p:column>
+						
+						<p:column headerText="Space Type"> 							
+							<h:outputText value="#{car.car_or_motorbike_space}"/>
+						</p:column>
+						
+						 <p:column headerText="Date"> 							
+							<h:outputText value="#{car.date_vehicle_added}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p:column>
+						
+						
 			      
 			        </p:dataTable>  
 			    </h:form>

@@ -1,19 +1,16 @@
 package com.oracle.backingbeans;
 
 
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.security.SecureRandom;
 import java.util.Random;
- 
-
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
 import com.oracle.staffmanagement.EmployeeManagementServiceLocal;
-import com.oracle.staffmanagement.SystemUnavailableException;
 import com.oracle.staffmanagement.domain.Employee;
 
 
@@ -28,11 +25,14 @@ public class EnterEmployeePageBackingBean {
 	private Date application_date ;
 	private Date allocation_exp_date;
 	private String employeeStatus;
+	
 	//Note variables
 	private String notes;
+	
 	//Out of Office variables
 	private Date office_dateout ;
 	private Date office_datein;
+	
 	//Contact variables
 	private String company;
 	private String email;
@@ -41,6 +41,15 @@ public class EnterEmployeePageBackingBean {
 	private int postcode;
 	private String lineofbusiness;
 	
+	//Car Variables
+	private String vehicle_regno;
+	private String make;
+	private String model;
+	private String colour;
+	private Date date_vehicle_added;
+	private String carMotorbikeSpace;
+	private String stickernumber;
+		
 	//Handle Employment status selector
     private Map<String, String> status = new HashMap<String, String>(); 
 	
@@ -67,7 +76,9 @@ public class EnterEmployeePageBackingBean {
 	    newEmployee.addNote(notes);
 	    newEmployee.addOutOfOffice(office_dateout, office_datein);
 	    newEmployee.addContact(company, email, phonenumber, linemanager, postcode, lineofbusiness);
-	    
+	    newEmployee.addCar(vehicle_regno, make, model, colour, date_vehicle_added, carMotorbikeSpace, 
+			stickernumber);
+	        
 	    try 
 	    {
 			employeeService.registerEmployee(newEmployee);
@@ -99,12 +110,20 @@ public class EnterEmployeePageBackingBean {
 	
 	
     //Getters and setters
+	public Map<String, String> getStatus() {  
+		return status;  
+	}  
+
+	public void setStatus(Map<String, String> status) {  
+		this.status = status;  
+	} 
 	
+	//Getters and setters EMPLOYEE
 	public String getEmployeeStatus() {
 		return employeeStatus;
 	}
 
-
+    
 	public void setEmployeeStatus(String employeeStatus) {
 		this.employeeStatus = employeeStatus;
 	}
@@ -167,8 +186,9 @@ public class EnterEmployeePageBackingBean {
 	public void setAllocation_exp_date(Date allocation_exp_date) {
 		this.allocation_exp_date = allocation_exp_date;
 	}
+	
 
-
+	//Getter and setters NOTES
 	public String getNotes() {
 		return notes;
 	}
@@ -178,14 +198,8 @@ public class EnterEmployeePageBackingBean {
 		this.notes = notes;
 	}
 	
-    public Map<String, String> getStatus() {  
-	        return status;  
-	}  
-	  
-	public void setStatus(Map<String, String> status) {  
-	        this.status = status;  
-	} 
-	
+  
+	//Getter and setters OUT OF OFFICE
 	public Date getOffice_dateout() {
 		return office_dateout;
 	}
@@ -265,5 +279,80 @@ public class EnterEmployeePageBackingBean {
 	public void setLineofbusiness(String lineofbusiness) {
 		this.lineofbusiness = lineofbusiness;
 	}
+	
+	////Getter and setters CAR
+	public void todo(){}
+
+
+	public String getVehicle_regno() {
+		return vehicle_regno;
+	}
+
+
+	public void setVehicle_regno(String vehicle_regno) {
+		this.vehicle_regno = vehicle_regno;
+	}
+
+
+	public String getMake() {
+		return make;
+	}
+
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+
+	public String getModel() {
+		return model;
+	}
+
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+
+	public String getColour() {
+		return colour;
+	}
+
+
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
+
+
+	public Date getDate_vehicle_added() {
+		return date_vehicle_added;
+	}
+
+
+	public void setDate_vehicle_added(Date date_vehicle_added) {
+		this.date_vehicle_added = date_vehicle_added;
+	}
+
+
+	public String getCarMotorbikeSpace() {
+		return carMotorbikeSpace;
+	}
+
+
+	public void setCarMotorbikeSpace(String carMotorbikeSpace) {
+		this.carMotorbikeSpace = carMotorbikeSpace;
+	}
+
+
+	public String getStickernumber() {
+		return stickernumber;
+	}
+
+
+	public void setStickernumber(String stickernumber) {
+		this.stickernumber = stickernumber;
+	}
 
 }
+
+   

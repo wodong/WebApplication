@@ -4,14 +4,13 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.JoinColumn;
 
 
 @Entity
@@ -21,9 +20,21 @@ public class Note
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int note_id;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
+	private String txt_note;
+	/*private int employee_employee_id;*/
+	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
 	private Employee employee;
+	
+	
+	public Note()
+	{
+		// for JPA
+	}
+	
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -32,16 +43,14 @@ public class Note
 		this.employee = employee;
 	}
 
-	private int employee_employee_id;
 	
-	
-	public int getEmployee_employee_id() {
+	/*public int getEmployee_employee_id() {
 		return employee_employee_id;
 	}
 
 	public void setEmployee_employee_id(int employee_employee_id) {
 		this.employee_employee_id = employee_employee_id;
-	}
+	}*/
     
 	public int getNote_id() {
 		return note_id;
@@ -51,8 +60,6 @@ public class Note
 		this.note_id = note_id;
 	}
 
-	private String txt_note;
-
 	public String getTxt_note() {
 		return txt_note;
 	}
@@ -60,10 +67,6 @@ public class Note
 	public void setTxt_note(String txt_note) {
 		this.txt_note = txt_note;
 	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
-
 	
 	public Date getDate() {
 		return date;
@@ -71,11 +74,6 @@ public class Note
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public Note()
-	{
-		// for JPA
 	}
 
 	public Note(String text)

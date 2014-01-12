@@ -18,6 +18,7 @@ public class AllEmployeesPageBean {
 	@EJB
 	private EmployeeManagementServiceLocal employeeService;
 	private Employee selectedEmployee;
+
 	private UIData dataTable;
 	
 	//get all employees
@@ -35,8 +36,7 @@ public class AllEmployeesPageBean {
 		 return employeeService.getEmployeeDetails(employeeId);
 		}
 	
-	//display individual employee details
-		
+	//display individual employee details	
 	public String showEmployee(){
 			this.selectedEmployee  = (Employee)dataTable.getRowData();
 			System.out.println("#####42####"+ this.selectedEmployee.getEmployee_id()+"#########");//
@@ -45,23 +45,6 @@ public class AllEmployeesPageBean {
 			System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
 			return "employeeDetail"; 
 		}	
-	
-	/*public String showEmployee(){
-		
-		this.selectedEmployee  = (Employee)dataTable.getRowData();
-		System.out.println("#####42####"+ this.selectedEmployee.getEmployee_id()+"#########");//
-		Map<String,String> params = 
-			    FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-			  String employeeIdStr = params.get("paramEmployeeId");
-			  System.out.println("#####46####"+ employeeIdStr + "#########");//
-			  int employeeIdInt = Integer.parseInt(employeeIdStr);
-		Employee employee = getEmployeeDetails(employeeIdInt);
-		selectedEmployee = employee;
-		System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
-		return "employeeDetail";		
-	}*/
-	
-
 	
 	
 	//filtering

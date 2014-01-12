@@ -39,7 +39,7 @@ public class Employee implements java.io.Serializable
 	@Temporal(TemporalType.DATE)
 	private Date allocation_exp_date;
 	
-	// Relationships tables 
+	// Relationships tables annotations
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
 	private List<Note> notes;
@@ -48,22 +48,31 @@ public class Employee implements java.io.Serializable
 	@JoinColumn(name="employee_employee_id")
 	private Set<OutOfOffice> outOffice;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
-	private Set<Contact> contactDetails;
+	private List<Contact> contactDetails;
+	
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@JoinColumn(name="employee_employee_id")
+	private List<Car> employeeCar;
+	
 	
 	public Employee() 
 	{
 		// required by JPA, but not used by us.		  
 	}
-		
+	
+	
+	//Add Employee object to DB along with the Note, OutOfOffice, contact details.
 	public Employee(String employee_no, String firstname, String lastname, String password, 
 			Date application_date, String employment_status, Date allocation_exp_date) 
 	{
 		super();
 		this.notes = new ArrayList<Note>();
 		this.outOffice = new HashSet<OutOfOffice>();
-		this.contactDetails = new HashSet<Contact>();
+		this.contactDetails = new ArrayList<Contact>();
+		this.employeeCar = new ArrayList<Car>();
+		
 		this.employee_no = employee_no;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -81,22 +90,24 @@ public class Employee implements java.io.Serializable
 
 	//Add Contact details
 	public void addContact(String conCompany, String conEmail, int conPhoneNumber, 
-			String conLineManager, int conPostCode, String conLineOfBusiness){
+			String conLineManager, int conPostCode, String conLineOfBusiness)
+	{
 		Contact newContact = new Contact(conCompany, conEmail, conPhoneNumber, 
-				conLineManager, conPostCode, conLineOfBusiness);
+							conLineManager, conPostCode, conLineOfBusiness);
 		this.contactDetails.add(newContact);
+
+	}
+	
+	//add Car details
+	public void addCar(String vehicle_regno, String make, String model, String colour, 
+			Date date_vehicle_added, String carMotorbikeSpace, String stickernumber)
+	{
+		Car newCar  = new Car(vehicle_regno, make, model, colour, date_vehicle_added, carMotorbikeSpace, 
+			stickernumber);
+		this.employeeCar.add(newCar);
 		
 	}
 	
-	public Set<Contact> getContactDetails() {
-		return contactDetails;
-	}
-
-	public void setContactDetails(Set<Contact> contactDetails) {
-		this.contactDetails = contactDetails;
-	}
-
-
 	//Add OutOfOffice
 	public void addOutOfOffice(Date out, Date in)
 	{
@@ -104,6 +115,40 @@ public class Employee implements java.io.Serializable
 		this.outOffice.add(newOutOfOffice);	
 	}
 	
+	//Add Note
+	public void addNote(String newNoteText)
+	{
+		Note newNote = new Note(newNoteText);
+		this.notes.add(newNote);
+	}
+    
+	/*********Getter and Setters************/
+	
+	//Getter and Setters  CONTACT
+	public List<Contact> getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(List<Contact> contactDetails) {
+		this.contactDetails = contactDetails;
+	}
+	
+	public List<Contact> getAllContactDetails() 
+	{
+		return this.contactDetails;
+	}
+	
+	
+    ////Getter and Setters  CAR
+	public List<Car> getEmployeeCar() {
+		return employeeCar;
+	}
+
+	public void setEmployeeCar(List<Car> employeeCar) {
+		this.employeeCar = employeeCar;
+	}
+
+	//Getter and Setters  OUT OFF OFFICE
 	public Set<OutOfOffice> getOutOffice() {
 		return outOffice;
 	}
@@ -112,13 +157,7 @@ public class Employee implements java.io.Serializable
 		this.outOffice = outOffice;
 	}
 
-	//Add Note
-	public void addNote(String newNoteText)
-	{
-		Note newNote = new Note(newNoteText);
-		this.notes.add(newNote);
-	}
-
+	//Getter and Setters  NOTE
 	public List<Note> getNotes() {
 		return notes;
 	}
@@ -132,10 +171,7 @@ public class Employee implements java.io.Serializable
 		return this.notes;
 	}
 	
-	 
-	
-	//Getters and Setters
-
+	//Getters and Setters EMPLOYEE
 	public String getEmployee_no() {
 		return employee_no;
 	}
@@ -200,5 +236,4 @@ public class Employee implements java.io.Serializable
 		this.allocation_exp_date = allocation_exp_date;
 	}
 
-	
 }

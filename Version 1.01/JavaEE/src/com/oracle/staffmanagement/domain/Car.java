@@ -2,11 +2,13 @@ package com.oracle.staffmanagement.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,20 +25,24 @@ public class Car
 	private String model;
 	private String colour;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date date_vehicle_added;
 	
 	private String car_or_motorbike_space;
-	private int stickernumber;
+	private String stickernumber;
+	/*private int employee_employee_id; */
+	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
+	private Employee employee;
 	
 	public Car()
 	{
 		// constructor used by the JPA
 	}
  
-	
 	public Car(String carReg, String carMake, String carModel, String carColour, 
-			Date carDate, String carOrMotorbike, int carSticker)
+			Date carDate, String carOrMotorbike, String carSticker)
 	{
 		this.vehicle_regno = carReg;
 		this.make = carMake;
@@ -49,6 +55,26 @@ public class Car
 	
 	
 	//Getter and setters
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
+	/*
+	public int getEmployee_employee_id() {
+		return employee_employee_id;
+	}
+
+	public void setEmployee_employee_id(int employee_employee_id) {
+		this.employee_employee_id = employee_employee_id;
+	}*/
+	
+	
 	public String getVehicle_regno() {
 		return vehicle_regno;
 	}
@@ -97,11 +123,11 @@ public class Car
 		this.car_or_motorbike_space = car_or_motorbike_space;
 	}
 
-	public int getStickernumber() {
+	public String getStickernumber() {
 		return stickernumber;
 	}
 
-	public void setStickernumber(int stickernumber) {
+	public void setStickernumber(String stickernumber) {
 		this.stickernumber = stickernumber;
 	}
 	

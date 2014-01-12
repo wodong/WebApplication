@@ -1,14 +1,12 @@
 package com.oracle.staffmanagement.domain;
 
-import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -24,7 +22,10 @@ public class Contact
 	private String linemanager;
 	private int postcode;
 	private String lineofbusiness;
-	
+	//private int employee_employee_id;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
+	private Employee employee;
 	
 	public Contact()
 	{
@@ -43,7 +44,27 @@ public class Contact
 		this.lineofbusiness = conLineOfBusiness;
 	}
 
+	
     // Getters and setters
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	//
+	/*public int getEmployee_employee_id() {
+		return employee_employee_id;
+	}
+
+	public void setEmployee_employee_id(int employee_employee_id) {
+		this.employee_employee_id = employee_employee_id;
+	}*/
+	
+	
+	
 	public String getCompany() {
 		return company;
 	}
