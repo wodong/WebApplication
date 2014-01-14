@@ -81,9 +81,7 @@
 								<f:selectItems value="#{enterEmployee.status}" />
 							</h:selectOneMenu>
 							<p:tooltip for="status" styleClass="tooltip" showEvent="focus" hideEvent="blur" title="Please select employemnt status!" />
-					    
-					       <h3>Contact Details</h3>  
-						   <p:separator id="separator"/>
+					   
 						    <h:panelGroup>
 								<h:outputText value="Company:" />
 								<h:outputText style="color:red" value="*  " />
@@ -136,9 +134,7 @@
 								required="true" label="Line of Business"
 								title="Please enter Line of Business!" />
 							<p:tooltip for="lineofbusiness" styleClass="tooltip" showEvent="focus" hideEvent="blur" /> 
-							
-							<h3>Vehicle Details</h3>  
-						   <p:separator id="separator"/>
+
 							<h:panelGroup>
 								<h:outputText value="Vehicle Reg:" />
 								<h:outputText style="color:red" value="*  " />
@@ -204,8 +200,6 @@
 								title="Please enter the Sticker No!" />
 							<p:tooltip for="stickernumber" styleClass="tooltip" showEvent="focus" hideEvent="blur" /> 
 		                   
-		                   <h3>Additional Note</h3>  
-						   <p:separator id="separator"/>
 							<h:panelGroup>
 								<h:outputText value="Employee Note:" />
 								<h:outputText style="color:red" value="*  " />
@@ -215,8 +209,7 @@
 								label="Employee Note" title="Please enter a note!" />
 							<p:tooltip for="notes" styleClass="tooltip" showEvent="focus"
 								hideEvent="blur" />
-							  
-						   <p:separator id="separator"/>	
+
                             <!-- Submit Button -->
 							<p:commandButton id="newUserButton"
 								action="#{enterEmployee.createEmployee}"

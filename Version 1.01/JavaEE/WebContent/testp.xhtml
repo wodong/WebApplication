@@ -2,51 +2,149 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      template="/templates/generalTest.xhtml">
-      
-      <ui:define name="title"> <h:outputText value="New Employee" /> </ui:define>
-      <ui:define name="header"> <h:outputText value="New Employee Details" /> </ui:define>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/generalTest.xhtml">
 
-        
-           <ui:define name="content">
-           <p:layoutUnit id="center" position="center">
-           <h:form>  
-  
-    <p:dataTable id="dataTable" var="car" value="#{allEmployeesPageBean.allEmployees}" widgetVar="carsTable"   
-            emptyMessage="No cars found with given criteria" filteredValue="#{allEmployeesPageBean.allEmployees}">  
-  
-         <f:facet name="header">  
-            <p:outputPanel>  
-                <h:outputText value="Search all fields:" />  
-                <p:inputText id="globalFilter" onkeyup="carsTable.filter()" style="width:150px" />  
-            </p:outputPanel>  
-        </f:facet>  
-  
-        <p:column id="modelColumn" filterBy="model"   
-                headerText="Model" footerText="contains"  
-                filterMatchMode="contains">  
-            <h:outputText value="#{employee.employee_no}" />  
-        </p:column>  
-  
-        <p:column id="yearColumn" filterBy="year"  
-                headerText="Year" footerText="startsWith">  
-            <h:outputText value="#{employee.employee_no}" />  
-        </p:column>  
-  
-      
-    </p:dataTable>  
-      
-</h:form>
-             </p:layoutUnit> 
-           
-           </ui:define> 
-           
-           <ui:define name="menuRight">
-           
-           </ui:define> 
+	<ui:define name="title">
+		<h:outputText value="Employee" />
+	</ui:define>
 
+	<ui:define name="content">
+		<p:layoutUnit id="center" position="center">
+
+			<h1 class="title ui-widget-header ui-corner-all">Employee
+				details for #{allEmployeesPageBean.selectedEmployee.firstname}</h1>
+			<h:outputText value="Name: " />
+			<h:outputText id="employeeName"
+				value=" #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}"
+				style="font-weight: bold" />
+
+			<p>Name: #{allEmployeesPageBean.selectedEmployee.firstname}
+				#{allEmployeesPageBean.selectedEmployee.lastname}</p>
+			<p>Surname: #{allEmployeesPageBean.selectedEmployee.lastname}</p>
+			<p>Total Notes :
+				#{allEmployeesPageBean.selectedEmployee.notes.size()}</p>
+
+			<h3>Notes</h3>
+			<p:separator id="notesep" />
+
+			<h:form>
+				<p:dataTable var="note"
+					value="#{allEmployeesPageBean.selectedEmployee.notes}">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Internal Notes" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="Id">
+						<h:outputText value="#{note.note_id}" />
+					</p:column>
+
+					<p:column headerText="Note">
+						<h:outputText value="#{note.txt_note}" />
+					</p:column>
+
+					<p:column headerText="Date">
+						<h:outputText value="#{note.date}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<f:facet name="footer">  
+            			  Notes for #{allEmployeesPageBean.selectedEmployee.firstname}
+        				</f:facet>
+					</p:dataTable>
+					</h:form>
+
+			<h3>Contact Details</h3>
+			<p:separator id="contactsep" />
+
+			<h:form>
+				<p:dataTable var="contact"
+					value="#{allEmployeesPageBean.selectedEmployee.contactDetails}">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Contact Details" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="Company">
+						<h:outputText value="#{contact.company}" />
+					</p:column>
+
+					<p:column headerText="Phone Number">
+						<h:outputText value="#{contact.phonenumber}" />
+					</p:column>
+
+					<p:column headerText="Line Manager">
+						<h:outputText value="#{contact.linemanager}" />
+					</p:column>
+
+					<p:column headerText="Department">
+						<h:outputText value="#{contact.lineofbusiness}" />
+					</p:column>
+
+					<p:column headerText="Post Code">
+						<h:outputText value="#{contact.postcode}" />
+					</p:column>
+					<f:facet name="footer">  Contact details for #{allEmployeesPageBean.selectedEmployee.firstname} </f:facet>
+
+				</p:dataTable>
+			</h:form>
+
+			<h3>Vehicle Details</h3>
+			<p:separator id="vehiclesep" />
+
+			<h:form>
+				<p:dataTable var="car"
+					value="#{allEmployeesPageBean.selectedEmployee.employeeCar}">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Contact Details" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="Vehicle Reg">
+						<h:outputText value="#{car.vehicle_regno}" />
+					</p:column>
+
+					<p:column headerText="Vehicle Make">
+						<h:outputText value="#{car.make}" />
+					</p:column>
+
+					<p:column headerText="Vehicle Model">
+						<h:outputText value="#{car.model}" />
+					</p:column>
+
+					<p:column headerText="Vehicle Colour">
+						<h:outputText value="#{car.date_vehicle_added}" />
+					</p:column>
+
+					<p:column headerText="Sticker No">
+						<h:outputText value="#{car.stickernumber}" />
+					</p:column>
+
+					<p:column headerText="Space Type">
+						<h:outputText value="#{car.car_or_motorbike_space}" />
+					</p:column>
+
+					<p:column headerText="Date">
+						<h:outputText value="#{car.date_vehicle_added}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<f:facet name="footer"> Vehicle details for #{allEmployeesPageBean.selectedEmployee.firstname} </f:facet>
+                          
+				</p:dataTable>
+			</h:form>
+
+		</p:layoutUnit>
+	</ui:define>
 </ui:composition>
+
+
+
