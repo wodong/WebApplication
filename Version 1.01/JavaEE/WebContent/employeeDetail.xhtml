@@ -15,7 +15,8 @@
 	<ui:define name="content">
 		<p:layoutUnit id="center" position="center">
 
-			<h2 class="title ui-widget-header ui-corner-all">Employee details for: #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}</h2>
+			<h2 class="title ui-widget-header ui-corner-all">Employee details for: #{allEmployeesPageBean.selectedEmployee.firstname} 
+			#{allEmployeesPageBean.selectedEmployee.lastname}</h2>
             
             <br /> 
 			<h:form id="form">
@@ -56,20 +57,20 @@
 							<p:panel id="panel">
 								<p:messages id="messages" />
 								<h:panelGrid columns="3">
-									<h:outputLabel for="firstname" value="Firstname: *" />
-									<p:inputText id="firstname" value="#{pprBean.firstname}"
-										required="true" label="Firstname">
+									<h:outputLabel for="visitorName" value="Visitor Name: *" />
+									<p:inputText id="visitorName" value="#{employeeDetail.visitorName}"
+										required="true" label="visitorName">
 										<f:validateLength minimum="2" />
 									</p:inputText>
-									<p:message for="firstname" />
+									<p:message for="visitorName" />
 
 									<h:panelGroup>
 										<h:outputText value="From:" />
 										<h:outputText style="color:red" value="*  " />
 									</h:panelGroup>
-									<p:calendar value="#{enterEmployee.date_vehicle_added}"
+									<p:calendar value="#{employeeDetail.startDate}"
 										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
-									<h:outputText value="#{enterEmployee.date_vehicle_added}"
+									<h:outputText value="#{employeeDetail.startDate}"
 										id="popupFromDate">
 									</h:outputText>
 									
@@ -77,16 +78,16 @@
 										<h:outputText value="Until:" />
 										<h:outputText style="color:red" value="*  " />
 									</h:panelGroup>
-									<p:calendar value="#{enterEmployee.date_vehicle_added}"
+									<p:calendar value="#{employeeDetail.endDate}"
 										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
-									<h:outputText value="#{enterEmployee.date_vehicle_added}"
+									<h:outputText value="#{employeeDetail.endDate}"
 										id="popupUntilDate">
 									</h:outputText>
 								</h:panelGrid>
 							</p:panel>
 
-							<p:commandButton value="Submit" update="panel"
-								actionListener="#{pprBean.savePerson}" />
+							<p:commandButton value="Submit" effect="explode"
+								actionListener="#{employeeDetail.addVisitor}" />
 						</h:form>
 
 					</h:panelGrid>  

@@ -67,10 +67,6 @@ public class EnterEmployeePageBackingBean {
 	//Create Employee object
 	public String createEmployee() {	
 		
-		String message = "Hello Dude\n=================================";
-		
-		System.out.println(message);
-		
 	    Employee newEmployee = new Employee(employee_no, firstname, lastname, password, 
 				application_date, employeeStatus, allocation_exp_date);
 	    newEmployee.addNote(notes);
@@ -84,9 +80,8 @@ public class EnterEmployeePageBackingBean {
 			employeeService.registerEmployee(newEmployee);
 		    return "allEmployee";
 	    } catch (Throwable e) {	
-	    
+	    	
 	    	e.printStackTrace();
-	    	System.out.println(message);
 			return "systemDown";
 		}
 	}

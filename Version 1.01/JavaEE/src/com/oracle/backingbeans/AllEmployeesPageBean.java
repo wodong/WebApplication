@@ -59,8 +59,6 @@ public class AllEmployeesPageBean {
     } 
 	
 
-	
-	
 	//Getters and Setters
 	public Employee getSelectedEmployee() {
 		return selectedEmployee;

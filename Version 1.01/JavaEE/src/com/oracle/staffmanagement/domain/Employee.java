@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -56,9 +57,18 @@ public class Employee implements java.io.Serializable
 	@JoinColumn(name="employee_employee_id")
 	private List<Car> employeeCar;
 	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="parking_space_pspace_id", referencedColumnName="pspace_id")
+	private ParkingSpace parkingSpace;
 	
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@JoinColumn(name="employee_employee_id")
+	private static List<Visitor> employeeVisitors;
+	
+
 	public Employee() 
 	{
+		
 		// required by JPA, but not used by us.		  
 	}
 	
@@ -72,6 +82,7 @@ public class Employee implements java.io.Serializable
 		this.outOffice = new HashSet<OutOfOffice>();
 		this.contactDetails = new ArrayList<Contact>();
 		this.employeeCar = new ArrayList<Car>();
+		this.employeeVisitors = new ArrayList<Visitor>();
 		
 		this.employee_no = employee_no;
 		this.firstname = firstname;
@@ -121,6 +132,14 @@ public class Employee implements java.io.Serializable
 		Note newNote = new Note(newNoteText);
 		this.notes.add(newNote);
 	}
+	
+	public static void addVisitor(String visitorName, Date startDate, Date endDate){
+		
+		Visitor newVisitor = new Visitor(visitorName, startDate, endDate);
+		employeeVisitors.add(newVisitor);
+	}
+
+	
     
 	/*********Getter and Setters************/
 	
@@ -171,6 +190,18 @@ public class Employee implements java.io.Serializable
 		return this.notes;
 	}
 	
+	
+	
+	public List<Visitor> getEmployeeVisitors() {
+		return employeeVisitors;
+	}
+
+
+	public void setEmployeeVisitors(List<Visitor> employeeVisitors) {
+		this.employeeVisitors = employeeVisitors;
+	}
+
+
 	//Getters and Setters EMPLOYEE
 	public String getEmployee_no() {
 		return employee_no;
@@ -235,5 +266,18 @@ public class Employee implements java.io.Serializable
 	public void setAllocation_exp_date(Date allocation_exp_date) {
 		this.allocation_exp_date = allocation_exp_date;
 	}
+
+	// Getter and Setters Parking Space
+	public ParkingSpace getParkingSpace() {
+		return parkingSpace;
+	}
+
+
+	public void setParkingSpace(ParkingSpace parkingSpace) {
+		this.parkingSpace = parkingSpace;
+	}
+	
+	
+	
 
 }

@@ -2,10 +2,13 @@ package com.oracle.staffmanagement.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,13 +27,32 @@ public class Visitor
 	
 	private String visitor_name;
 	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
+	private Employee employee;
+	
 	public Visitor()
 	{
 		// constructor used by the JPA
 	}
+		
+	public Visitor(String visitorName, Date startDate, Date endDate)
+	{
+		this.visitor_name = visitorName;
+		this.allocation_end_datetime = endDate;
+		this.allocation_start_datetime = endDate;	
+	}
 
 	
-	//Getters and Setters 
+	//Getters and Setters
+	public Employee getEmployee() {
+			return employee;
+		}
+
+	public void setEmployee(Employee employee) {
+			this.employee = employee;
+		}
+	
 	public Date getAllocation_start_datetime() {
 		return allocation_start_datetime;
 	}

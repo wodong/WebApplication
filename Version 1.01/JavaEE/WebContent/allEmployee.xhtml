@@ -24,16 +24,13 @@
             					</p:outputPanel>  
         					</f:facet> 
 
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Employee ID" />
-							</f:facet>
-							<f:facet name="footer">Employee ID</f:facet>
-							<h:outputText value="" />
+						<p:column id="spaceNo" filterBy="space_no" headerText="Parking Space" footerText="contains" 
+                            filterMatchMode="Parking Space"> 
+							<h:outputText value="#{employee.parkingSpace.space_no}" />
 						</p:column>
 
 						<p:column id="employeeNo" filterBy="employee_no" headerText="Employee No" footerText="contains" 
-                            filterMatchMode="contains"> 							
+                            filterMatchMode="Employee No"> 							
 							<h:outputText value="#{employee.employee_no}" />
 						</p:column>
 						
