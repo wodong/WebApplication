@@ -16,6 +16,8 @@ public interface EmployeeDataAccess {
 	public abstract List<Employee> findBySurname(String surname);
 
 	public abstract void insert(Employee newEmployee);
+	
+	public abstract void updateEmployee(Employee updateEmployee);
 
 
 }

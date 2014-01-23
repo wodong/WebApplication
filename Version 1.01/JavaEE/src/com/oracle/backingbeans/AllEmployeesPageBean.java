@@ -1,20 +1,25 @@
 package com.oracle.backingbeans;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIData;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
 import com.oracle.staffmanagement.EmployeeManagementServiceLocal;
 import com.oracle.staffmanagement.domain.Employee;
 
+@RequestScoped
 @ManagedBean(name="allEmployeesPageBean")
-public class AllEmployeesPageBean {
+public class AllEmployeesPageBean implements Serializable {
+	/**
+	 * 
+	 */
+	
 	@EJB
 	private EmployeeManagementServiceLocal employeeService;
 	private Employee selectedEmployee;
@@ -78,11 +83,33 @@ public class AllEmployeesPageBean {
 
 	
 	//row editing
-	public void onEdit(RowEditEvent event) {  
+	public String onEdit(RowEditEvent event) {
+		Employee oldValue = (Employee) event.getObject();  
+	    Employee newValue = (Employee) event.getObject();
+	    
+	    System.out.println("#################################" + newValue);
+	    
+	    try 
+	    {
+	    	employeeService.UpdateEmployee(newValue);
+		    return "allEmployee";
+	    } catch (Throwable e) {	
+	    	
+	    	e.printStackTrace();
+			return "systemDown";
+		}
+	    
+	  /*  if(newValue != null && !newValue.equals(oldValue)) {  
+	        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);  
+	    }*/
+		
         
     }  
       
     public void onCancel(RowEditEvent event) {  
+    	Employee e=(Employee) event.getObject();
+    	e.setEmployee_no("1245");
         
     }  
 }

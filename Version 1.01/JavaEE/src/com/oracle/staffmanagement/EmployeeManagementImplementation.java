@@ -47,6 +47,12 @@ public class EmployeeManagementImplementation
 		payrollSystem.enrollEmployee(newEmployee);
 	}
 
+	public void UpdateEmployee(Employee newUpdateEmployee) throws SystemUnavailableException 
+	{
+		dao.updateEmployee(newUpdateEmployee);
+		
+	}
+	
 	public List<Employee> searchBySurname(String surname) {
 		return dao.findBySurname(surname);
 	}	

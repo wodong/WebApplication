@@ -13,57 +13,111 @@
       
            <ui:define name="content">
            <p:layoutUnit id="center" position="center">
-           <h:form>
-					<p:dataTable id="dataTable" value="#{allEmployeesPageBean.allEmployees}" rowKey="" var="employee" paginator="true" rows="10"
-						binding="#{allEmployeesPageBean.dataTable}" widgetVar="varemployee" emptyMessage="No employee found with given criteria" 
-						filteredValue="#{allEmployeesPageBean.filteredEmployee}" >
+           <h:form id="form">
+                  <p:growl id="messages" showDetail="true"/>  
+                   
+					<p:dataTable id="dataTable" value="#{employeeDetailBean.allEmployees}" rowKey="" var="employee" paginator="true" rows="10"
+						binding="#{employeeDetailBean.dataTable}" widgetVar="varemployee" emptyMessage="No employee found with given criteria" 
+						filteredValue="#{employeeDetailBean.filteredEmployee}" editable="true">
 							<f:facet name="header">  
             					<p:outputPanel>  
                 					<h:outputText value="Search all fields:" />  
                 					<p:inputText id="globalFilter"  onkeyup="varemployee.filter()" style="width:150px" />  
             					</p:outputPanel>  
         					</f:facet> 
+        					
+        			    <p:ajax event="rowEdit" listener="#{allEmployeesPageBean.onEdit}" update=":form:messages" />  
+        				<p:ajax event="rowEditCancel" listener="#{allEmployeesPageBean.onCancel}" update=":form:messages" />
 
-						<p:column id="spaceNo" filterBy="space_no" headerText="Parking Space" footerText="contains" 
-                            filterMatchMode="Parking Space"> 
-							<h:outputText value="#{employee.parkingSpace.space_no}" />
-						</p:column>
-
-						<p:column id="employeeNo" filterBy="employee_no" headerText="Employee No" footerText="contains" 
-                            filterMatchMode="Employee No"> 							
-							<h:outputText value="#{employee.employee_no}" />
-						</p:column>
+					<p:column id="spaceNo" filterBy="space_no" headerText="Parking Space" footerText="contains"
+						filterMatchMode="Parking Space" style="width:30%">
 						
-						<p:column id="firstName" filterBy="firstname" headerText="First Name" footerText="First Name" 
-                            filterMatchMode="First Name"> 
-                            <h:commandLink action="#{allEmployeesPageBean.showEmployee}">
+								<h:outputText value="#{employee.parkingSpace.space_no}" />
+							
+					</p:column>
+
+					<p:column id="employeeNo" filterBy="employee_no" headerText="Employee No" footerText="contains"
+						filterMatchMode="Employee No" style="width:30%">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{employee.employee_no}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{employee.employee_no}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					
+					<p:column id="firstName" filterBy="firstname" headerText="First Name" footerText="First Name" 
+                            filterMatchMode="First Name" style="width:30%">
+                            <p:cellEditor>
+							<f:facet name="output">
+								<h:commandLink ajax="false" action="#{employeeDetailBean.showEmployee}">
 								<h:outputText value="#{employee.firstname}" />
 								<f:param id="paramEmployeeId" value="#{employee.employee_id}"></f:param>
-							</h:commandLink>							
+							</h:commandLink>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{employee.firstname}" style="width:100%"/>								
+							</f:facet>
+						</p:cellEditor> 							
 						</p:column>
-						
-						<p:column id="lastName" filterBy="lastname" headerText="Surname" footerText="Surname" 
-                            filterMatchMode="lastname"> 							
-							<h:outputText value="#{employee.lastname}" />
+
+					<p:column id="lastName" filterBy="lastname" headerText="Surname" footerText="Surname" 
+                            filterMatchMode="lastname" style="width:30%" >
+                            <p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{employee.lastname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{employee.lastname}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor> 							
 						</p:column>
 						
 						<p:column id="appDate" filterBy="application_date" headerText="Application Date" footerText="Application Date" 
-                            filterMatchMode="Application Date"> 							
-							<h:outputText value="#{employee.application_date}">
-							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-							</h:outputText>
+                            filterMatchMode="Application Date" style="width:30%"> 
+                            <p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{employee.application_date}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{employee.application_date}" style="width:100%">
+							    <f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							    </p:inputText>
+							</f:facet>
+						</p:cellEditor>
 						</p:column>
 						
 						<p:column id="expDate" filterBy="allocation_exp_date" headerText="Allocation" footerText="Allocation Exp Date" 
-                            filterMatchMode="Allocation Exp Date"> 							
-							<h:outputText value="#{employee.allocation_exp_date}">
-							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-							</h:outputText>
+                            filterMatchMode="Allocation Exp Date" style="width:30%">
+                            <p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{employee.allocation_exp_date}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{employee.allocation_exp_date}" style="width:100%" >
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+								</p:inputText>
+							</f:facet>
+						</p:cellEditor>							
 						</p:column>
 						
 						<p:column id="employmentStatus" filterBy="employment_status" headerText="Status" footerText="Employment Status" 
-                            filterMatchMode="Employment Status"> 							
-							<h:outputText value="#{employee.employment_status}" />
+                            filterMatchMode="Employment Status" style="width:30%">
+                            <p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{employee.employment_status}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{employee.employment_status}" style="width:100%" />
+							</f:facet>
+						   </p:cellEditor>  							
 						</p:column>
 
 			            <p:column style="width:6%">

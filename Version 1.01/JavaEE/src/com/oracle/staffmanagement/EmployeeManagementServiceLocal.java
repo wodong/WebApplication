@@ -11,6 +11,7 @@ import com.oracle.staffmanagement.domain.ParkingSpace;
 public interface EmployeeManagementServiceLocal 
 {
 	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException ;
+	public void UpdateEmployee(Employee newUpdateEmployee) throws SystemUnavailableException;
 	public List<Employee> getAllEmployees();
 	public Employee getEmployeeDetails(int employeId);
 	public List<ParkingSpace> getAllFreeSpaces();

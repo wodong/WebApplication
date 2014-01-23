@@ -15,26 +15,24 @@
 	<ui:define name="content">
 		<p:layoutUnit id="center" position="center">
 
-			<h2 class="title ui-widget-header ui-corner-all">Employee details for: #{allEmployeesPageBean.selectedEmployee.firstname} 
-			#{allEmployeesPageBean.selectedEmployee.lastname}</h2>
+			<h2 class="title ui-widget-header ui-corner-all">Employee details for: #{employeeDetailBean.selectedEmployee.firstname} 
+			#{employeeDetailBean.selectedEmployee.lastname}</h2>
             
             <br /> 
 			<h:form id="form">
-				<p:dataTable id="cars" var="car" value="#{tableBean.mediumCarsModel}" 
-					selection="#{tableBean.selectedCar}">
+				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}" 
+					selection="#{employeeDetailBean.selectedEmployee.employeeVisitors}">
 
 					<f:facet name="header">  
-            		Employee Based Selection  
+            		Visitors  
         			</f:facet>
 					
-					<p:column selectionMode="multiple" style="width:2%" />  
-
 					<p:column headerText="Name" style="width:25%">  
-            		#{allEmployeesPageBean.selectedEmployee.firstname} 
+            		#{visitor.visitor_name} 
         			</p:column>
 
 					<p:column headerText="Last Name" style="width:25%">  
-            		#{allEmployeesPageBean.selectedEmployee.lastname}  
+            		#{visitor.allocation_start_datetime}  
         			</p:column>
 					
 					<f:facet name="footer">
@@ -44,8 +42,8 @@
 					</f:facet>
 				</p:dataTable>
 				
-				<p:dialog id="dialog" header="Visitor Allocation for #{allEmployeesPageBean.selectedEmployee.firstname} 
-				#{allEmployeesPageBean.selectedEmployee.lastname}" widgetVar="singleCarDialog" resizable="true"   
+				<p:dialog id="dialog" header="Visitor Allocation for #{employeeDetailBean.selectedEmployee.firstname} 
+				#{employeeDetailBean.selectedEmployee.lastname}" widgetVar="singleCarDialog" resizable="true"   
               showEffect="fade" hideEffect="explode">  
   
             <h:panelGrid id="displaySingle" columns="5" cellpadding="4">  
@@ -58,7 +56,7 @@
 								<p:messages id="messages" />
 								<h:panelGrid columns="3">
 									<h:outputLabel for="visitorName" value="Visitor Name: *" />
-									<p:inputText id="visitorName" value="#{employeeDetail.visitorName}"
+									<p:inputText id="visitorName" value="#{employeeDetailBean.visitorName}"
 										required="true" label="visitorName">
 										<f:validateLength minimum="2" />
 									</p:inputText>
@@ -68,9 +66,9 @@
 										<h:outputText value="From:" />
 										<h:outputText style="color:red" value="*  " />
 									</h:panelGroup>
-									<p:calendar value="#{employeeDetail.startDate}"
+									<p:calendar value="#{employeeDetailBean.startDate}"
 										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
-									<h:outputText value="#{employeeDetail.startDate}"
+									<h:outputText value="#{employeeDetailBean.startDate}"
 										id="popupFromDate">
 									</h:outputText>
 									
@@ -78,16 +76,16 @@
 										<h:outputText value="Until:" />
 										<h:outputText style="color:red" value="*  " />
 									</h:panelGroup>
-									<p:calendar value="#{employeeDetail.endDate}"
+									<p:calendar value="#{employeeDetailBean.endDate}"
 										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
-									<h:outputText value="#{employeeDetail.endDate}"
+									<h:outputText value="#{employeeDetailBean.endDate}"
 										id="popupUntilDate">
 									</h:outputText>
 								</h:panelGrid>
 							</p:panel>
 
 							<p:commandButton value="Submit" effect="explode"
-								actionListener="#{employeeDetail.addVisitor}" />
+								actionListener="#{employeeDetailBean.addVisitor}" />
 						</h:form>
 
 					</h:panelGrid>  
@@ -98,7 +96,7 @@
 			<p:separator id="notesep" />
 			<h:form>
 				<p:dataTable var="note"
-					value="#{allEmployeesPageBean.selectedEmployee.notes}">
+					value="#{employeeDetailBean.selectedEmployee.notes}">
 					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputText value="Internal Notes" />
@@ -121,7 +119,7 @@
 					</p:column>
 
 					<f:facet name="footer">  
-            			  Total Notes : #{allEmployeesPageBean.selectedEmployee.notes.size()}
+            			  Total Notes : #{employeeDetailBean.selectedEmployee.notes.size()}
         				</f:facet>
 					</p:dataTable>
 					</h:form>
@@ -130,7 +128,7 @@
 			<p:separator id="contactsep" />
 			<h:form>
 				<p:dataTable var="contact"
-					value="#{allEmployeesPageBean.selectedEmployee.contactDetails}">
+					value="#{employeeDetailBean.selectedEmployee.contactDetails}">
 					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputText value="Contact Details" />
@@ -165,7 +163,7 @@
 			<p:separator id="vehiclesep" />
 			<h:form>
 				<p:dataTable var="car"
-					value="#{allEmployeesPageBean.selectedEmployee.employeeCar}">
+					value="#{employeeDetailBean.selectedEmployee.employeeCar}">
 					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputText value="Vehicle Details" />

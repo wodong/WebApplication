@@ -86,9 +86,12 @@
 							</h:form>
 						</p:tab>
 
-						<p:tab title="Menu 3">
-							<h:outputText value="Menu 3 Content" />
-							
+						<p:tab title="Logout">
+						 	<h:form>
+						 		<p>Welcome, #{loginBean.uname}</p>		
+            					<p:commandButton action="#{loginBean.logout}" value="Logout" 
+            						icon="ui-icon-extlink" title="Logout" ajax="true"></p:commandButton>
+						    </h:form>
 						</p:tab>
 					</p:accordionPanel>
 				</p:layoutUnit>

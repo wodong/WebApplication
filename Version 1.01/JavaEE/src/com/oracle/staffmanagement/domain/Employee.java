@@ -63,7 +63,7 @@ public class Employee implements java.io.Serializable
 	
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
-	private static List<Visitor> employeeVisitors;
+	private List<Visitor> employeeVisitors;
 	
 
 	public Employee() 
@@ -133,7 +133,8 @@ public class Employee implements java.io.Serializable
 		this.notes.add(newNote);
 	}
 	
-	public static void addVisitor(String visitorName, Date startDate, Date endDate){
+	//Add Vistor
+	public void addVisitor(String visitorName, Date startDate, Date endDate){
 		
 		Visitor newVisitor = new Visitor(visitorName, startDate, endDate);
 		employeeVisitors.add(newVisitor);

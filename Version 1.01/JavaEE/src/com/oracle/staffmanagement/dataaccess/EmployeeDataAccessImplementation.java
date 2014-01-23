@@ -52,4 +52,10 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 		em.persist(newEmployee);	
 	}
 
+	public void updateEmployee(Employee updateNewEmployee){
+		em.merge(updateNewEmployee);	
+
+	}
+	
+	
 }
