@@ -17,11 +17,10 @@
 
 			<h2 class="title ui-widget-header ui-corner-all">Employee details for: #{employeeDetailBean.selectedEmployee.firstname} 
 			#{employeeDetailBean.selectedEmployee.lastname}</h2>
-            
+            						
             <br /> 
 			<h:form id="form">
-				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}" 
-					selection="#{employeeDetailBean.selectedEmployee.employeeVisitors}">
+				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}">
 
 					<f:facet name="header">  
             		Visitors  
@@ -31,40 +30,29 @@
             		#{visitor.visitor_name} 
         			</p:column>
 
-					<p:column headerText="Last Name" style="width:25%">  
+					<p:column headerText="Start Date" style="width:25%">  
             		#{visitor.allocation_start_datetime}  
         			</p:column>
 					
-					<f:facet name="footer">
-						<p:commandButton id="viewButton" value="Add Visitor"
-							icon="ui-icon-search" update=":form:displaySingle"
-							oncomplete="PF('singleCarDialog').show()" />
-					</f:facet>
-				</p:dataTable>
-				
-				<p:dialog id="dialog" header="Visitor Allocation for #{employeeDetailBean.selectedEmployee.firstname} 
-				#{employeeDetailBean.selectedEmployee.lastname}" widgetVar="singleCarDialog" resizable="true"   
-              showEffect="fade" hideEffect="explode">  
-  
-            <h:panelGrid id="displaySingle" columns="5" cellpadding="4">  
-  
-            <f:facet name="header">  
-                <p:graphicImage value="/css/images/allocate.png"/>  
-            </f:facet>
-						<h:form id="form">
-						   <p:fieldset styleClass="fieldset" legend="New Employee Details">					
-							<p:messages id="messages" globalOnly="true" />
-							
-							<p:panel id="panel">
-								<h:panelGrid columns="3" id="logPanelGrid">
-									
-									<h:outputLabel for="visitorName" value="Visitor Name: *" />
-									<h:outputText style="color:red" value="*  " />
-									<p:inputText id="visitorName" value="#{employeeDetailBean.visitorName}"
-										required="true" label="visitorName" title="Please enter the Visitor Name!"/>
-									<p:tooltip for="visitorName" styleClass="tooltip"
-										showEvent="focus" hideEvent="blur" />
+					<p:column headerText="End Date" style="width:25%">  
+            		#{visitor.allocation_end_datetime}  
+        			</p:column>					
+				</p:dataTable> 
+			</h:form>
+			
+			<h:form id="formAddVisitor">
+							<h:outputLink id="loginLink" value="javascript:void(0)"
+								onclick="PF('dlgVisitor').show()" title="Add Visitor">
+								<p:graphicImage value="/css/images/allocate.png"/>
+							</h:outputLink>
 
+							<p:growl id="growl" showDetail="true" life="3000" />
+
+							<p:dialog id="dialog" header="New Visitor" widgetVar="dlgVisitor"
+								resizable="false">
+
+								<h:panelGrid columns="3" cellpadding="5">
+	
 									<h:panelGroup>
 										<h:outputText value="From:" />
 										<h:outputText style="color:red" value="*  " />
@@ -83,20 +71,22 @@
 										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
 									<h:outputText value="#{employeeDetailBean.endDate}"
 										id="popupUntilDate">
-									</h:outputText>
+									</h:outputText>	
+									
+									<h:outputLabel for="visitorName" value="Visitor Name:" />
+									<p:inputText value="#{employeeDetailBean.visitorName}" id="visitorName"
+										required="true" label="visitorName" />
+
+									<f:facet name="footer">
+										<p:commandButton id="loginButton" value="Login" update="growl"
+											action="#{employeeDetailBean.addVisitor}"
+											 />
+									</f:facet>
 								</h:panelGrid>
-							</p:panel>
-						
-							<p:commandButton id="newUserButton" action="#{employeeDetailBean.addVisitor}"
-								update="logPanelGrid,messages" icon="ui-icon-check"
-								value="Submit" />
-						 </p:fieldset>
+							</p:dialog>
 						</h:form>
 
-					</h:panelGrid>  
-              </p:dialog>
-			</h:form>
-
+		 <br /> 
 		 <br /> 
 			<p:separator id="notesep" />
 			<h:form>
@@ -104,8 +94,7 @@
 					value="#{employeeDetailBean.selectedEmployee.notes}">
 					<f:facet name="header">
 						<p:outputPanel>
-							<h:outputText value="Internal Notes" />
-							<p:graphicImage value="/css/images/noteIcon.png"/>  
+							<h:outputText value="Internal Notes" />  
 						</p:outputPanel>
 					</f:facet>
 
@@ -122,13 +111,32 @@
 							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 						</h:outputText>
 					</p:column>
+				</p:dataTable>
+			</h:form>
+			
+			<h:form id="formAddNote">
+							<h:outputLink id="newNoteLink" value="javascript:void(0)"
+								onclick="PF('dlgNote').show()" title="Add Note">
+								<p:graphicImage value="/css/images/newnote.png"/>
+							</h:outputLink>
 
-					<f:facet name="footer">  
-            			  Total Notes : #{employeeDetailBean.selectedEmployee.notes.size()}
-        				</f:facet>
-					</p:dataTable>
-					</h:form>
+							<p:growl id="growl" showDetail="true" life="3000" />
+							<p:dialog id="dialog" header="New Note" widgetVar="dlgNote"
+								resizable="false">
 
+								<h:panelGrid columns="1" cellpadding="2">		
+									<p:inputTextarea rows="6" cols="33" />
+
+									<f:facet name="footer">
+										<p:commandButton id="addNoteButton" value="Submit" update="growl"
+											action="#{employeeDetailBean.addNewNote}"
+											 />
+									</f:facet>
+								</h:panelGrid>
+							</p:dialog>
+						</h:form>
+
+			 <br /> 
 			 <br /> 
 			<p:separator id="contactsep" />
 			<h:form>
@@ -159,11 +167,10 @@
 					<p:column headerText="Post Code">
 						<h:outputText value="#{contact.postcode}" />
 					</p:column>
-					<f:facet name="footer"> . </f:facet>
-
 				</p:dataTable>
 			</h:form>
 
+			 <br />
 			 <br /> 
 			<p:separator id="vehiclesep" />
 			<h:form>
@@ -203,9 +210,7 @@
 						<h:outputText value="#{car.date_vehicle_added}">
 							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 						</h:outputText>
-					</p:column>
-					<f:facet name="footer"> . </f:facet>
-                          
+					</p:column>      
 				</p:dataTable>
 			</h:form>
 

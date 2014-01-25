@@ -1,150 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <h:panelGrid id="displaySingle" columns="5" cellpadding="4">  
+  
+            <f:facet name="header">  
+                <p:graphicImage value="/css/images/allocate.png"/>  
+            </f:facet>
+						<h:form id="formAddVisitor">
+						   <p:fieldset styleClass="fieldset" legend="New Visitor Details">					
+							<p:messages id="messages" globalOnly="true" />
+							<p:panel id="panel">
+							<p:dialog id="dialog" header="Visitor Allocation for #{employeeDetailBean.selectedEmployee.firstname} 
+				#{employeeDetailBean.selectedEmployee.lastname}" widgetVar="singleCarDialog" resizable="true"   
+              showEffect="fade" hideEffect="explode">  
+							
+								<h:panelGrid columns="4" id="logPanelGrid">
+									
+									<h:outputLabel for="visitorName" value="Visitor Name: *" />
+									<h:outputText style="color:red" value="*  " />
+									<p:inputText id="visitorName" value="#{employeeDetailBean.visitorName}"
+										required="false" label="visitorName" title="Please enter the Visitor Name!"/>
+									<p:tooltip for="visitorName" styleClass="tooltip"
+										showEvent="focus" hideEvent="blur" />
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="/templates/generalTest.xhtml">
-
-	<ui:define name="title">
-		<h:outputText value="Employee" />
-	</ui:define>
-
-	<ui:define name="content">
-		<p:layoutUnit id="center" position="center">
-
-			<h1 class="title ui-widget-header ui-corner-all">Employee
-				details for #{allEmployeesPageBean.selectedEmployee.firstname}</h1>
-			<h:outputText value="Name: " />
-			<h:outputText id="employeeName"
-				value=" #{allEmployeesPageBean.selectedEmployee.firstname} #{allEmployeesPageBean.selectedEmployee.lastname}"
-				style="font-weight: bold" />
-
-			<p>Name: #{allEmployeesPageBean.selectedEmployee.firstname}
-				#{allEmployeesPageBean.selectedEmployee.lastname}</p>
-			<p>Surname: #{allEmployeesPageBean.selectedEmployee.lastname}</p>
-			<p>Total Notes :
-				#{allEmployeesPageBean.selectedEmployee.notes.size()}</p>
-
-			<h3>Notes</h3>
-			<p:separator id="notesep" />
-
-			<h:form>
-				<p:dataTable var="note"
-					value="#{allEmployeesPageBean.selectedEmployee.notes}">
-					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="Internal Notes" />
-						</p:outputPanel>
-					</f:facet>
-
-					<p:column headerText="Id">
-						<h:outputText value="#{note.note_id}" />
-					</p:column>
-
-					<p:column headerText="Note">
-						<h:outputText value="#{note.txt_note}" />
-					</p:column>
-
-					<p:column headerText="Date">
-						<h:outputText value="#{note.date}">
-							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-						</h:outputText>
-					</p:column>
-
-					<f:facet name="footer">  
-            			  Notes for #{allEmployeesPageBean.selectedEmployee.firstname}
-        				</f:facet>
-					</p:dataTable>
-					</h:form>
-
-			<h3>Contact Details</h3>
-			<p:separator id="contactsep" />
-
-			<h:form>
-				<p:dataTable var="contact"
-					value="#{allEmployeesPageBean.selectedEmployee.contactDetails}">
-					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="Contact Details" />
-						</p:outputPanel>
-					</f:facet>
-
-					<p:column headerText="Company">
-						<h:outputText value="#{contact.company}" />
-					</p:column>
-
-					<p:column headerText="Phone Number">
-						<h:outputText value="#{contact.phonenumber}" />
-					</p:column>
-
-					<p:column headerText="Line Manager">
-						<h:outputText value="#{contact.linemanager}" />
-					</p:column>
-
-					<p:column headerText="Department">
-						<h:outputText value="#{contact.lineofbusiness}" />
-					</p:column>
-
-					<p:column headerText="Post Code">
-						<h:outputText value="#{contact.postcode}" />
-					</p:column>
-					<f:facet name="footer">  Contact details for #{allEmployeesPageBean.selectedEmployee.firstname} </f:facet>
-
-				</p:dataTable>
-			</h:form>
-
-			<h3>Vehicle Details</h3>
-			<p:separator id="vehiclesep" />
-
-			<h:form>
-				<p:dataTable var="car"
-					value="#{allEmployeesPageBean.selectedEmployee.employeeCar}">
-					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="Contact Details" />
-						</p:outputPanel>
-					</f:facet>
-
-					<p:column headerText="Vehicle Reg">
-						<h:outputText value="#{car.vehicle_regno}" />
-					</p:column>
-
-					<p:column headerText="Vehicle Make">
-						<h:outputText value="#{car.make}" />
-					</p:column>
-
-					<p:column headerText="Vehicle Model">
-						<h:outputText value="#{car.model}" />
-					</p:column>
-
-					<p:column headerText="Vehicle Colour">
-						<h:outputText value="#{car.date_vehicle_added}" />
-					</p:column>
-
-					<p:column headerText="Sticker No">
-						<h:outputText value="#{car.stickernumber}" />
-					</p:column>
-
-					<p:column headerText="Space Type">
-						<h:outputText value="#{car.car_or_motorbike_space}" />
-					</p:column>
-
-					<p:column headerText="Date">
-						<h:outputText value="#{car.date_vehicle_added}">
-							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-						</h:outputText>
-					</p:column>
-					<f:facet name="footer"> Vehicle details for #{allEmployeesPageBean.selectedEmployee.firstname} </f:facet>
-                          
-				</p:dataTable>
-			</h:form>
-
-		</p:layoutUnit>
-	</ui:define>
-</ui:composition>
-
-
-
+									<h:panelGroup>
+										<h:outputText value="From:" />
+										<h:outputText style="color:red" value="*  " />
+									</h:panelGroup>
+									<p:calendar value="#{employeeDetailBean.startDate}"
+										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
+									<h:outputText value="#{employeeDetailBean.startDate}"
+										id="popupFromDate">
+									</h:outputText>
+									
+									<h:panelGroup>
+										<h:outputText value="Until:" />
+										<h:outputText style="color:red" value="*  " />
+									</h:panelGroup>
+									<p:calendar value="#{employeeDetailBean.endDate}"
+										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
+									<h:outputText value="#{employeeDetailBean.endDate}"
+										id="popupUntilDate">
+									</h:outputText>
+									
+									<p:commandButton id="newUserButton" actionListener="#{employeeDetailBean.addVisitor}"
+							 icon="ui-icon-check" value="Submit" immediate="true" ajax="true" />
+								</h:panelGrid>
+								</p:dialog>
+							</p:panel>
+						 </p:fieldset>						   
+						</h:form>

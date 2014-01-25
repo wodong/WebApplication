@@ -30,6 +30,7 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 			List<Employee> results = q.getResultList();
 			return results;
 		}
+		
 	
 	//Find Employee and Note
 		public Employee findEmployeeDetails(int employeeId) {
@@ -53,7 +54,7 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 	}
 
 	public void updateEmployee(Employee updateNewEmployee){
-		em.merge(updateNewEmployee);	
+		em.persist(updateNewEmployee);	
 
 	}
 	

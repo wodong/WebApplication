@@ -12,60 +12,82 @@ import org.primefaces.event.RowEditEvent;
 import com.oracle.staffmanagement.EmployeeManagementServiceLocal;
 import com.oracle.staffmanagement.domain.Employee;
 
+
 @ManagedBean(name="employeeDetailBean")
 public class EmployeeDetailBean {
 	@EJB
 	private EmployeeManagementServiceLocal employeeService;
 	private Employee selectedEmployee;
-
 	private UIData dataTable;
-	
-	//get all employees
-	public List<Employee> getAllEmployees()
-	{
-		
-	 return employeeService.getAllEmployees();
-	}
-	
-	
-	//get Employee Details
-		public Employee getEmployeeDetails(int employeeId)
-		{
-			
-		 return employeeService.getEmployeeDetails(employeeId);
-		}
-	
-	//display individual employee details	
-	public String showEmployee(){
-			this.selectedEmployee  = (Employee)dataTable.getRowData();
-			System.out.println("#####42####"+ this.selectedEmployee.getEmployee_id()+"#########");//
-			Employee employee = getEmployeeDetails(this.selectedEmployee.getEmployee_id());
-			selectedEmployee = employee;
-			System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
-			return "comEmployeeDetail"; 
-		}	
-	
-	
-	//filtering
 	private List<Employee> filteredEmployee;
 	
-	public void setFilteredEmployee(List<Employee> filteredEmployee) {
-		this.filteredEmployee = filteredEmployee;
-	}
-
-	public List<Employee> getFilteredEmployee() {  
-        return filteredEmployee;  
-    } 
+	public String visitorName;	
+    public Date startDate;
+	public Date endDate;
 	
-	//row editing
-		public void onEdit(RowEditEvent event) { 
-			
-	        
+	
+	//Get all employees
+    public List<Employee> getAllEmployees()
+    {        
+     return employeeService.getAllEmployees();
+    }
+    
+    //Get Employee Details
+    public Employee getEmployeeDetails(int employeeId)
+    {
+     return employeeService.getEmployeeDetails(employeeId);
+    }
+    
+    //Display individual employee details        
+    public String showEmployee(){
+                    this.selectedEmployee  = (Employee)dataTable.getRowData();
+                    System.out.println("#####42####"+ this.selectedEmployee.getEmployee_id()+"#########");//
+                    Employee employee = getEmployeeDetails(this.selectedEmployee.getEmployee_id());
+                    selectedEmployee = employee;
+                    System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
+                    return "comEmployeeDetail"; 
+            }
+	
+	
+	// Add Visitor
+	public String addVisitor(){
+		selectedEmployee.addVisitor(visitorName, startDate, endDate);
+
+		try {
+			System.out.println("######/////########////***************visitor" + visitorName + "date" + startDate + "date" + endDate);
+			employeeService.UpdateEmployee(selectedEmployee);
+			return "comAllEmployee";
+		} catch (Throwable e) 
+		{	
+			e.printStackTrace();
+			return "comSystemDown";
+		}
+	}
+	
+	//Add New Note 
+	public void addNewNote(){
+		
+		//To implement for Add New Note to Employee Profile.	
+	}
+		
+	
+	//Row editing
+	public void onEdit(RowEditEvent event) { 
+		//To implement for Employee Profile.		    
 	    }  
 	      
-	    public void onCancel(RowEditEvent event) {  
+    public void onCancel(RowEditEvent event) {  
 	        
 	    } 
+    
+    //Filtering    
+    public void setFilteredEmployee(List<Employee> filteredEmployee) {
+            this.filteredEmployee = filteredEmployee;
+    }
+
+    public List<Employee> getFilteredEmployee() {  
+    return filteredEmployee;  
+} 
 	
 
 	//Getters and Setters
@@ -77,38 +99,14 @@ public class EmployeeDetailBean {
 		this.selectedEmployee = selectedEmployee;
 	}
 
-	public UIData getDataTable() {
-		return dataTable;
-	}
+    public UIData getDataTable() {
+            return dataTable;
+    }
 
-	public void setDataTable(UIData dataTable) {
-		this.dataTable = dataTable;
-	}
-
+    public void setDataTable(UIData dataTable) {
+            this.dataTable = dataTable;
+    }
 	
-	 
-
-    
-    String visitorName;	
-	Date startDate;
-	Date endDate;
-		
-
-	public String addVisitor(){
-			
-		try 
-	    {
-			selectedEmployee.addVisitor(visitorName, startDate, endDate);
-			return "comAllEmployee";
-	    } catch (Throwable e) {	
-	    
-	    	e.printStackTrace();
-			return "comSystemDown";
-		}
-	}
-	
-	
-	//Getters and Setters
 	public String getVisitorName() {
 		return visitorName;
 	}

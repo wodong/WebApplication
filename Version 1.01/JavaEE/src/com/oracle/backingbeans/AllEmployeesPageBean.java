@@ -1,6 +1,5 @@
 package com.oracle.backingbeans;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -15,7 +14,7 @@ import com.oracle.staffmanagement.domain.Employee;
 
 @RequestScoped
 @ManagedBean(name="allEmployeesPageBean")
-public class AllEmployeesPageBean implements Serializable {
+public class AllEmployeesPageBean  {
 	/**
 	 * 
 	 */
