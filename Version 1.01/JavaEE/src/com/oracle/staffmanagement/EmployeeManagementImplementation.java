@@ -46,7 +46,8 @@ public class EmployeeManagementImplementation
 		dao.insert(newEmployee);
 		payrollSystem.enrollEmployee(newEmployee);
 	}
-
+		
+	
 	public void UpdateEmployee(Employee newUpdateEmployee) throws SystemUnavailableException 
 	{
 		dao.updateEmployee(newUpdateEmployee);

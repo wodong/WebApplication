@@ -50,7 +50,7 @@ public class EmployeeAuthenticationBean{
 	
 	  public String userLogin(){
 			
-			return "allEmployee";		
+			return "comAllEmployee";		
 		
 	}
 

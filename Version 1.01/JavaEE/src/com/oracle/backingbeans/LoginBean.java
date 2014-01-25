@@ -51,7 +51,7 @@ public class LoginBean implements Serializable {
             HttpSession session = Util.getSession();
             session.setAttribute("username", uname);
  
-            return "allEmployee";
+            return "comAllEmployee";
         } else {
  
             FacesContext.getCurrentInstance().addMessage(

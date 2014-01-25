@@ -42,7 +42,7 @@ public class EmployeeDetailBean {
 			Employee employee = getEmployeeDetails(this.selectedEmployee.getEmployee_id());
 			selectedEmployee = employee;
 			System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
-			return "employeeDetail"; 
+			return "comEmployeeDetail"; 
 		}	
 	
 	
@@ -99,11 +99,11 @@ public class EmployeeDetailBean {
 		try 
 	    {
 			selectedEmployee.addVisitor(visitorName, startDate, endDate);
-			return "allEmployee";
+			return "comAllEmployee";
 	    } catch (Throwable e) {	
 	    
 	    	e.printStackTrace();
-			return "systemDown";
+			return "comSystemDown";
 		}
 	}
 	

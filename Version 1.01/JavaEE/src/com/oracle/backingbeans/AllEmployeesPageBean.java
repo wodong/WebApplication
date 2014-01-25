@@ -48,7 +48,7 @@ public class AllEmployeesPageBean implements Serializable {
 			Employee employee = getEmployeeDetails(this.selectedEmployee.getEmployee_id());
 			selectedEmployee = employee;
 			System.out.println("####50#####" + this.selectedEmployee.getEmployee_id() + "#########");//
-			return "employeeDetail"; 
+			return "comEmployeeDetail"; 
 		}	
 	
 	
@@ -92,7 +92,7 @@ public class AllEmployeesPageBean implements Serializable {
 	    try 
 	    {
 	    	employeeService.UpdateEmployee(newValue);
-		    return "allEmployee";
+		    return "comAllEmployee";
 	    } catch (Throwable e) {	
 	    	
 	    	e.printStackTrace();

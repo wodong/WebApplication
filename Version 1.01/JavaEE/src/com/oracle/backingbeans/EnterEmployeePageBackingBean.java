@@ -78,11 +78,11 @@ public class EnterEmployeePageBackingBean {
 	    try 
 	    {
 			employeeService.registerEmployee(newEmployee);
-		    return "allEmployee";
+		    return "comAllEmployee";
 	    } catch (Throwable e) {	
 	    	
 	    	e.printStackTrace();
-			return "systemDown";
+			return "comSystemDown";
 		}
 	}
 	
