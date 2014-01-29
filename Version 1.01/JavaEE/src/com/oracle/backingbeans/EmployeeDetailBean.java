@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIData;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -25,7 +26,9 @@ public class EmployeeDetailBean {
     public Date startDate;
 	public Date endDate;
 	
-	
+	public EmployeeDetailBean() {
+		selectedEmployee = new Employee();
+	}
 	//Get all employees
     public List<Employee> getAllEmployees()
     {        
@@ -50,11 +53,14 @@ public class EmployeeDetailBean {
 	
 	
 	// Add Visitor
-	public String addVisitor(){
-		selectedEmployee.addVisitor(visitorName, startDate, endDate);
+	public String addVisitor(ActionEvent event){
 
 		try {
-			System.out.println("######/////########////***************visitor" + visitorName + "date" + startDate + "date" + endDate);
+			Object hidden = event.getComponent().getAttributes().get("submitEmployeeId");
+			System.out.println( "================= OBJECT = " + this.selectedEmployee.getEmployee_id() );
+
+			selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
+			selectedEmployee.addVisitor(visitorName, startDate, endDate);
 			employeeService.UpdateEmployee(selectedEmployee);
 			return "comAllEmployee";
 		} catch (Throwable e) 

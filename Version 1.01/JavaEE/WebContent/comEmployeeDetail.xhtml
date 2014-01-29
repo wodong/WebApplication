@@ -19,7 +19,7 @@
 			#{employeeDetailBean.selectedEmployee.lastname}</h2>
             						
             <br /> 
-			<h:form id="form">
+			<h:form id="formVisitorsTable">
 				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}">
 
 					<f:facet name="header">  
@@ -48,7 +48,7 @@
 
 							<p:growl id="growl" showDetail="true" life="3000" />
 
-							<p:dialog id="dialog" header="New Visitor" widgetVar="dlgVisitor"
+							<p:dialog id="dlgVisitorAdd" header="New Visitor" widgetVar="dlgVisitor"
 								resizable="false">
 
 								<h:panelGrid columns="3" cellpadding="5">
@@ -76,11 +76,13 @@
 									<h:outputLabel for="visitorName" value="Visitor Name:" />
 									<p:inputText value="#{employeeDetailBean.visitorName}" id="visitorName"
 										required="true" label="visitorName" />
+										
+									<h:inputHidden id="submitEmployeeId" value="#{employeeDetailBean.selectedEmployee.employee_id}"/>
 
 									<f:facet name="footer">
-										<p:commandButton id="loginButton" value="Login" update="growl"
-											action="#{employeeDetailBean.addVisitor}"
-											 />
+										<p:commandButton id="loginButton" value="Add Visitor" update=":formVisitorsTable"
+											oncomplete="PF('dlgVisitor').hide();"
+											actionListener="#{employeeDetailBean.addVisitor}"/>
 									</f:facet>
 								</h:panelGrid>
 							</p:dialog>
