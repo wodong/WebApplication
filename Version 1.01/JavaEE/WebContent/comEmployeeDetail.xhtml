@@ -80,9 +80,11 @@
 									<h:inputHidden id="submitEmployeeId" value="#{employeeDetailBean.selectedEmployee.employee_id}"/>
 
 									<f:facet name="footer">
-										<p:commandButton id="loginButton" value="Add Visitor" update=":formVisitorsTable"
+										<p:commandButton id="loginButton" value="Add Visitor" update=":formVisitorsTable @form"
 											oncomplete="PF('dlgVisitor').hide();"
-											actionListener="#{employeeDetailBean.addVisitor}"/>
+											actionListener="#{employeeDetailBean.addVisitor}">
+											
+										</p:commandButton>
 									</f:facet>
 								</h:panelGrid>
 							</p:dialog>

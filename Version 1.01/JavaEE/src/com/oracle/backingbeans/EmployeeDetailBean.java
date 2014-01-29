@@ -56,12 +56,14 @@ public class EmployeeDetailBean {
 	public String addVisitor(ActionEvent event){
 
 		try {
-			Object hidden = event.getComponent().getAttributes().get("submitEmployeeId");
+			//Object hidden = event.getComponent().getAttributes().get("submitEmployeeId");
 			System.out.println( "================= OBJECT = " + this.selectedEmployee.getEmployee_id() );
-
 			selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
 			selectedEmployee.addVisitor(visitorName, startDate, endDate);
 			employeeService.UpdateEmployee(selectedEmployee);
+			
+			resetDialogAddVisitor();
+			 
 			return "comAllEmployee";
 		} catch (Throwable e) 
 		{	
@@ -70,6 +72,11 @@ public class EmployeeDetailBean {
 		}
 	}
 	
+	private void resetDialogAddVisitor() {
+		visitorName = null;
+		startDate = null;
+		endDate = null;
+	}
 	//Add New Note 
 	public void addNewNote(){
 		
