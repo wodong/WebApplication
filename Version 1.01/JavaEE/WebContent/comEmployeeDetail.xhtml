@@ -81,7 +81,7 @@
 
 									<f:facet name="footer">
 										<p:commandButton id="loginButton" value="Add Visitor" update=":formVisitorsTable @form"
-											oncomplete="PF('dlgVisitor').hide();"
+											oncomplete="PF('dlgVisitor').hide();" effect="explode"
 											actionListener="#{employeeDetailBean.addVisitor}">
 											
 										</p:commandButton>
@@ -93,7 +93,7 @@
 		 <br /> 
 		 <br /> 
 			<p:separator id="notesep" />
-			<h:form>
+			<h:form id="formNoteTable">
 				<p:dataTable var="note"
 					value="#{employeeDetailBean.selectedEmployee.notes}">
 					<f:facet name="header">
@@ -129,12 +129,15 @@
 								resizable="false">
 
 								<h:panelGrid columns="1" cellpadding="2">		
-									<p:inputTextarea rows="6" cols="33" />
+									<p:inputTextarea rows="6" cols="33" value="#{employeeDetailBean.note}"/>
+							
+							 <h:inputHidden id="submitEmployeeId" 
+								value="#{employeeDetailBean.selectedEmployee.employee_id}"/>
 
 									<f:facet name="footer">
-										<p:commandButton id="addNoteButton" value="Submit" update="growl"
-											action="#{employeeDetailBean.addNewNote}"
-											 />
+										<p:commandButton id="addNoteButton" value="Submit" update=":formNoteTable @form"
+											oncomplete="PF('dlgNote').hide();" actionListener="#{employeeDetailBean.addNewNote}"
+											 />							     
 									</f:facet>
 								</h:panelGrid>
 							</p:dialog>

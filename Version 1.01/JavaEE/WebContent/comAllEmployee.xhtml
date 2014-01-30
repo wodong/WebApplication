@@ -51,8 +51,9 @@
 					
 					<p:column id="firstName" filterBy="firstname" headerText="First Name" footerText="First Name" 
                             filterMatchMode="First Name" style="width:30%">
-								<h:commandLink action="#{employeeDetailBean.showEmployee}">
+								<h:commandLink action="#{employeeDetailBean.showEmployee}" >
 								<h:outputText value="#{employee.firstname}" />
+								<p:graphicImage value="css/images/play.png"/>
 								<f:param id="paramEmployeeId" value="#{employee.employee_id}"></f:param>
 							</h:commandLink>							
 						</p:column>

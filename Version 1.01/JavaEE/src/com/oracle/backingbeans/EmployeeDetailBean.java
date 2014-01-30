@@ -26,6 +26,8 @@ public class EmployeeDetailBean {
     public Date startDate;
 	public Date endDate;
 	
+	public String note;
+	
 	public EmployeeDetailBean() {
 		selectedEmployee = new Employee();
 	}
@@ -72,17 +74,40 @@ public class EmployeeDetailBean {
 		}
 	}
 	
+	//Add New Note 
+	public String addNewNote(ActionEvent event){
+		
+		try {
+			//Object hidden = event.getComponent().getAttributes().get("submitEmployeeId");
+			System.out.println( "================= OBJECT = " + this.selectedEmployee.getEmployee_id() );
+			selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
+			selectedEmployee.addNote(note);
+			employeeService.UpdateEmployee(selectedEmployee);
+			
+			resetDialogAddNote();
+			 
+			return "comAllEmployee";
+		} catch (Throwable e) 
+		{	
+			e.printStackTrace();
+			return "comSystemDown";
+		}	
+	}
+	
+	//Reset the AddVisitor dialog fields
 	private void resetDialogAddVisitor() {
 		visitorName = null;
 		startDate = null;
 		endDate = null;
 	}
-	//Add New Note 
-	public void addNewNote(){
-		
-		//To implement for Add New Note to Employee Profile.	
-	}
-		
+	
+	//Reset the AddNote dialog field
+		private void resetDialogAddNote() {
+			visitorName = null;
+			startDate = null;
+			endDate = null;
+		}
+	
 	
 	//Row editing
 	public void onEdit(RowEditEvent event) { 
@@ -138,6 +163,13 @@ public class EmployeeDetailBean {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-     
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
+    
+	
     
 }
