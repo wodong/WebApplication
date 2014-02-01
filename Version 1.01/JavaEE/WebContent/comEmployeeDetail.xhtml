@@ -14,21 +14,34 @@
 
 	<ui:define name="content">
 		<p:layoutUnit id="center" position="center">
-
+		
 			<h2 class="title ui-widget-header ui-corner-all">Employee details for: #{employeeDetailBean.selectedEmployee.firstname} 
 			#{employeeDetailBean.selectedEmployee.lastname}</h2>
             						
-            <br /> 
+            <br />
+            <f:facet name="header">  
+            	Visitors  
+             </f:facet> 
 			<h:form id="formVisitorsTable">
-				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}">
+			    <p:growl id="messages" showDetail="true"/> 
+				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}" editable="true">
+				<p:ajax event="rowEdit" listener="#{visitor.onEdit}" update=":formVisitorsTable:messages" />  
+        		<p:ajax event="rowEditCancel" listener="#{visitor.onCancel}" update=":formVisitorsTable:messages" />
 
-					<f:facet name="header">  
-            		Visitors  
-        			</f:facet>
-					
+					<p:column style="width:6%">
+						<p:rowEditor />
+					</p:column>
+
 					<p:column headerText="Name" style="width:25%">  
-            		#{visitor.visitor_name} 
-        			</p:column>
+            		    <p:cellEditor>  
+                           <f:facet name="output">
+							    <h:outputText value="#{visitor.visitor_name} " />
+						   </f:facet>
+						   <f:facet name="input">
+							    <p:inputText value="#{visitor.visitor_name} " style="width:100%" />
+						   </f:facet>
+						</p:cellEditor>
+					</p:column>
 
 					<p:column headerText="Start Date" style="width:25%">  
             		#{visitor.allocation_start_datetime}  
