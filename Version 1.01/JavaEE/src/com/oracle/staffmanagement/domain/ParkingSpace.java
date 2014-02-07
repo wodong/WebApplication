@@ -30,9 +30,16 @@ public class ParkingSpace implements java.io.Serializable
 	@JoinColumn(name="block_block_id")
 	private Block block;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	/*@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="parking_space_pspace_id")
-	private List<Employee> employees;
+	private List<Employee> employees;*/
+	
+	/*//==============================================
+		@OneToMany(mappedBy = "Employee")
+		 private List<EmployeeParkingSpace> employeeParkingSpace;
+		
+	//==============================================*/
+	
 	
 	
 	public ParkingSpace()

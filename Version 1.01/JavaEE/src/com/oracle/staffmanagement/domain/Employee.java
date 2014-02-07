@@ -57,15 +57,20 @@ public class Employee implements java.io.Serializable
 	@JoinColumn(name="employee_employee_id")
 	private List<Car> employeeCar;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	/*@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="parking_space_pspace_id", referencedColumnName="pspace_id")
-	private ParkingSpace parkingSpace;
+	private ParkingSpace parkingSpace;*/
 	
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
 	private List<Visitor> employeeVisitors;
 	
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@JoinColumn(name="employee_employee_id")
+	private List<ParkingAllocation> parkingAllocation;
 
+	
+	
 	public Employee() 
 	{
 		
@@ -97,6 +102,7 @@ public class Employee implements java.io.Serializable
 	{
 		return "Employee " + this.employee_no + " " + this.firstname;
 	}
+	
 	
 
 	//Add Contact details
@@ -139,6 +145,20 @@ public class Employee implements java.io.Serializable
 		Visitor newVisitor = new Visitor(visitorName, startDate, endDate);
 		employeeVisitors.add(newVisitor);
 	}
+	
+	
+	public ParkingAllocation getPermParking(){
+		
+		for( ParkingAllocation allocation : parkingAllocation) {
+			 if( allocation.getIs_permanent()) {
+			 return allocation;
+
+			}
+			
+		}
+		return null;
+	}
+	
 
 	
     
@@ -269,13 +289,23 @@ public class Employee implements java.io.Serializable
 	}
 
 	// Getter and Setters Parking Space
-	public ParkingSpace getParkingSpace() {
+	/*public ParkingSpace getParkingSpace() {
 		return parkingSpace;
 	}
 
 
 	public void setParkingSpace(ParkingSpace parkingSpace) {
 		this.parkingSpace = parkingSpace;
+	}*/
+
+
+	public List<ParkingAllocation> getParkingAllocation() {
+		return parkingAllocation;
+	}
+
+
+	public void setParkingAllocation(List<ParkingAllocation> parkingAllocation) {
+		this.parkingAllocation = parkingAllocation;
 	}
 	
 	

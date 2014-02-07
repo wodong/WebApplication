@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/mainCommuterDesk.xhtml">
+
+
+	<ui:define name="title">
+		<h:outputText value="Employee" />
+	</ui:define>
+	<ui:define name="content">
+		<p:layoutUnit id="center" position="center">
+
+			<h:form id="form">
+				<p:growl id="growl" showDetail="true" />
+
+				<p:dataTable id="carsTable" var="employee" value="#{employeeDetailBean.allEmployees}">
+
+					<p:ajax event="rowToggle" update=":form:growl" />
+
+					<f:facet name="header">  
+           				Work for Today  
+        			</f:facet>
+					<p:column style="width:2%">
+						<p:rowToggler />
+					</p:column>
+
+					<p:column style="width:49%">
+						<f:facet name="header">  
+                  		 	Parking Space
+            			</f:facet>
+						<h:outputText value="#{employee.permParking.parkingspace.space_no}" />
+					</p:column>
+
+					<p:column style="width:49%">
+						<f:facet name="header">  
+                    		Block  
+            			</f:facet>
+						<h:outputText value="#{employee.permParking.parkingspace.block.block_code}"/>
+					</p:column>
+					
+					<p:column style="width:49%">
+						<f:facet name="header">  
+                    		Block Name  
+            			</f:facet>
+						<h:outputText value="#{employee.permParking.parkingspace.block.block_description}"/>
+					</p:column>
+
+					<p:rowExpansion>
+						<h:panelGrid id="display" columns="2" cellpadding="4"
+							style="width:300px;" styleClass=" ui-widget-content grid">
+
+							<f:facet name="header">
+								<p:graphicImage value="/css/images/tempAllocate.png" />
+							</f:facet>
+
+							<h:outputText value="Name:" />
+							<h:outputText id="firstname" value="#{employee.firstname}" />
+
+							<h:outputText value="Surname:" />
+							<h:outputText id="lastname" value="#{employee.lastname}" />
+
+							<h:outputText value="Current Parking Space:" />
+							<h:outputText value="#{employee.parkingSpace.space_no}" />
+							
+							<f:facet name="footer">
+										<f:facet name="footer">
+										<p:commandButton id="approveButton" value="Approve" effect="explode"
+											actionListener="#{employeeDetailBean.addVisitor}">
+										</p:commandButton>
+										
+										<f:facet name="footer">
+										<p:commandButton id="revokeButton" value="Revoke" effect="explode"
+											actionListener="#{employeeDetailBean.addVisitor}">
+										</p:commandButton>
+									</f:facet>
+									</f:facet>
+									</f:facet>
+						</h:panelGrid>
+
+					</p:rowExpansion>
+				</p:dataTable>
+
+
+
+
+			</h:form>
+		</p:layoutUnit>
+	</ui:define>
+</ui:composition>
