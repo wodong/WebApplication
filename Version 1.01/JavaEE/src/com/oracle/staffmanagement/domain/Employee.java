@@ -57,10 +57,6 @@ public class Employee implements java.io.Serializable
 	@JoinColumn(name="employee_employee_id")
 	private List<Car> employeeCar;
 	
-	/*@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="parking_space_pspace_id", referencedColumnName="pspace_id")
-	private ParkingSpace parkingSpace;*/
-	
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
 	private List<Visitor> employeeVisitors;
@@ -68,6 +64,10 @@ public class Employee implements java.io.Serializable
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="employee_employee_id")
 	private List<ParkingAllocation> parkingAllocation;
+	
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@JoinColumn(name="employee_employee_id")
+	private List<AllocationRequest> allocationRequests;
 
 	
 	
@@ -146,7 +146,7 @@ public class Employee implements java.io.Serializable
 		employeeVisitors.add(newVisitor);
 	}
 	
-	
+	//Check if Parking allocation is permanent
 	public ParkingAllocation getPermParking(){
 		
 		for( ParkingAllocation allocation : parkingAllocation) {
@@ -288,17 +288,8 @@ public class Employee implements java.io.Serializable
 		this.allocation_exp_date = allocation_exp_date;
 	}
 
-	// Getter and Setters Parking Space
-	/*public ParkingSpace getParkingSpace() {
-		return parkingSpace;
-	}
 
-
-	public void setParkingSpace(ParkingSpace parkingSpace) {
-		this.parkingSpace = parkingSpace;
-	}*/
-
-
+	//Getters and Setters EMPLOYEE
 	public List<ParkingAllocation> getParkingAllocation() {
 		return parkingAllocation;
 	}
@@ -307,6 +298,18 @@ public class Employee implements java.io.Serializable
 	public void setParkingAllocation(List<ParkingAllocation> parkingAllocation) {
 		this.parkingAllocation = parkingAllocation;
 	}
+
+	//Getters and Setters ALLOCATION REQUEST
+	public List<AllocationRequest> getAllocationRequests() {
+		return allocationRequests;
+	}
+
+
+	public void setAllocationRequests(List<AllocationRequest> allocationRequests) {
+		this.allocationRequests = allocationRequests;
+	}
+	
+	
 	
 	
 	

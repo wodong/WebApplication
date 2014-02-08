@@ -30,8 +30,6 @@ public class ParkingAllocation {
 	
 	private Boolean is_permanent;
 	
-	/*@Column(name="parking_space_pspace_id")
-	private int parkingSpace;*/
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
@@ -74,14 +72,6 @@ public class ParkingAllocation {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
-	/*public int getParkingSpace() {
-		return parkingSpace;
-	}
-
-	public void setParkingSpace(int parkingSpace) {
-		this.parkingSpace = parkingSpace;
-	}*/
 
 	public int getAllocation_id() {
 		return allocation_id;
