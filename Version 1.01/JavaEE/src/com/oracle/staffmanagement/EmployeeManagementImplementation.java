@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 
 import com.oracle.staffmanagement.dataaccess.EmployeeDataAccess;
+import com.oracle.staffmanagement.domain.AllocationRequest;
 import com.oracle.staffmanagement.domain.Employee;
 import com.oracle.staffmanagement.domain.ParkingSpace;
 
@@ -26,6 +27,11 @@ public class EmployeeManagementImplementation
 	public List<Employee> getAllEmployees() 
 	{
 		return dao.findAll();
+	}
+	
+	public List<AllocationRequest> getAllocationRequests(){
+		
+		return dao.findAllocationRequest();
 	}
 	
 	//Get employeeDetails DAO

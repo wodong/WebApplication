@@ -18,7 +18,7 @@
 			<h:form id="form">
 				<p:growl id="growl" showDetail="true" />
 
-				<p:dataTable id="carsTable" var="employee" value="#{employeeDetailBean.allEmployees}">
+				<p:dataTable id="carsTable" var="allocationrequest" value="#{workForToday.allAllocationRequest}">
 
 					<p:ajax event="rowToggle" update=":form:growl" />
 
@@ -33,24 +33,36 @@
 						<f:facet name="header">  
                   		 	Parking Space
             			</f:facet>
-						<h:outputText value="#{employee.permParking.parkingspace.space_no}" />
-					</p:column>
-
-					<p:column style="width:49%">
-						<f:facet name="header">  
-                    		Block  
-            			</f:facet>
-						<h:outputText value="#{employee.permParking.parkingspace.block.block_code}"/>
+						<h:outputText value="#{allocationrequest.outofoffice.employee.permParking.parkingspace.space_no}" />
 					</p:column>
 					
 					<p:column style="width:49%">
 						<f:facet name="header">  
                     		Block Name  
             			</f:facet>
-						<h:outputText value="#{employee.permParking.parkingspace.block.block_description}"/>
+						<h:outputText value="#{allocationrequest.outofoffice.employee.permParking.parkingspace.block.block_description}"/>
 					</p:column>
-
+					
+					<p:column style="width:49%">
+						<f:facet name="header">  
+                    		On Leave
+            			</f:facet>
+						<h:outputText value="#{allocationrequest.outofoffice.employee.firstname}"/>
+					</p:column>
+					
+					<p:column style="width:49%">
+						<f:facet name="header">  
+                    		From
+            			</f:facet>
+						<h:outputText value="#{allocationrequest.outofoffice.office_dateout}"/>
+					</p:column>
+					
+					
 					<p:rowExpansion>
+					
+				
+					
+					
 						<h:panelGrid id="display" columns="2" cellpadding="4"
 							style="width:300px;" styleClass=" ui-widget-content grid">
 
@@ -59,13 +71,13 @@
 							</f:facet>
 
 							<h:outputText value="Name:" />
-							<h:outputText id="firstname" value="#{employee.firstname}" />
+							<h:outputText id="firstname" value="#{allocationrequest.employee.firstname}" />
 
 							<h:outputText value="Surname:" />
-							<h:outputText id="lastname" value="#{employee.lastname}" />
+							<h:outputText id="lastname" value="#{allocationrequest.employee.lastname}" />
 
 							<h:outputText value="Current Parking Space:" />
-							<h:outputText id="space_no" value="#{employee.permParking.parkingSpace.space_no}" />
+							<h:outputText id="space_no" value="#{allocationrequest.employee.permParking.parkingSpace.space_no}" />
 							
 							<f:facet name="footer">
 										<f:facet name="footer">

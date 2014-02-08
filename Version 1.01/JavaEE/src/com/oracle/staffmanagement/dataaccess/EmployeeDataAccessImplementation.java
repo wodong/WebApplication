@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.oracle.staffmanagement.domain.AllocationRequest;
 import com.oracle.staffmanagement.domain.Employee;
+import com.oracle.staffmanagement.domain.OutOfOffice;
 import com.oracle.staffmanagement.domain.ParkingSpace;
 
 @Stateless
@@ -23,6 +25,19 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 		List<ParkingSpace> spaces = q.getResultList();	
 		return spaces;	
 	}
+	
+	/*public List<OutOfOffice> findAllOutOffice(){		
+		Query q = em.createQuery("select o from OutOfOffice o, AllocationRequest WHERE +"
+				+ "ar.out_of_office_outofoffice_id = o.outofoffice_id");
+		List<OutOfOffice> allOutOffice = q.getResultList();	
+		return allOutOffice;			
+	}*/
+	
+	public List<AllocationRequest> findAllocationRequest(){		
+	Query q = em.createQuery("select allocation from AllocationRequest allocation");
+	List<AllocationRequest> allAllocationReq = q.getResultList();	
+	return allAllocationReq;			
+}
 
 	//Find all Employees
 		public List<Employee> findAll() {		

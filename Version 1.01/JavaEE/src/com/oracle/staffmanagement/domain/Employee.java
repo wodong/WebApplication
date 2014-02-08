@@ -77,6 +77,12 @@ public class Employee implements java.io.Serializable
 		// required by JPA, but not used by us.		  
 	}
 	
+	/*Employee eOnLeave = employee.getParkingAllocationRequest().getOutofOffice().getEmployee();
+	Employee employee;  // the employee that made the allocation request
+	ParkingSpace tempSpace = eOnLeave.getParkingAllocation().getParkingSpace()*/
+	
+	
+	
 	
 	//Add Employee object to DB along with the Note, OutOfOffice, contact details.
 	public Employee(String employee_no, String firstname, String lastname, String password, 
@@ -160,8 +166,16 @@ public class Employee implements java.io.Serializable
 	}
 	
 
+	public AllocationRequest getLastRequest() {
+		   if( allocationRequests != null & allocationRequests.size() > 0 ) {
+		       return allocationRequests.get(0);
+		}
+		return null;
+}
 	
-    
+
+
+	
 	/*********Getter and Setters************/
 	
 	//Getter and Setters  CONTACT

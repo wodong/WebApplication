@@ -2,10 +2,13 @@ package com.oracle.staffmanagement.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,12 +28,22 @@ public class OutOfOffice
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date office_datein;
 	
-	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
+	private Employee employee;
+    
+    
 	public OutOfOffice()
 	{
 		// used by the JPA
 	}
 
+	public Employee getEmployee(){
+		
+		return employee;
+	}
+	
+	
 	public OutOfOffice(Date out, Date in)
 	{
 		this.office_dateout = out;
