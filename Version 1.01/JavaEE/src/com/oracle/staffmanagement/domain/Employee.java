@@ -145,12 +145,21 @@ public class Employee implements java.io.Serializable
 		this.notes.add(newNote);
 	}
 	
-	//Add Vistor
+	//Add Visitor
 	public void addVisitor(String visitorName, Date startDate, Date endDate){
 		
 		Visitor newVisitor = new Visitor(visitorName, startDate, endDate);
 		employeeVisitors.add(newVisitor);
 	}
+	
+	//Add Parking Allocation
+    public void addParkingAllocation(ParkingAllocation a){
+		
+		parkingAllocation.add(a);
+	}
+	
+	
+	
 	
 	//Check if Parking allocation is permanent
 	public ParkingAllocation getPermParking(){

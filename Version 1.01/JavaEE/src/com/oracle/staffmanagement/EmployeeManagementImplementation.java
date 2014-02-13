@@ -53,12 +53,21 @@ public class EmployeeManagementImplementation
 		payrollSystem.enrollEmployee(newEmployee);
 	}
 		
-	
+	// Update Employee when new Visitor or additional Note is added to the employee profile 
 	public void UpdateEmployee(Employee newUpdateEmployee) throws SystemUnavailableException 
 	{
 		dao.updateEmployee(newUpdateEmployee);
 		
 	}
+	
+	//Update Employee with parking space allocation
+	public void addParkingAllocation(Employee newUpdateEmployee) throws SystemUnavailableException 
+	{
+		dao.updateEmployee(newUpdateEmployee);
+		
+	}
+	
+	
 	
 	public List<Employee> searchBySurname(String surname) {
 		return dao.findBySurname(surname);

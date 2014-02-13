@@ -74,6 +74,7 @@ public class EmployeeDetailBean {
 		}
 	}
 	
+	
 	//Add New Note 
 	public String addNewNote(ActionEvent event){
 		

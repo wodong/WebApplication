@@ -9,7 +9,7 @@ public class Database {
 	        try {
 	            Class.forName("com.mysql.jdbc.Driver");
 	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/commuterdb",
-	                    "root", "addicted" /* "jdbc:mysql://:3306/commuterdb", "root", "vkKrxMWCzY"*/);
+	                    "root", "addicted" /*"jdbc:mysql://:3306/commuterdb", "root", "vkKrxMWCzY"*/);
 	            return con;
 	        } catch (Exception ex) {
 	            System.out.println("Database.getConnection() Error -->" + ex.getMessage());

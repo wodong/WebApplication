@@ -13,6 +13,7 @@ public interface EmployeeManagementServiceRemote
 {
 	public void registerEmployee(Employee newEmployee) throws SystemUnavailableException ;
 	public void UpdateEmployee(Employee newUpdateEmployee) throws SystemUnavailableException;
+	public void addParkingAllocation(Employee newUpdateEmployee) throws SystemUnavailableException;
 	public List<Employee> getAllEmployees();
 	public List<AllocationRequest> getAllocationRequests();
 	public Employee getEmployeeDetails(int employeeId);
