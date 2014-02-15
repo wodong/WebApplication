@@ -1,31 +1,40 @@
 package com.oracle.backingbeans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIData;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.RowEditEvent;
 
 import com.oracle.staffmanagement.EmployeeManagementServiceLocal;
 import com.oracle.staffmanagement.domain.AllocationRequest;
 import com.oracle.staffmanagement.domain.Employee;
+import com.oracle.staffmanagement.domain.ParkingAllocation;
+import com.oracle.staffmanagement.domain.ParkingSpace;
 
 @RequestScoped
 @ManagedBean(name="workForToday")
 public class WorkForTodayPageBean  {
-	/**
-	 * 
-	 */
-	
+
 	@EJB
 	private EmployeeManagementServiceLocal employeeService;
-	//private Employee selectedEmployee;
-	
 
+	private Employee selectedEmployee;
+	public Date endDate;
 	private UIData dataTable;
+	
+	
+	
+	public WorkForTodayPageBean(){
+		
+		selectedEmployee = new Employee();
+	}
+	
 	
 	//get all employees
 	public List<AllocationRequest> getAllAllocationRequest()
@@ -52,6 +61,69 @@ public class WorkForTodayPageBean  {
 			return "comEmployeeDetail"; 
 		}	
 	*/
+	
+	public String allocateApprove(ActionEvent event){
+		
+		
+		try { 
+			
+			Class clazz = dataTable.getRowData().getClass(); 
+			System.out.println("###################################" + clazz );
+			
+			AllocationRequest ar = (AllocationRequest ) dataTable.getRowData();
+			System.out.println("################allocation req " + ar.getRequest_id() );
+			selectedEmployee = ar.getEmployee();
+			System.out.println("################allocation req2 " + selectedEmployee.getEmployee_id() );
+			
+			
+		   selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
+
+		   Employee employeeOnLeave = selectedEmployee.getAllocationRequests().get(0).getOutofoffice().getEmployee();
+		   ParkingSpace psOfEmployeeOnLeave = employeeOnLeave.getPermParking().getParkingspace();
+		   //OutOfOffice outOffice = selectedEmployee.getA
+		   
+		   ParkingAllocation tempAllocation = new ParkingAllocation();
+		   
+		   tempAllocation.setEnd_date(endDate);
+		   tempAllocation.setIs_permanent(false);
+		   tempAllocation.setParkingspace(psOfEmployeeOnLeave);
+		   
+		   selectedEmployee.addParkingAllocation(tempAllocation);
+		   
+		   employeeService.UpdateEmployee(selectedEmployee); 
+		   
+		   
+			 
+			return "comWorkForToday";
+		} catch (Throwable e) 
+		{	
+			e.printStackTrace();
+			return "comSystemDown";
+		}
+	}
+	
+	// Revoke button
+	public String allocateRevoke(ActionEvent event){
+
+		try { 
+			
+		   System.out.println("Parking space request has been revoked");
+			 
+			return "comWorkForToday";
+		} catch (Throwable e) 
+		{	
+			e.printStackTrace();
+			return "comSystemDown";
+		}
+	}
+	
+	
+
+	
+	
+	
+	
+	
 	
 	//filtering
 	private List<Employee> filteredEmployee;
@@ -113,4 +185,42 @@ public class WorkForTodayPageBean  {
     	e.setEmployee_no("1245");
         
     }  
+    
+    
+    
+    public EmployeeManagementServiceLocal getEmployeeService() {
+		return employeeService;
+	}
+
+	public void setEmployeeService(EmployeeManagementServiceLocal employeeService) {
+		this.employeeService = employeeService;
+	}
+
+	public Employee getSelectedEmployee() {
+		return selectedEmployee;
+	}
+
+	public void setSelectedEmployee(Employee selectedEmployee) {
+		this.selectedEmployee = selectedEmployee;
+	}
+
+
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
+    
+    
+    
+    
 }

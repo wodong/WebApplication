@@ -18,7 +18,8 @@
 			<h:form id="form">
 				<p:growl id="growl" showDetail="true" />
 
-				<p:dataTable id="carsTable" var="allocationrequest" value="#{workForToday.allAllocationRequest}">
+				<p:dataTable id="dataTable" var="allocationrequest" value="#{workForToday.allAllocationRequest}"
+				binding="#{workForToday.dataTable}">
 
 					<p:ajax event="rowToggle" update=":form:growl" />
 
@@ -58,13 +59,9 @@
 						<f:convertDateTime pattern="MM/dd/yyyy hh:mm a" />
 						</h:outputText>
 					</p:column>
-					
-					
+									
 					<p:rowExpansion>
-					
-				
-					
-					
+										
 						<h:panelGrid id="display" columns="2" cellpadding="4"
 							style="width:320px;" styleClass=" ui-widget-content grid">
 
@@ -81,7 +78,7 @@
 							<h:outputText value="Current Parking Space:" />
 							<h:outputText id="space_no" value="#{allocationrequest.employee.permParking.parkingspace.space_no}" />
 							
-							<h:inputHidden id="submitEmployeeId" value="#{wworkForToday.selectedEmployee.employee_id}"/>
+							<h:inputHidden id="submitEmployeeId" value="#{workForToday.selectedEmployee.employee_id}"/>
 							
 							<h:outputText value="Application Time:" />
 							<h:outputText id="requestdate" value="#{allocationrequest.requestdate}">
@@ -91,12 +88,12 @@
 							<f:facet name="footer">
 										<f:facet name="footer">
 										<p:commandButton id="approveButton" value="Approve" effect="explode"
-											actionListener="#{wworkForToday.allocateApprove}">
+											actionListener="#{workForToday.allocateApprove}">
 										</p:commandButton>
 										
 										<f:facet name="footer">
 										<p:commandButton id="revokeButton" value="Revoke" effect="explode"
-											actionListener="#{wworkForToday.allocateRevoke}">
+											actionListener="#{workForToday.allocateRevoke}">
 										</p:commandButton>
 									</f:facet>
 									</f:facet>

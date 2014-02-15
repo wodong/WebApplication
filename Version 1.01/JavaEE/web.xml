@@ -34,7 +34,16 @@
   <param-name>primefaces.THEME</param-name>
   <param-value>home</param-value> 
   </context-param>
-   
+  
+     <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.oracle.staffmanagement.dataaccess.AuthFilter</filter-class>
+    </filter>
+
+     <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
    
    <!-- Configuration for JAX-RS -->
    <servlet>
