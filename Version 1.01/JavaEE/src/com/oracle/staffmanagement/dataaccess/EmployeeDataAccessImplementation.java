@@ -33,6 +33,7 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 		return allOutOffice;			
 	}*/
 	
+	// Find all Allocation Requests
 	public List<AllocationRequest> findAllocationRequest(){		
 	Query q = em.createQuery("select allocation from AllocationRequest allocation");
 	List<AllocationRequest> allAllocationReq = q.getResultList();	
