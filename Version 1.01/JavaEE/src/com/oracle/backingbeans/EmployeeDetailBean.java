@@ -104,31 +104,11 @@ public class EmployeeDetailBean {
 	
 	//Reset the AddNote dialog field
 		private void resetDialogAddNote() {
-			visitorName = null;
-			startDate = null;
-			endDate = null;
+			note = null;
+
 		}
 	
 	
-	//Row editing
-	public void onEdit(RowEditEvent event) { 
-		//To implement for Employee Profile.		    
-	    }  
-	      
-    public void onCancel(RowEditEvent event) {  
-	        
-	    } 
-    
-    //Filtering    
-    public void setFilteredEmployee(List<Employee> filteredEmployee) {
-            this.filteredEmployee = filteredEmployee;
-    }
-
-    public List<Employee> getFilteredEmployee() {  
-    return filteredEmployee;  
-} 
-	
-
 	//Getters and Setters
 	public Employee getSelectedEmployee() {
 		return selectedEmployee;

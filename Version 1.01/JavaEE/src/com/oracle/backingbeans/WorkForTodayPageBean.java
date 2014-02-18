@@ -36,7 +36,7 @@ public class WorkForTodayPageBean  {
 	}
 	
 	
-	//get all employees
+	//get all employees which requested a Parking allocation
 	public List<AllocationRequest> getAllAllocationRequest()
 	{
 		
@@ -62,38 +62,36 @@ public class WorkForTodayPageBean  {
 		}	
 	*/
 	
+	
+	// Approve parking allocation
 	public String allocateApprove(ActionEvent event){
-		
-		
+
 		try { 
-			
+
 			Class clazz = dataTable.getRowData().getClass(); 
 			System.out.println("###################################" + clazz );
-			
+
 			AllocationRequest ar = (AllocationRequest ) dataTable.getRowData();
 			System.out.println("################allocation req " + ar.getRequest_id() );
 			selectedEmployee = ar.getEmployee();
 			System.out.println("################allocation req2 " + selectedEmployee.getEmployee_id() );
-			
-			
-		   selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
 
-		   Employee employeeOnLeave = selectedEmployee.getAllocationRequests().get(0).getOutofoffice().getEmployee();
-		   ParkingSpace psOfEmployeeOnLeave = employeeOnLeave.getPermParking().getParkingspace();
-		   //OutOfOffice outOffice = selectedEmployee.getA
-		   
-		   ParkingAllocation tempAllocation = new ParkingAllocation();
-		   
-		   tempAllocation.setEnd_date(endDate);
-		   tempAllocation.setIs_permanent(false);
-		   tempAllocation.setParkingspace(psOfEmployeeOnLeave);
-		   
-		   selectedEmployee.addParkingAllocation(tempAllocation);
-		   
-		   employeeService.UpdateEmployee(selectedEmployee); 
-		   
-		   
-			 
+			/*selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
+
+			Employee employeeOnLeave = selectedEmployee.getAllocationRequests().get(0).getOutofoffice().getEmployee();
+			ParkingSpace psOfEmployeeOnLeave = employeeOnLeave.getPermParking().getParkingspace();
+			//OutOfOffice outOffice = selectedEmployee.getA
+
+			ParkingAllocation tempAllocation = new ParkingAllocation();
+
+			tempAllocation.setEnd_date(endDate);
+			tempAllocation.setIs_permanent(false);
+			tempAllocation.setParkingspace(psOfEmployeeOnLeave);
+
+			selectedEmployee.addParkingAllocation(tempAllocation);
+
+			employeeService.UpdateEmployee(selectedEmployee); */
+
 			return "comWorkForToday";
 		} catch (Throwable e) 
 		{	
@@ -102,13 +100,13 @@ public class WorkForTodayPageBean  {
 		}
 	}
 	
-	// Revoke button
+	// Revoke parking request implementation
 	public String allocateRevoke(ActionEvent event){
 
 		try { 
-			
-		   System.out.println("Parking space request has been revoked");
-			 
+
+			System.out.println("Parking space request has been revoked");
+
 			return "comWorkForToday";
 		} catch (Throwable e) 
 		{	
@@ -116,28 +114,27 @@ public class WorkForTodayPageBean  {
 			return "comSystemDown";
 		}
 	}
-	
-	
 
 	
-	
-	
-	
-	
-	
-	//filtering
-	private List<Employee> filteredEmployee;
-	
-	public void setFilteredEmployee(List<Employee> filteredEmployee) {
-		this.filteredEmployee = filteredEmployee;
-	}
+	    //Add New Allocation 
+		public String addNewAllocation(ActionEvent event){
+			
+			try {
+				selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
+				//selectedEmployee.addAllocation(parkingSpace, block, fromDate, untilDate);
+				employeeService.UpdateEmployee(selectedEmployee);
+				 
+				return "comAllEmployee";
+			} catch (Throwable e) 
+			{	
+				e.printStackTrace();
+				return "comSystemDown";
+			}	
+		}
 
-	public List<Employee> getFilteredEmployee() {  
-        return filteredEmployee;  
-    } 
 	
 
-	//Getters and Setters
+    // GETTERS AND SETTERS
 /*	public Employee getSelectedEmployee() {
 		return selectedEmployee;
 	}
@@ -145,7 +142,7 @@ public class WorkForTodayPageBean  {
 	public void setSelectedEmployee(Employee selectedEmployee) {
 		this.selectedEmployee = selectedEmployee;
 	}*/
-
+           	
 	public UIData getDataTable() {
 		return dataTable;
 	}
@@ -153,41 +150,7 @@ public class WorkForTodayPageBean  {
 	public void setDataTable(UIData dataTable) {
 		this.dataTable = dataTable;
 	}
-
-	
-	//row editing
-	public String onEdit(RowEditEvent event) {
-		Employee oldValue = (Employee) event.getObject();  
-	    Employee newValue = (Employee) event.getObject();
-	    
-	    System.out.println("#################################" + newValue);
-	    
-	    try 
-	    {
-	    	employeeService.UpdateEmployee(newValue);
-		    return "comAllEmployee";
-	    } catch (Throwable e) {	
-	    	
-	    	e.printStackTrace();
-			return "systemDown";
-		}
-	    
-	  /*  if(newValue != null && !newValue.equals(oldValue)) {  
-	        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);  
-	    }*/
-		
-        
-    }  
-      
-    public void onCancel(RowEditEvent event) {  
-    	Employee e=(Employee) event.getObject();
-    	e.setEmployee_no("1245");
-        
-    }  
-    
-    
-    
+   
     public EmployeeManagementServiceLocal getEmployeeService() {
 		return employeeService;
 	}
@@ -204,23 +167,14 @@ public class WorkForTodayPageBean  {
 		this.selectedEmployee = selectedEmployee;
 	}
 
-
-
-
 	public Date getEndDate() {
 		return endDate;
 	}
 
-
-
-
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	
 
-
-    
-    
-    
-    
+	
 }
