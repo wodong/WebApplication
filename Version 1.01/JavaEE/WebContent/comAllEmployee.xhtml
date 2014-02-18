@@ -17,7 +17,7 @@
                   <p:growl id="messages" showDetail="true"/>  
                    
 					<p:dataTable id="dataTable" value="#{allEmployeesPageBean.allEmployees}" rowKey="" var="employee" 
-						paginator="true" rows="10" binding="#{allEmployeesPageBean.dataTable}" widgetVar="varemployee" 
+						paginator="true" rows="10" binding="#{employeeDetailBean.dataTable}" widgetVar="varemployee" 
 						emptyMessage="No employee found with given criteria" filteredValue="#{allEmployeesPageBean.filteredEmployee}" 
 						editable="true">
 							<f:facet name="header">  

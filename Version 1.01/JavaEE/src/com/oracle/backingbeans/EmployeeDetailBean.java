@@ -16,6 +16,7 @@ import com.oracle.staffmanagement.domain.Employee;
 
 @ManagedBean(name="employeeDetailBean")
 public class EmployeeDetailBean {
+	
 	@EJB
 	private EmployeeManagementServiceLocal employeeService;
 	private Employee selectedEmployee;
