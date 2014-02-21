@@ -76,7 +76,7 @@ public class WorkForTodayPageBean  {
 			selectedEmployee = ar.getEmployee();
 			System.out.println("################allocation req2 " + selectedEmployee.getEmployee_id() );
 
-			/*selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
+			selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
 
 			Employee employeeOnLeave = selectedEmployee.getAllocationRequests().get(0).getOutofoffice().getEmployee();
 			ParkingSpace psOfEmployeeOnLeave = employeeOnLeave.getPermParking().getParkingspace();
@@ -90,7 +90,7 @@ public class WorkForTodayPageBean  {
 
 			selectedEmployee.addParkingAllocation(tempAllocation);
 
-			employeeService.UpdateEmployee(selectedEmployee); */
+			employeeService.UpdateEmployee(selectedEmployee); 
 
 			return "comWorkForToday";
 		} catch (Throwable e) 

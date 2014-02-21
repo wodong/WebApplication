@@ -15,120 +15,29 @@
 		<p:layoutUnit id="center" position="center">
 
 
-<p:tabView orientation="bottom">  
-    <p:tab title="Update Out of office">     
+<p:tabView orientation="top">  
+    <p:tab title="My Profile">     
             <br /> 
-			<h:form id="form">
-				<p:dataTable id="visitors" var="visitor" value="#{employeeDetailBean.selectedEmployee.employeeVisitors}" 
-					selection="#{employeeDetailBean.selectedEmployee.employeeVisitors}">
+			<h:form id="formvisitor">
+				<p:dataTable id="visitors" var="visitor" value="" 
+					selection="">
 
 					<f:facet name="header">  
             		Visitors  
         			</f:facet>
 					
 					<p:column headerText="Name" style="width:25%">  
-            		#{visitor.visitor_name} 
+            		<h:outputText value=" " />
         			</p:column>
 
 					<p:column headerText="Last Name" style="width:25%">  
-            		#{visitor.allocation_start_datetime}  
+            		<h:outputText value=" " />
         			</p:column>
 					
-			<!--   <f:facet name="footer">
-						<p:commandButton id="viewButton" value="Add Visitor"
-							icon="ui-icon-search" update=":form:displaySingle"
-							oncomplete="PF('singleCarDialog').show()" />
-					</f:facet>  -->
-				</p:dataTable>
-				
-				<p:dialog id="dialog" header="Visitor Allocation for #{employeeDetailBean.selectedEmployee.firstname} 
-				#{employeeDetailBean.selectedEmployee.lastname}" widgetVar="singleCarDialog" resizable="true"   
-              showEffect="fade" hideEffect="explode">  
-  
-            <h:panelGrid id="displaySingle" columns="5" cellpadding="4">  
-  
-            <f:facet name="header">  
-                <p:graphicImage value="/css/images/allocate.png"/>  
-            </f:facet>
-						<h:form id="form">
-						   <p:fieldset styleClass="fieldset" legend="New Employee Details">					
-							<p:messages id="messages" globalOnly="true" />
-							
-							<p:panel id="panel">
-								<h:panelGrid columns="3" id="logPanelGrid">
-									
-									<h:outputLabel for="visitorName" value="Visitor Name: *" />
-									<h:outputText style="color:red" value="*  " />
-									<p:inputText id="visitorName" value="#{employeeDetailBean.visitorName}"
-										required="true" label="visitorName" title="Please enter the Visitor Name!"/>
-									<p:tooltip for="visitorName" styleClass="tooltip"
-										showEvent="focus" hideEvent="blur" />
-
-									<h:panelGroup>
-										<h:outputText value="From:" />
-										<h:outputText style="color:red" value="*  " />
-									</h:panelGroup>
-									<p:calendar value="#{employeeDetailBean.startDate}"
-										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
-									<h:outputText value="#{employeeDetailBean.startDate}"
-										id="popupFromDate">
-									</h:outputText>
-									
-									<h:panelGroup>
-										<h:outputText value="Until:" />
-										<h:outputText style="color:red" value="*  " />
-									</h:panelGroup>
-									<p:calendar value="#{employeeDetailBean.endDate}"
-										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
-									<h:outputText value="#{employeeDetailBean.endDate}"
-										id="popupUntilDate">
-									</h:outputText>
-								</h:panelGrid>
-							</p:panel>
-						
-							<p:commandButton id="newUserButton" action="#{employeeDetailBean.addVisitor}"
-								update="logPanelGrid,messages" icon="ui-icon-check"
-								value="Submit" />
-						 </p:fieldset>
-						</h:form>
-
-					</h:panelGrid>  
-              </p:dialog>
-			</h:form>
-
-		 <br /> 
-			<p:separator id="notesep" />
-			<h:form>
-				<p:dataTable var="note"
-					value="#{employeeDetailBean.selectedEmployee.notes}">
-					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="Internal Notes" />
-							<p:graphicImage value="/css/images/noteIcon.png"/>  
-						</p:outputPanel>
-					</f:facet>
-
-					<p:column headerText="Id">
-						<h:outputText value="#{note.note_id}" />
-					</p:column>
-
-					<p:column headerText="Note">
-						<h:outputText value="#{note.txt_note}" />
-					</p:column>
-
-					<p:column headerText="Date">
-						<h:outputText value="#{note.date}">
-							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-						</h:outputText>
-					</p:column>
-
-					<f:facet name="footer">  
-            			  Total Notes : #{employeeDetailBean.selectedEmployee.notes.size()}
-        				</f:facet>
-					</p:dataTable>
-					</h:form>
-
+				 </p:dataTable>
+				</h:form> 
 			 <br /> 
+			 
 			<p:separator id="contactsep" />
 			<h:form>
 				<p:dataTable var="contact"
@@ -206,34 +115,105 @@
 					<f:facet name="footer"> . </f:facet>                         
 			</p:dataTable>
 		</h:form>		        
-    </p:tab>  
-    
-    
-    
-    <p:tab title="Check Parking Availability">  
-       <h:form>  
-  
-    <p:dataTable id="dataTable" var="car" value="">  
-        <f:facet name="header">  
-            Parking Spaces Availability  
-        </f:facet>  
-  
-        <p:column sortBy="block" headerText="Block">  
-            <h:outputText value="" />  
-        </p:column>  
-  
-        <p:column sortBy="Space" headerText="Space Number">  
-            <h:outputText value="" />  
-        </p:column>  
-        
-        <f:facet name="footer">  
-            In total there are xxxxxx Parking Spaces.  
-        </f:facet>  
-    </p:dataTable>  
-  
-</h:form>     
-    </p:tab>   
-</p:tabView> 
+    </p:tab>
+
+				<p:tab title="Check Parking Availability">
+					<h:form>
+						<p:dataTable id="dataTable" var="parkingspace" value="">
+							<f:facet name="header">  Parking Spaces Availability  </f:facet>
+
+							<p:column sortBy="block" headerText="Block">
+								<h:outputText value="" />
+							</p:column>
+
+							<p:column sortBy="Space" headerText="Space Number">
+								<h:outputText value="" />
+							</p:column>
+							<f:facet name="footer"> In total there are xxxxxx Parking Spaces.</f:facet>
+						</p:dataTable>
+					</h:form>
+				</p:tab>
+
+				<p:tab title="Out Of Office">  
+            <h:form id="outOffOfficeTable">
+			    <p:growl id="messages" showDetail="true"/> 
+				<p:dataTable id="outoffice" var="outoffice" value=" " editable="true">
+				<p:ajax event="rowEdit" listener="#{outoffice.onEdit}" update=" " />  
+        		<p:ajax event="rowEditCancel" listener="#{outoffice.onCancel}" update=" " />
+
+					<p:column style="width:6%">
+						<p:rowEditor />
+					</p:column>
+
+					<p:column headerText="Start Date" style="width:25%">  
+            		    <p:cellEditor>  
+                           <f:facet name="output">
+							    <h:outputText value="#{visitor.visitor_name} " />
+						   </f:facet>
+						   <f:facet name="input">
+							    <p:inputText value="#{visitor.visitor_name} " style="width:100%" />
+						   </f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="End Date" style="width:25%">  
+            		#{visitor.allocation_start_datetime}  
+        			</p:column>
+					
+					<p:column headerText="End Date" style="width:25%">  
+            		#{visitor.allocation_end_datetime}  
+        			</p:column>					
+				</p:dataTable> 
+			</h:form>
+			
+			<h:form id="formUpdateOutOffice">
+							<h:outputLink id="loginLink" value="javascript:void(0)"
+								onclick="PF('dlgVisitor').show()" title="Set Out of Office">
+								<p:graphicImage value="/css/images/outoffice.png"/>
+							</h:outputLink>
+
+							<p:growl id="growl" showDetail="true" life="3000" />
+
+							<p:dialog id="dlgVisitorAdd" header="Set Out of Office" widgetVar="dlgVisitor"
+								resizable="false">
+
+								<h:panelGrid columns="3" cellpadding="5">
+	
+									<h:panelGroup>
+										<h:outputText value="Start Date:" />
+										<h:outputText style="color:red" value="*  " />
+									</h:panelGroup>
+									<p:calendar value="#{employeeDetailBean.startDate}"
+										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
+									<h:outputText value=" "
+										id="popupFromDate">
+									</h:outputText>
+									
+									<h:panelGroup>
+										<h:outputText value="End Date:" />
+										<h:outputText style="color:red" value="*  " />
+									</h:panelGroup>
+									<p:calendar value="#{employeeDetailBean.endDate}"
+										pattern="MM/dd/yyyy HH:mm" effect="explode"/>
+									<h:outputText value=" "
+										id="popupUntilDate">
+									</h:outputText>	
+																			
+									<h:inputHidden id="submitEmployeeId" value="#{employeeDetailBean.selectedEmployee.employee_id}"/>
+
+									<f:facet name="footer">
+										<p:commandButton id="loginButton" value="Update" update=" "
+											oncomplete="PF('dlgVisitor').hide();" effect="explode"
+											actionListener=" ">
+											
+										</p:commandButton>
+									</f:facet>
+								</h:panelGrid>
+							</p:dialog>
+						</h:form>  
+
+               </p:tab>   
+            </p:tabView> 
 
 
 		</p:layoutUnit>
