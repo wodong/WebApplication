@@ -24,6 +24,7 @@ public interface EmployeeDataAccess {
 	public abstract void insert(Employee newEmployee);
 	
 	public abstract void updateEmployee(Employee updateEmployee);
-
+	
+	public void deleteAllocationRequest(AllocationRequest allocationRequest);
 
 }

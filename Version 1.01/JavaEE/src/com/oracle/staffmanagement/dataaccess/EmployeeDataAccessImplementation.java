@@ -50,10 +50,16 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 	
 	//Find Employee and Note
 		public Employee findEmployeeDetails(int employeeId) {
+			/*
 			Query q = em.createQuery("select employee from Employee employee where employee.employee_id = :employeeId");
 			q.setParameter("employeeId", employeeId);
 			Employee employeeDet = (Employee) q.getSingleResult();
+			*/
+			System.out.println("-------------------------- S T A R T --------------------------" );
 			
+			Employee employeeDet = em.find(Employee.class, employeeId);
+			
+			System.out.println("----------------------------- E N D ----------------------------" );
 			return employeeDet;
 		}	
 		
@@ -75,5 +81,10 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 
 	}
 	
+	
+	public void deleteAllocationRequest(AllocationRequest allocationRequest) {
+		AllocationRequest ar = em.find(AllocationRequest.class, allocationRequest.getRequest_id());
+		em.remove(ar);
+	}
 	
 }

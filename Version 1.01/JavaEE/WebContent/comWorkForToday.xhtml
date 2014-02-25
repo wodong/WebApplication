@@ -15,13 +15,13 @@
 	<ui:define name="content">
 		<p:layoutUnit id="center" position="center">
 
-			<h:form id="form">
+			<h:form id="formWorkForToday">
 				<p:growl id="growl" showDetail="true" />
 
 				<p:dataTable id="dataTable" var="allocationrequest" value="#{workForToday.allAllocationRequest}"
 				binding="#{workForToday.dataTable}">
 
-					<p:ajax event="rowToggle" update=":form:growl" />
+					<p:ajax event="rowToggle" update=":formWorkForToday:growl" />
 
 					<f:facet name="header">  
            				Work for Today  
@@ -97,6 +97,7 @@
 							<f:facet name="footer">
 										<f:facet name="footer">
 										<p:commandButton id="approveButton" value="Approve" effect="explode"
+											update=":formWorkForToday @form"
 											actionListener="#{workForToday.allocateApprove}">
 										</p:commandButton>
 										

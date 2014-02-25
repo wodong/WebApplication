@@ -36,10 +36,13 @@ public class ParkingAllocation {
 	private Employee employee;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="parking_space_pspace_id")
+	private ParkingSpace parkingspace;
+/*
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="parking_space_pspace_id", referencedColumnName="pspace_id")
 	private ParkingSpace parkingspace;
-
-	
+*/	
 	//Getters and Setters
 	public Date getStart_date() {
 		return start_date;

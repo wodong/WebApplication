@@ -20,6 +20,7 @@ public interface EmployeeManagementServiceLocal
 	public List<ParkingSpace> getAllFreeSpaces();
 	public List<Employee> searchBySurname(String surname);
 	
+	public void deleteAllocationRequest(AllocationRequest allocationRequest);
 	
 	
 }

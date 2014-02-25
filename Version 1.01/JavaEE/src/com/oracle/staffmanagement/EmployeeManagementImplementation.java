@@ -72,5 +72,9 @@ public class EmployeeManagementImplementation
 	public List<Employee> searchBySurname(String surname) {
 		return dao.findBySurname(surname);
 	}	
+	
+	public void deleteAllocationRequest(AllocationRequest allocationRequest) {
+		dao.deleteAllocationRequest(allocationRequest);
+	}
 
 }
