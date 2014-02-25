@@ -14,6 +14,7 @@ import org.primefaces.event.RowEditEvent;
 import com.oracle.staffmanagement.EmployeeManagementServiceLocal;
 import com.oracle.staffmanagement.domain.AllocationRequest;
 import com.oracle.staffmanagement.domain.Employee;
+import com.oracle.staffmanagement.domain.OutOfOffice;
 import com.oracle.staffmanagement.domain.ParkingAllocation;
 import com.oracle.staffmanagement.domain.ParkingSpace;
 
@@ -67,7 +68,6 @@ public class WorkForTodayPageBean  {
 	public String allocateApprove(ActionEvent event){
 
 		try { 
-
 			Class clazz = dataTable.getRowData().getClass(); 
 			System.out.println("###################################" + clazz );
 
@@ -78,23 +78,24 @@ public class WorkForTodayPageBean  {
 
 			selectedEmployee = employeeService.getEmployeeDetails( this.selectedEmployee.getEmployee_id() );
 
-			Employee employeeOnLeave = selectedEmployee.getAllocationRequests().get(0).getOutofoffice().getEmployee();
+			OutOfOffice employeeOnLeaveOoO = selectedEmployee.getLastRequest().getOutofoffice();
+			Employee employeeOnLeave = employeeOnLeaveOoO.getEmployee();
 			ParkingSpace psOfEmployeeOnLeave = employeeOnLeave.getPermParking().getParkingspace();
-			//OutOfOffice outOffice = selectedEmployee.getA
-
+			
 			ParkingAllocation tempAllocation = new ParkingAllocation();
 
-			tempAllocation.setEnd_date(endDate);
+			tempAllocation.setEnd_date( employeeOnLeaveOoO.getOffice_datein() );
+			tempAllocation.setStart_date( employeeOnLeaveOoO.getOffice_dateout() );
 			tempAllocation.setIs_permanent(false);
 			tempAllocation.setParkingspace(psOfEmployeeOnLeave);
 
 			selectedEmployee.addParkingAllocation(tempAllocation);
 
 			employeeService.UpdateEmployee(selectedEmployee); 
+			employeeService.deleteAllocationRequest(selectedEmployee.getLastRequest());
 
 			return "comWorkForToday";
-		} catch (Throwable e) 
-		{	
+		} catch (Throwable e) {	
 			e.printStackTrace();
 			return "comSystemDown";
 		}
@@ -104,12 +105,9 @@ public class WorkForTodayPageBean  {
 	public String allocateRevoke(ActionEvent event){
 
 		try { 
-
 			System.out.println("Parking space request has been revoked");
-
 			return "comWorkForToday";
-		} catch (Throwable e) 
-		{	
+		} catch (Throwable e) {	
 			e.printStackTrace();
 			return "comSystemDown";
 		}
