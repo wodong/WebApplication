@@ -40,6 +40,11 @@ public class EmployeeManagementImplementation
 		return dao.findEmployeeDetails(employeeId);
 	}
 	
+	public Employee searchByEmployeeNoo(String employee_no)
+	{
+		return dao.findByEmployeeNoo(employee_no);
+	}
+	
 	//Get All Parking Spaces Webservice DAO
 	public List<ParkingSpace> getAllFreeSpaces() {
 		
@@ -72,6 +77,11 @@ public class EmployeeManagementImplementation
 	public List<Employee> searchBySurname(String surname) {
 		return dao.findBySurname(surname);
 	}	
+	
+	public Employee searchByEmployeeNo(String employee_no){
+		
+		return dao.findByEmployeeNo(employee_no);
+	}
 	
 	public void deleteAllocationRequest(AllocationRequest allocationRequest) {
 		dao.deleteAllocationRequest(allocationRequest);

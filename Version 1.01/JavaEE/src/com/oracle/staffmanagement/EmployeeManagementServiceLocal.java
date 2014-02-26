@@ -19,6 +19,8 @@ public interface EmployeeManagementServiceLocal
 	public Employee getEmployeeDetails(int employeId);
 	public List<ParkingSpace> getAllFreeSpaces();
 	public List<Employee> searchBySurname(String surname);
+	public Employee searchByEmployeeNo(String employee_no);
+	public Employee searchByEmployeeNoo(String employee_no);
 	
 	public void deleteAllocationRequest(AllocationRequest allocationRequest);
 	

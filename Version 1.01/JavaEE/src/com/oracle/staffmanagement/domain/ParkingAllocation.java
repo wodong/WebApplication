@@ -29,8 +29,7 @@ public class ParkingAllocation {
 	private Date end_date;
 	
 	private Boolean is_permanent;
-	
-	
+		
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="employee_employee_id", referencedColumnName="employee_id")
 	private Employee employee;

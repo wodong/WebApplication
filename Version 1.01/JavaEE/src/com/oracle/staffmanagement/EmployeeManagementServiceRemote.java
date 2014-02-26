@@ -18,5 +18,8 @@ public interface EmployeeManagementServiceRemote
 	public List<AllocationRequest> getAllocationRequests();
 	public Employee getEmployeeDetails(int employeeId);
 	public List<Employee> searchBySurname(String surname);
+	public Employee searchByEmployeeNo(String employee_no);
+	public Employee searchByEmployeeNoo(String employee_no);
+	
 	public List<ParkingSpace> getAllFreeSpaces();
 }

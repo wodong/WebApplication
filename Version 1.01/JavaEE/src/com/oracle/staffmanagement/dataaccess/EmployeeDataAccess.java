@@ -18,8 +18,12 @@ public interface EmployeeDataAccess {
 	public List<AllocationRequest> findAllocationRequest();
 	
 	public abstract Employee findEmployeeDetails(int employeeId);
+	public abstract Employee findByEmployeeNoo(String employee_no);
 
 	public abstract List<Employee> findBySurname(String surname);
+	
+	public abstract Employee findByEmployeeNo(String employee_no);
+	
 
 	public abstract void insert(Employee newEmployee);
 	

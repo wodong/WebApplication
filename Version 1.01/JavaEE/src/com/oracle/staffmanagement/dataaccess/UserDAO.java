@@ -8,8 +8,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         try {
             con = Database.getConnection();
-            ps = con.prepareStatement(
-                    "select user, pass from userinfo where user= ? and pass= ? ");
+            ps = con.prepareStatement("select user, pass from userinfo where user= ? and pass= ? ");
             ps.setString(1, user);
             ps.setString(2, password);
   

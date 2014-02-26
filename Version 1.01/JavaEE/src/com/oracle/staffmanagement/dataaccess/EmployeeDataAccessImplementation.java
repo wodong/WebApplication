@@ -63,28 +63,46 @@ public class EmployeeDataAccessImplementation implements EmployeeDataAccess
 			return employeeDet;
 		}	
 		
+		public Employee findByEmployeeNoo(String employee_no) {		
+			
+			Employee employeeDet = em.find(Employee.class, employee_no);
+			
+			return employeeDet;
+		}
 		
-		
-	public List<Employee> findBySurname(String surname) {
-		Query q = em.createQuery("select employee from Employee employee where employee.surname = :surname");
-		q.setParameter("surname", surname);
-		return q.getResultList();
-	}
-
+    
+	//Insert New Employee 
 	public void insert(Employee newEmployee) {
 		em.persist(newEmployee);	
 	}
     
-	
+	//Update Existing Employee 
 	public void updateEmployee(Employee updateNewEmployee){
 		em.merge(updateNewEmployee);	
 
 	}
 	
-	
+	//Delete Allocation Request
 	public void deleteAllocationRequest(AllocationRequest allocationRequest) {
 		AllocationRequest ar = em.find(AllocationRequest.class, allocationRequest.getRequest_id());
 		em.remove(ar);
 	}
+	
+	
+	public Employee findByEmployeeNo(String employee_no) {
+	     Query q = em.createQuery("select employee from Employee employee where employee.employee_no = :employee_no");
+	     q.setParameter("employee_no", employee_no);
+	     return (Employee) q.getSingleResult();
+	     }
+	
+    public List<Employee> findBySurname(String surname) {
+	     Query q = em.createQuery("select employee from Employee employee where employee.surname = :surname");
+	     q.setParameter("surname", surname);
+	     return q.getResultList();
+	     
+		
+			
+	  
+}
 	
 }
